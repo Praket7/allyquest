@@ -1,0 +1,16 @@
+{
+  "name": "ally-quest",
+  "private": true,
+  "version": "0.8.0",
+  "description": "Ally Quest approved home + side-scrolling Welcome Street 2.5D gameplay development preview",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/verify-build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run build && npm test",
+    "dev": "python3 -m http.server 4173 --directory web"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
+  }
+}
