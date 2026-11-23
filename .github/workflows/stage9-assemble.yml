@@ -1,0 +1,33 @@
+name: Assemble Stage 9 offline game
+on:
+  push:
+    branches: [main, feature/stage9-gameplay-polish]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reassemble self-contained browser game
+        run: node scripts/assemble-release.mjs
+      - name: Verify HTML source and bundled game markers
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          h=Path('play/index.html').read_text(encoding='utf-8')
+          assert h.startswith('<!doctype html>') and len(h)>6_000_000
+          for marker in ('Ally Quest', 'Welcome Street', 'ComicBubble', 'trampoline', 'daily'):
+              assert marker in h, marker
+          print('Stage 9 offline HTML marker checks passed')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ally-quest-stage9-offline-html
+          path: play/index.html
