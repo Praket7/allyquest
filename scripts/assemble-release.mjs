@@ -6,5 +6,7 @@ const files=fs.readdirSync(directory).filter(x=>/^part-\d{3}\.txt$/.test(x)).sor
 if(files.length!==22)throw Error('Expected 22 release fragments; got '+files.length);
 const html=files.map(x=>fs.readFileSync(path.join(directory,x),'utf8')).join('');
 if(!html.startsWith('<!doctype html>') || !html.includes('Ally Quest') || !html.includes('ComicBubble'))throw Error('Invalid assembled release');
+const actual=createHash('sha256').update(html).digest('hex');
+if(actual!=='8b7100edb19619374b293016d85dd65d357bda92720b8992f50d10ca911ae9b0')throw Error('Stage 9 upload checksum mismatch: '+actual);
 fs.mkdirSync('play',{recursive:true});fs.writeFileSync('play/index.html',html);
 console.log('Stage 9 assembled: '+Buffer.byteLength(html)+' bytes, sha256 '+createHash('sha256').update(html).digest('hex'));
