@@ -1,0 +1,142 @@
+
+:root{font-family:ui-rounded,"Trebuchet MS","Arial Rounded MT Bold",system-ui,sans-serif;color:#16385d;--deep:#113d76;--ink:#1c3552;--purple:#66539f;--yellow:#ffc83a}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#66bceb}body{touch-action:manipulation}
+.game{position:fixed;inset:0;overflow:hidden;isolation:isolate;background:linear-gradient(#7cbeef,#8cdab2)}
+#home-art{display:block;width:100%;height:100%;user-select:none;overflow:hidden}
+.action{cursor:pointer;outline:none}.action .button-inner{transition:filter .18s,transform .18s;transform-box:fill-box;transform-origin:center}
+.action:hover .button-inner,.action:focus-visible .button-inner{filter:brightness(1.055);transform:translateY(-3px)}.action:active .button-inner{transform:translateY(2px)}.action:focus-visible .button-inner{filter:drop-shadow(0 0 4px #ffb400)}
+.wind-tree .canopy{transform-origin:10px 125px;animation:branchSway 6.5s ease-in-out infinite alternate;transform-box:fill-box}
+#tree-right .canopy{animation-delay:-2.4s;animation-duration:7.8s}
+#tree-left .canopy{animation-duration:6.3s}
+.wind-tree .tree-branches{transform-origin:0 270px;animation:trunkSway 8s ease-in-out infinite alternate}
+#tree-right .tree-branches{animation-delay:-3s}
+.drifting-leaf{animation:leafFloat var(--speed,10s) ease-in-out var(--delay,0s) infinite alternate}
+.kid .kid-bob{animation:kidBreathe 6s ease-in-out infinite alternate;transform-origin:50% 98%;transform-box:fill-box}
+#maya .kid-bob{animation-delay:-1.8s}#leo .kid-bob{animation-delay:-2.5s}#ari .kid-bob{animation-delay:-4s}
+@keyframes branchSway{from{transform:rotate(-1.3deg) translateX(-3px)}to{transform:rotate(2deg) translateX(7px)}}
+@keyframes trunkSway{from{transform:rotate(-.55deg)}to{transform:rotate(.8deg)}}
+@keyframes leafFloat{from{translate:-7px 12px;rotate:-15deg}to{translate:18px -22px;rotate:35deg}}
+@keyframes kidBreathe{from{transform:translateY(1px) rotate(-.25deg)}to{transform:translateY(-2px) rotate(.2deg)}}
+.motion-off .wind-tree *, .motion-off .drifting-leaf,.motion-off .kid-bob{animation:none!important}
+@media(prefers-reduced-motion:reduce){.wind-tree *, .drifting-leaf,.kid-bob{animation:none!important}}
+#panel-backdrop{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(23,47,74,.34);backdrop-filter:blur(7px);padding:18px;z-index:10}#panel-backdrop.open{display:flex}
+.panel{width:min(960px,100%);max-height:calc(100dvh - 36px);overflow:auto;border:5px solid #fff;border-radius:30px;background:linear-gradient(160deg,#f9fffe,#eaf9f3 73%,#e0efe9);box-shadow:0 28px 65px #15386150,inset 0 3px 0 #fff;position:relative;padding:30px 34px 34px}
+.panel h2{font-size:clamp(30px,4vw,46px);line-height:1.05;margin:0 48px 9px 0;color:#1e416c;letter-spacing:-1.1px}.panel p{color:#53677b;font-size:16px;line-height:1.45}.panel-head{margin-bottom:22px}.close{position:absolute;top:23px;right:25px;border:2px solid #c5d6dd;background:white;color:#1e416c;font-size:27px;font-weight:900;line-height:1;border-radius:50%;width:45px;height:45px;cursor:pointer}.close:hover{background:#e5f4ff}
+button{font-family:inherit}.primary{border:3px solid #fff;border-radius:17px;padding:13px 24px;font-size:19px;font-weight:900;color:#57301d;background:linear-gradient(#ffe078,#ffc02d);box-shadow:0 4px 0 #d9a144,0 8px 15px #204d5930;cursor:pointer}.primary:hover{filter:brightness(1.045);transform:translateY(-1px)}.primary:active{transform:translateY(2px)}.secondary{border:2px solid #d2e4e9;background:white;color:#29517a;border-radius:16px;padding:10px 18px;font-weight:900;font-size:16px;cursor:pointer}.secondary:hover{background:#f0f7fb}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.tile{min-height:164px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:8px;border:2px solid #d6e7e4;border-radius:20px;background:linear-gradient(145deg,#fff,#e8f7f4);padding:18px;text-align:left;color:var(--ink);box-shadow:0 5px 0 #bedcdb;cursor:pointer}.tile:disabled{opacity:.5;cursor:not-allowed}.tile:hover:not(:disabled){border-color:#74bac6;background:#f8fff8}.tile .emoji{font-size:44px}.tile strong{font-size:19px;line-height:1.15}.tile span:last-child{font-size:13px;color:#567080}
+.crew{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.crew .person{background:white;border:2px solid #d6e6df;border-radius:20px;padding:22px 12px;text-align:center}.crew .avatar{width:80px;height:80px;margin:auto auto 12px;border-radius:50%;display:grid;place-items:center;font-size:43px;background:linear-gradient(160deg,#dbf5f7,#c5ebcc)}.crew strong{display:block;font-size:20px}.crew p{font-size:13px;margin-bottom:0}
+.option-list{display:flex;gap:12px;flex-wrap:wrap}.swatch{border:4px solid white;box-shadow:0 2px 8px #35546b55;border-radius:50%;width:62px;height:62px;cursor:pointer}.setting{display:flex;justify-content:space-between;align-items:center;gap:18px;background:#fff;border:2px solid #d9eae6;border-radius:17px;padding:15px 18px;margin:11px 0;font-weight:800}.setting input{width:24px;height:24px;accent-color:#2a98af}
+#toast{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:#224e66f2;color:white;padding:12px 22px;border-radius:99px;font-weight:700;box-shadow:0 8px 20px #20455750;opacity:0;pointer-events:none;transition:opacity .2s;z-index:14;text-align:center;white-space:normal;max-width:90vw}#toast.show{opacity:1}
+@media (max-width:620px){.panel{padding:22px 17px;max-height:calc(100dvh - 22px);border-radius:24px}.panel h2{font-size:30px}.tiles{grid-template-columns:repeat(2,1fr)}.tile{min-height:135px;padding:13px}.crew{grid-template-columns:repeat(2,1fr)}.puzzle-buttons .primary{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.tree-top,#clouds,.flutter,.character .body-rise{animation:none!important}.action .button-inner{transition:none!important}}
+
+/* Hand-illustrated all-code, animation and responsive refinements. */
+html,body{overflow:hidden;background:#80cbf2}
+#home-art{display:block;position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+.game{background:linear-gradient(#65b5f0,#c4eac0)}
+.wind-tree .canopy{transform-origin:20px 210px;transform-box:fill-box;animation:windCanopy 6.5s ease-in-out infinite alternate}
+.wind-tree .tree-branches{transform-origin:17px 500px;transform-box:fill-box;animation:windTrunk 8s ease-in-out infinite alternate}
+#tree-right .canopy{animation-duration:8.3s;animation-delay:-4.2s}
+#tree-left .canopy{animation-duration:7.0s;animation-delay:-1.5s}
+.drifting-leaf{animation:leafBreeze var(--speed,9s) ease-in-out var(--delay,0s) infinite alternate;transform-box:fill-box;transform-origin:center}
+.kid .kid-bob{animation:gentleBob 4.8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 95%}
+#maya .kid-bob{animation-delay:-1.9s}#leo .kid-bob{animation-delay:-2.4s}#ari .kid-bob{animation-delay:-.9s}
+@keyframes windCanopy{0%{transform:rotate(-1.7deg) translateX(-6px)}100%{transform:rotate(2.4deg) translateX(8px)}}
+@keyframes windTrunk{0%{transform:rotate(-.45deg)}100%{transform:rotate(.75deg)}}
+@keyframes leafBreeze{0%{transform:translate(-9px,8px) rotate(-25deg)}100%{transform:translate(23px,-25px) rotate(28deg)}}
+@keyframes gentleBob{0%{transform:translateY(2px)}100%{transform:translateY(-3px)}}
+.action .button-inner{transform-origin:center;transform-box:fill-box;transition:filter .15s,transform .15s}
+.action:hover .button-inner{filter:brightness(1.06);transform:translateY(-3px)}
+.action:active .button-inner{transform:translateY(2px)}
+.action:focus-visible{outline:5px solid #fff000;outline-offset:5px}
+@media(prefers-reduced-motion:reduce){.wind-tree *, .drifting-leaf, .kid-bob{animation:none!important}}
+.motion-off .wind-tree *, .motion-off .drifting-leaf,.motion-off .kid-bob{animation:none!important}
+.portrait #ari-point-arm{display:none}
+
+/* Detail pass: softer modeling and grounded character silhouettes. */
+.kid{filter:drop-shadow(0 7px 12px rgba(16,61,56,.14))}
+.kid .character-head{transform-box:fill-box;transform-origin:center}
+@media(prefers-reduced-motion:reduce){.kid .kid-bob{animation:none!important}}
+
+/* Faces: rounded eye proportions, controlled blinks and subtle reactions. */
+.kid .eye-pair{transform-box:fill-box;transform-origin:center center;animation:allyBlink 7.7s infinite}
+#maya .eye-pair{animation-delay:-3.2s;animation-duration:9.2s}
+#leo .eye-pair{animation-delay:-5.8s;animation-duration:8.1s}
+#ari .expressive-smile{transform-box:fill-box;transform-origin:center;transition:transform .22s ease}
+.kid:hover .expressive-smile{transform:scale(1.045)}
+@keyframes allyBlink{0%,90%,92.1%,100%{transform:scaleY(1)}91.05%{transform:scaleY(.1)}}
+@media(prefers-reduced-motion:reduce){.kid .eye-pair{animation:none}}
+
+
+/* Original vector characters are built from Bézier geometry, not image tracing. */
+#home-art .kid{filter:none}
+#home-art .kid-bob{animation:kidBreathe 6s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 94%}
+#home-art .wind-tree .canopy{animation:branchSway 7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center bottom}
+#home-art #tree-right .canopy{animation-delay:-3.1s}
+#home-art .drifting-leaf{animation:leafBreeze var(--speed,8s) ease-in-out var(--delay,0s) infinite alternate}
+@media(prefers-reduced-motion:reduce){#home-art .kid-bob,#home-art .wind-tree .canopy,#home-art .drifting-leaf{animation:none!important}}
+
+
+/* Individual artist-generated sprites replace ONLY the four legacy vector children.
+   All tree shapes, animated canopies, sky, logos and buttons are the original editable code. */
+.illustrated-kid { filter: drop-shadow(0 3px 5px rgba(16,55,51,.17)); transform-box: fill-box; transform-origin:center bottom; animation:allySpriteBreathe 5.8s ease-in-out infinite alternate; }
+#maya.illustrated-kid{animation-delay:-1.1s}#leo.illustrated-kid{animation-delay:-2.2s}#ari.illustrated-kid{animation-delay:-3.1s}
+@keyframes allySpriteBreathe{from{transform:translateY(1px)}to{transform:translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){.illustrated-kid{animation:none!important}}
+.crew .avatar{position:relative;overflow:hidden;border:3px solid #e3edf2} .crew .avatar img{position:absolute;inset:0;display:block;width:100% !important;height:100% !important;max-height:none;object-fit:cover;object-position:center 20%}
+
+/* Phase 0: modal usability only; does not alter approved home artwork. */
+.panel .eyebrow {text-transform:uppercase;letter-spacing:.13em;font-size:12px;font-weight:900;color:#367b83;margin:0 0 9px}
+.panel .status-line {background:#edf7f7;border:1px solid #cde7e3;border-radius:13px;padding:12px 14px;font-weight:750;color:#31556f}
+.panel .panel-actions {display:flex;flex-wrap:wrap;gap:10px;margin-top:19px}
+.panel .coming-note {font-size:13px;color:#506a77}
+.tile .preview-label {font-weight:800;font-size:12px;color:#3f6d82}
+.panel .facts {display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+.panel .facts span {background:#fff;border:1px solid #d5e9e5;border-radius:99px;padding:8px 12px;font-size:12px;font-weight:800}
+#panel-backdrop.open .panel {animation:enterPanel .18s ease-out both}
+@keyframes enterPanel {from{opacity:.6;transform:translateY(8px) scale(.99)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#panel-backdrop.open .panel{animation:none}}
+
+/* Layout quality: prevent button text spilling outside compact portrait controls. */
+.portrait #nav-map text,.portrait #nav-crew text,.portrait #nav-daily text{font-size:11px}
+.portrait #nav-workshop text{font-size:10px}
+#foreground-grounding{pointer-events:none}
+@media(prefers-reduced-motion:reduce){.illustrated-kid,.wind-tree .canopy{animation:none!important}}
+
+/* Ally Quest Movement Lab. Intentionally scoped: approved homepage pixels remain unchanged. */
+.aq-play-root {position:fixed;inset:0;z-index:9999;overflow:hidden;color:#183e5d;background:#8dcaea;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;isolation:isolate;touch-action:none}
+.aq-play-root *, .aq-play-root *::before,.aq-play-root *::after{box-sizing:border-box}
+.aq-play-root canvas{position:absolute;inset:0;display:block;width:100%;height:100%;outline:none;touch-action:none}
+.aq-hud{position:absolute;left:max(env(safe-area-inset-left),18px);right:max(env(safe-area-inset-right),18px);top:max(env(safe-area-inset-top),16px);display:flex;align-items:start;justify-content:space-between;gap:14px;pointer-events:none}
+.aq-level-label{display:flex;flex-direction:column;gap:2px;min-width:0;padding:11px 19px 12px;background:rgba(255,255,255,.94);border:2px solid rgba(255,255,255,.96);border-radius:21px;box-shadow:0 9px 24px rgba(29,79,107,.15)}
+.aq-level-tag{letter-spacing:.13em;font-size:10px;color:#5d8792;font-weight:900}
+.aq-level-label strong{font-size:clamp(15px,2vw,23px);font-weight:1000;letter-spacing:-.035em}
+.aq-level-label small{color:#557e83;font-weight:700;font-size:11px}
+.aq-hud-right{display:flex;gap:10px;align-items:center;pointer-events:auto}
+.aq-pill,.aq-hud-button{color:#194d6a;background:rgba(255,255,255,.95);border:2px solid #fff;border-radius:100px;padding:10px 16px;box-shadow:0 7px 18px rgba(18,74,95,.14);font-weight:900;font-size:16px;white-space:nowrap}
+.aq-hud-button{display:grid;place-items:center;width:49px;height:49px;padding:0;cursor:pointer;font-size:25px;line-height:1}
+.aq-hud-button:hover,.aq-play-root button:hover{filter:brightness(1.05)}
+.aq-hud-button:focus-visible,.aq-play-root button:focus-visible{outline:3px solid #194974;outline-offset:3px}
+.aq-hint{position:absolute;left:50%;top:max(110px,calc(env(safe-area-inset-top) + 99px));transform:translateX(-50%);border-radius:17px;padding:10px 18px;background:rgba(255,255,255,.91);font-size:14px;font-weight:850;color:#22536e;box-shadow:0 8px 30px rgba(14,61,70,.1);max-width:min(600px,80vw);text-align:center;min-height:0;pointer-events:none}
+.aq-hint:empty{display:none}
+.aq-help{position:absolute;bottom:max(15px,env(safe-area-inset-bottom));left:22px;display:flex;gap:17px;align-items:center;flex-wrap:wrap;font-size:12px;font-weight:800;color:#184865;text-shadow:0 1px 1px #fff;background:rgba(255,255,255,.82);border:2px solid #ffffff99;padding:10px 18px;border-radius:100px;pointer-events:none}
+.aq-touch{display:none;pointer-events:auto;position:absolute;left:14px;right:14px;bottom:max(env(safe-area-inset-bottom),14px);justify-content:space-between;align-items:end;gap:12px}
+.aq-dpad,.aq-actions{display:flex;align-items:end;gap:8px}
+.aq-dpad button,.aq-actions button{width:66px;height:66px;display:grid;place-items:center;border:3px solid rgba(255,255,255,.8);border-radius:23px;background:rgba(246,250,250,.83);box-shadow:0 8px 20px #17406e27;font-size:22px;color:#214c6b;font-weight:1000;touch-action:none;user-select:none;cursor:pointer}
+.aq-actions button.aq-jump{background:#ffd25c;color:#74400d;min-width:89px;font-size:17px;border-color:#fff5d7}
+.aq-actions button.aq-dash{background:#a7e4ea}
+.aq-dpad button.down,.aq-actions button.down{transform:translateY(2px) scale(.96);background:#bae5a9}
+.aq-tb-middle{display:flex;flex-direction:column;gap:7px}
+.aq-tb-middle button{width:50px;height:37px;border-radius:12px;font-size:17px}
+.aq-screen-overlay{position:absolute;inset:0;display:grid;place-items:center;padding:22px;background:rgba(22,53,75,.42);backdrop-filter:blur(8px);pointer-events:auto}
+.aq-screen-overlay[hidden]{display:none}
+.aq-screen-card{max-width:min(550px,94vw);max-height:90vh;overflow:auto;border:4px solid #fff;border-radius:32px;background:linear-gradient(175deg,#fefcf2,#e9f7e7);padding:clamp(24px,4vw,38px);box-shadow:0 26px 70px #17415d5c;text-align:center}
+.aq-screen-card h2{color:#183e5d;margin:0 0 10px;font-size:clamp(25px,4vw,37px);line-height:1.06;font-weight:1000}
+.aq-screen-card p{font-size:16px;line-height:1.5;margin:8px 0 24px;color:#557579}
+.aq-card-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.aq-card-actions button{border:3px solid white;border-radius:20px;padding:12px 19px;font-weight:900;font-size:14px;cursor:pointer;color:#1f546f;background:#e5f4ef;box-shadow:0 5px 11px #23607126}
+.aq-card-actions .aq-primary{background:#ffd253;color:#73430d}
+@media (pointer:coarse), (max-width:780px){.aq-touch{display:flex}.aq-help{display:none}.aq-hint{top:max(105px,calc(env(safe-area-inset-top) + 87px));font-size:12px}.aq-level-label{padding:8px 12px;border-radius:13px}.aq-level-label strong{font-size:15px}.aq-level-label small{display:none}.aq-level-tag{font-size:9px}.aq-hud{left:10px;right:10px;top:max(8px,env(safe-area-inset-top))}.aq-hud-right{gap:5px}.aq-pill{font-size:12px;padding:9px 8px}.aq-hud-button{width:39px;height:39px;font-size:22px}.aq-dpad button,.aq-actions button{width:61px;height:61px}.aq-actions button.aq-jump{min-width:76px}}
+@media (max-width:440px){.aq-time{display:none}.aq-dpad{gap:4px}.aq-actions{gap:5px}.aq-dpad button,.aq-actions button{width:56px;height:59px;border-radius:18px}.aq-actions button.aq-jump{min-width:73px}.aq-tb-middle button{width:43px;height:30px}.aq-level-label{max-width:145px}}
+@media (prefers-reduced-motion:reduce){.aq-play-root button{transition:none}}
+
