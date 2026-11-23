@@ -46,8 +46,13 @@ test('obstacle geometry is byte-for-byte locked, including trampoline walls and 
  assert.equal(digest,'6038032343da39165544fa658b159b709c1fb33ad01fad66e521d33914d5b2ea');
 });
 test('approved home markup, CSS and illustrations are not modified',()=>{
- for(const path of ['src/home/homeMarkup.ts','src/home/HomeScene.ts','web/assets/css/home.css']){
-  const before=readFileSync(new URL(`../../allyquest-stage7/${path}`,import.meta.url));
-  const after=readFileSync(new URL(`../${path}`,import.meta.url));assert.ok(before.equals(after),path);
+ const approved={
+  'src/home/homeMarkup.ts':'e249e35e78ad9e7563215283115a67c20a06e0b66a99f6cbfb0a6448da8c19c0',
+  'src/home/HomeScene.ts':'7e442febaaf6ac70ae0599c2e3e58f3e05a0595913ffb574953415b7070fa39a',
+  'web/assets/css/home.css':'454b7d98a0a59a9cd2d795db9052d318c8a1fccd792860f897f37f80a8408bf0'
+ };
+ for(const [path,expected] of Object.entries(approved)){
+  const bytes=readFileSync(new URL(`../${path}`,import.meta.url));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),expected,`approved ${path} changed`);
  }
 });
