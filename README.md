@@ -1,28 +1,21 @@
 # Ally Quest
 
-**A playable, illustrated 2.5D side-scrolling adventure for K12Allergies.**
+Stage 8 — The Banner Quest, an illustrated side-scrolling 2.5D K12Allergies game.
 
-Welcome Street contains real collision-based movement, physics-driven trampolines and moving platforms, hand-drawn scenery, the Ally Crew, and a banner-rescue mission. Stage 8 introduces a world-anchored comic conversation with Maya, choice-based dialogue, saved story/checkpoint progress, optional secrets, and a four-character celebration.
+## Repository status
 
-## Run locally
+**Source import pending.** This GitHub repository currently contains this setup README, but not yet the game source or compiled browser assets. Do not expect `npm run dev` to work from a clone of this GitHub repository yet.
 
-```bash
-npm install
-npm run check
-npm run dev
-```
+A verified local source release and standalone playable HTML were created in the associated ChatGPT conversation, including a cloneable Git repository bundle. Import that verified source package into this repository before attempting CI or deployment.
 
-Open `http://localhost:4173`. To produce the standalone offline HTML, run `python scripts/build-standalone.py` after `npm run build`.
+## Completed in the local Stage 8 release
 
-## Development standards
+- Approved Stage 7 home screen and physics obstacle coordinates preserved.
+- Maya's interactive comic-style speech bubble anchored above the NPC; branching dialogue remains in the bubble, never in the tutorial strip.
+- Mission-state progression, local checkpoint save, optional secrets and physical banner recovery.
+- Original synthesized ambient music and four-character finale.
+- 52 automated tests passing; desktop, laptop and mobile browser checks for Maya conversation and quest finale.
 
-- Approved Stage 7 home markup and game obstacle physics are locked by automated tests.
-- Source modules live under `src/`; local game artwork is under `web/assets/`.
-- No trackers, accounts, or remote collection of children's information are required for gameplay.
-- Educational dialogue requires specialist review before public learning-outcome claims.
+## Next
 
-## Current release
-
-Stage 8: Welcome Street — The Banner Quest. See `docs/stage8/RELEASE.md`, `docs/stage8/EVIDENCE.md`, and `docs/stage8/PLAYTEST.md`.
-
-The game has automated and browser QA, but has **not** undergone independent child playtesting or specialist medical review.
+Import the local Stage 8 Git repository bundle or editable source archive, then run `npm run check`, build the standalone HTML and validate with Chromium. Conduct independent child playtesting and pediatric-allergy content review before publishing educational claims.
