@@ -1,21 +1,24 @@
-# Ally Quest
+# Ally Quest — Stage 9
 
-Stage 8 — The Banner Quest, an illustrated side-scrolling 2.5D K12Allergies game.
+**Ally Quest** is an illustrated 2.5D side-scrolling game for K12Allergies. Stage 9 expands the Welcome Street banner adventure with smoother animation, spring and landing reactions, a gentler camera, environmental animation, original audio, replay medals, voluntary daily challenges, and accessibility options.
 
-## Repository status
+## Play the offline build
 
-**Source import pending.** This GitHub repository currently contains this setup README, but not yet the game source or compiled browser assets. Do not expect `npm run dev` to work from a clone of this GitHub repository yet.
+This repository stores the **self-contained, playable Stage 9 HTML** as 22 source fragments to work around the connected GitHub API's per-request file limit. GitHub Actions reconstructs the exact verified HTML artifact.
 
-A verified local source release and standalone playable HTML were created in the associated ChatGPT conversation, including a cloneable Git repository bundle. Import that verified source package into this repository before attempting CI or deployment.
+```bash
+node scripts/assemble-release.mjs
+# Then open play/index.html in a browser.
+```
 
-## Completed in the local Stage 8 release
+A verified GitHub Actions run uploads `play/index.html` as the `ally-quest-stage9-offline-html` artifact. The reassembly script checks its SHA-256 against the tested release.
 
-- Approved Stage 7 home screen and physics obstacle coordinates preserved.
-- Maya's interactive comic-style speech bubble anchored above the NPC; branching dialogue remains in the bubble, never in the tutorial strip.
-- Mission-state progression, local checkpoint save, optional secrets and physical banner recovery.
-- Original synthesized ambient music and four-character finale.
-- 52 automated tests passing; desktop, laptop and mobile browser checks for Maya conversation and quest finale.
+## Scope and transparency
 
-## Next
+- **In GitHub:** the complete executable standalone game payload, reconstruction script, release notes, and CI verification.
+- **In the separate source archive delivered in ChatGPT:** the original editable TypeScript modules, image assets, documentation, unit tests and build scripts. This editable source has **not** been imported to GitHub yet.
+- **Local checks:** 60/60 automated tests, four desktop/mobile browser flow checks without JavaScript errors. The same local source rebuilt successfully from a clean extracted directory.
+- **Locks:** Stage 7 obstacle coordinates/physics and approved home artwork were unchanged in the Stage 9 source.
+- **Not established:** child playtesting, real-device performance across browsers, and medical specialist approval.
 
-Import the local Stage 8 Git repository bundle or editable source archive, then run `npm run check`, build the standalone HTML and validate with Chromium. Conduct independent child playtesting and pediatric-allergy content review before publishing educational claims.
+Read [Stage 9 release details](docs/stage9/REMOTE_RELEASE.md). We recommend importing the editable TypeScript archive before active multi-person development and then running its `npm run check` suite in GitHub CI.
