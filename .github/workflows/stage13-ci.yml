@@ -1,0 +1,27 @@
+name: Stage 13 gameplay verification
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  browser-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: node scripts/assemble-stage13.mjs
+      - run: python -m pip install playwright==1.51.0
+      - run: python -m playwright install --with-deps chromium
+      - run: python scripts/stage13_browser_qa.py play/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ally-quest-stage13
+          path: play/index.html

@@ -1,0 +1,93 @@
+es[a.task.id]=a.moves.slice();sound('pick');renderStationActivity();
+  stationFeedback(stationComplete(a)?'Station ready! All three actions changed the activity board.':'That piece is in the right place. Continue helping!',true)}
+ else {stationFeedback(g.mode==='sort'?'Check the written equipment status before placing it. Ask a trusted adult if you are unsure.':g.mode==='sequence'?'Follow the helpful sequence, starting with the highlighted action.':'Place a different decoration on an empty poster spot.');sound('wrong')}
+}
+function renderStationActivity(){if(!activity)return;const a=activity,g=window.ALLY_STATION_GAMES[a.task.id];if(!g)return;
+ const done=stationComplete(a),total=stationTargetCount(g),count=stationProgress(a),placed=new Set(a.moves.map(v=>v[0]));
+ const pieceMarkup=g.items.map(([id,icon,name])=>`<button type="button" class="station-piece ${a.selected===id?'selected':''} ${placed.has(id)&&g.mode!=='rhythm'?'used':''}" draggable="${g.mode==='rhythm'||!placed.has(id)}" data-station-piece="${id}" ${placed.has(id)&&g.mode!=='rhythm'?'disabled':''} aria-pressed="${a.selected===id}"><span class="station-piece-icon">${icon}</span><span>${name}</span>${placed.has(id)?'<small>✓ PLACED</small>':''}</button>`).join('');
+ let slots='';
+ if(g.mode==='sort')slots=g.zones.map(([id,name])=>{const contents=a.moves.filter(v=>v[1]===id).map(([pid])=>g.items.find(x=>x[0]===pid)?.[1]||'✓').join(' ');
+  return `<button type="button" class="station-zone ${contents?'filled':''}" data-station-zone="${id}"><strong>${name}</strong><span>${contents||'⬇  PLACE HERE'}</span></button>`}).join('');
+ else if(g.mode==='sequence'||g.mode==='art')slots=g.steps.map(([id,label],i)=>{const move=a.moves[i],filled=!!move,icon=filled?(g.items.find(v=>v[0]===move[0])?.[1]||'✓'):'⊕';
+  return `<button type="button" class="station-zone station-step ${filled?'filled':''} ${i===count?'current':''}" data-station-zone="${id}" ${filled||i>count?'disabled':''}><small>STEP ${i+1}</small><strong>${label}</strong><span>${icon}</span></button>`}).join('');
+ else if(g.mode==='rhythm')slots=`<div class="station-rhythm" role="status" aria-label="Four beat pattern">${g.pattern.map((id,i)=>`<span class="${i<count?'lit':i===count?'current':''}">${g.items.find(v=>v[0]===id)?.[1]||'♪'}</span>`).join('')}</div><p class="station-secondary">Tap the matching instrument buttons in order. Sound is optional; the symbols show the pattern.</p>`;
+ else if(g.mode==='hunt')slots=`<div class="station-hunt-scene">${g.targets.map(id=>`<span class="station-hunt-find">${placed.has(id)?g.items.find(x=>x[0]===id)?.[1]:'?'}</span>`).join('')}</div><p class="station-secondary">Click the three hidden team objects on the left. The food items are not a test of food safety.</p>`;
+ const workspace=`<div class="activity-scene station-activity station-${g.mode}">
+   <div class="station-header"><strong>${g.title}</strong><p>${g.brief}</p></div>
+   <div class="station-workbench"><div class="station-inventory"><span class="station-caption">${g.mode==='rhythm'?'PLAY THE NOTES':g.mode==='hunt'?'SEARCH THE SCENE':'PICK AN ITEM'}</span><div class="station-pieces">${pieceMarkup}</div></div><div class="station-board"><span class="station-caption">${g.mode==='sort'?'SORT INTO THE CORRECT AREA':g.mode==='rhythm'?'FOLLOW THE PATTERN':g.mode==='hunt'?'THREE CLUES TO FIND':'PLACE ON THE WORKBENCH'}</span><div class="station-zones">${slots}</div></div></div>
+   <div class="station-counter">${Array.from({length:total},(_,i)=>`<span class="${i<count?'filled':''}">${i<count?'✓':i+1}</span>`).join('')}<strong>${count} / ${total} actions completed</strong></div>
+ </div>`;
+ openOverlay(`<div class="panel-kicker">PLAYABLE ALLY MISSION · ${world.name}</div><h2>${g.title.toUpperCase()}</h2><p>Move objects with click-and-place or drag-and-drop. Keyboard users can select a piece and then a destination.</p>${workspace}
+ <div id="activity-feedback" role="status" aria-live="polite"></div><div class="panel-buttons"><button type="button" class="pill-button secondary" data-activity-close>Back to Game</button><button type="button" class="pill-button" data-activity-next ${done?'':'disabled'}>${done?'Finish station ✓':'Finish station'}</button></div>`);
+ $('[data-activity-close]').onclick=()=>{activity=null;closeOverlay();paused=false};
+ const next=$('[data-activity-next]');next.onclick=()=>{if(!activity||!stationComplete(activity))return;const task=activity.task;world.state.activityStages[task.id]=activity.moves.slice();activity=null;closeOverlay();paused=false;markDone(task)};
+ document.querySelectorAll('[data-station-piece]').forEach(btn=>{btn.addEventListener('click',()=>stationChoosePiece(btn.dataset.stationPiece));btn.addEventListener('dragstart',e=>{if(btn.disabled){e.preventDefault();return}e.dataTransfer?.setData('text/plain',btn.dataset.stationPiece);e.dataTransfer.effectAllowed='move'})});
+ document.querySelectorAll('[data-station-zone]').forEach(zone=>{zone.addEventListener('click',()=>stationPlace(zone.dataset.stationZone));zone.addEventListener('dragover',e=>{e.preventDefault()});zone.addEventListener('drop',e=>{e.preventDefault();const id=e.dataTransfer?.getData('text/plain');if(id){activity.selected=id;stationPlace(zone.dataset.stationZone)}})});
+}
+
+function openActivity(task){paused=true;clearInputs();activity={task,step:0,moves:[...(world.state.activityStages[task.id]||[])],selected:null};renderActivity()}
+function renderActivity(){if(!activity)return;if(window.ALLY_STATION_GAMES?.[activity.task.id]){renderStationActivity();return;}
+ const {task,step}=activity,label=PACKAGE_LABELS[task.id],done=step>=3;
+ const labels={label1:['Wheat','Milk','Sugar','Sunflower oil'],label2:['Oats','Oil','Flavoring details unclear','No precautionary warning shown'],label3:['Cocoa','Soy','Sugar','Familiar package design']};
+ const keyItem={label1:'Milk',label2:'Flavoring details unclear',label3:'Soy'}[task.id];
+ const actSteps=ACTIVITY_STEPS[task.id]||['LOOK AT THE STATION','HELP WITH THE ACTIVITY','INVITE EVERYONE'];
+ let content='';let nextLabel='';
+ if(label){
+  const note=step===0?'Open the current package label using the magnifier.':step===1?'Find important evidence on the ingredient list. Tap a word to examine it.':step===2?'The ingredient details need an adult’s review. Bring the package to the helper.':'Your careful inspection is recorded!';
+  content=`<div class="package-inspector"><div class="package-top"><span>FICTIONAL TEACHING LABEL • NOT A SAFETY CERTIFICATION</span><strong>${label.name}</strong></div><div class="inspection-instruction">${note}</div>
+  <div class="package-lines ${step===0?'obscured':''}"><b>INGREDIENT INFORMATION</b><p>${label.ingredients}</p></div>
+  <div class="ingredient-choices">${step===1?labels[task.id].map(x=>`<button type="button" data-evidence="${x}" class="ingredient-chip">🔍 ${x}</button>`).join(''):''}</div>
+  <div class="inspection-note ${step>=2?'visible':''}">${step>=2?label.signal+'<br><strong>'+label.advice+'</strong>':'Food suitability cannot be decided from appearance or a missing warning.'}</div>
+  </div>`;
+  nextLabel=step===0?'USE MAGNIFIER 🔍':step===1?'FIND EVIDENCE FIRST':step===2?'BRING TO ADULT HELPER':'RETURN TO THE LEVEL ✓';
+ }else{
+  const symbols={station1:['🛒','📋','🧑‍🍳'],station2:['🧽','🍽️','🧑‍🍳'],station3:['🎨','🖍️','🤝'],crafts:['📜','🖌️','🖼️'],music:['🎵','🎶','🕺'],welcome:['📋','💬','🤝'],game:['🧩','🔎','🎉'],check:['💛','🧑‍🏫','🎊']};
+  content=`<div class="activity-scene"><span class="activity-symbol">${(symbols[task.id]||['💛','★','🎉'])[Math.min(step,2)]}</span>
+  <div class="activity-work"><div class="activity-progress">${actSteps.map((v,i)=>`<span class="${i<step?'done':i===step?'current':''}">${i<step?'✓':i+1}</span>`).join('')}</div><div class="activity-action">${done?'ACTIVITY COMPLETE!':actSteps[step]}</div></div></div>`;
+  nextLabel=done?'RETURN TO ADVENTURE ✓':step===0?'START THE ACTIVITY →':step===1?'KEEP HELPING →':'FINISH TOGETHER ★';
+ }
+ openOverlay(`<div class="panel-kicker">INTERACTIVE ADVENTURE · ${world.name}</div><h2>${label?'🔎 READ A REAL LABEL':'★ '+task.title.toUpperCase()}</h2><p>${label?'Collect evidence before asking a trusted adult.':`Step ${Math.min(step+1,3)} of 3 · ${done?'Task ready':actSteps[step]}`}</p>${content}
+ <div id="activity-feedback" role="status" aria-live="polite"></div><div class="panel-buttons"><button type="button" class="pill-button secondary" data-activity-close>Back to Game</button><button type="button" class="pill-button" data-activity-next ${label&&step===1?'disabled':''}>${nextLabel}</button></div>`);
+ $('[data-activity-close]').onclick=()=>{activity=null;closeOverlay();paused=false};
+ if(label&&step===1){document.querySelectorAll('[data-evidence]').forEach(button=>button.onclick=()=>{
+   if(button.dataset.evidence===keyItem){activity.step=2;sound('pick');renderActivity()}
+   else {$('#activity-feedback').textContent='Look more carefully. What information needs an adult to verify?';sound('wrong');button.classList.add('not-evidence')}
+  })}
+ $('[data-activity-next]').onclick=()=>{if(!activity)return;
+  if(activity.step>=3){const finished=activity.task;activity=null;closeOverlay();paused=false;markDone(finished);return}
+  if(label&&activity.step===1)return;
+  activity.step++;sound(activity.step===3?'win':'pick');renderActivity()
+ };
+}
+
+function showWorkshop(){const stars=starsTotal(),items=[{id:'none',name:'Explorer Classic',cost:0,color:'#b4dae6'},{id:'gold',name:'Golden Ally Scarf',cost:4,color:'#ffdc70'},{id:'mint',name:'Garden Explorer Scarf',cost:9,color:'#93e6c3'},{id:'lavender',name:'Teamwork Scarf',cost:15,color:'#d7b5ff'}];
+ const html=`<div class="panel-kicker">REWARDS FOR EXPLORATION · ${stars} TOTAL STARS</div><h2>ALLY WORKSHOP ★</h2><p>Customize a simple scarf color. All rewards come from playing, not payments or daily streaks.</p><div class="workshop-grid">${items.map(it=>`<button class="workshop-item ${stars<it.cost?'locked':''}" data-scarf="${it.id}" ${stars<it.cost?'disabled':''}><span style="background:${it.color}" class="scarf-preview"></span><strong>${it.name}</strong><small>${stars<it.cost?it.cost+' stars to unlock':progress.scarf===it.id?'EQUIPPED':'EQUIP'}</small></button>`).join('')}</div><div class="panel-buttons"><button class="pill-button" data-workshop-close>BACK TO GAME ▶</button></div>`;
+ openOverlay(html);$('[data-workshop-close]').onclick=()=>{closeOverlay();if(gameMode==='playing')paused=false};
+ document.querySelectorAll('[data-scarf]:not(:disabled)').forEach(btn=>btn.onclick=()=>{progress.scarf=btn.dataset.scarf;persist();showWorkshop()});
+}
+function showDaily(){const today=new Date(),date=today.toLocaleDateString('en-CA'),n=Math.floor(Date.UTC(today.getFullYear(),today.getMonth(),today.getDate())/86400000),level=n%5;
+ const goal=LEVELS[level],available=level<progress.unlocked,clear=progress.daily?.date===date&&progress.daily?.complete;
+ openOverlay(`<div class="panel-kicker">A CHALLENGE THAT NEVER PUNISHES YOU</div><h2>DAILY DISCOVERY ★</h2><p>${clear?'Completed today!':'Today’s optional adventure:'} <strong>${goal.name}</strong>. Replay to find hidden stars and improve your time. No streak penalties.</p><div class="panel-buttons"><button class="pill-button" data-daily-start ${available?'':'disabled'}>${available?'PLAY TODAY’S LEVEL':'UNLOCK THIS LEVEL FIRST'}</button><button class="pill-button secondary" data-daily-map>WORLD MAP</button></div>`);
+ $('[data-daily-start]').onclick=()=>{if(!available)return;progress.daily={date,level,complete:false};persist();closeOverlay();startLevel(level,true)};
+ $('[data-daily-map]').onclick=()=>{closeOverlay();selectMap()};
+}
+function setup(){resize();for(const [id,fn] of [['home-play',()=>startLevel(0)],['home-map',selectMap],['home-crew',showCrew],['home-workshop',()=>showWorkshop()],['home-daily',()=>showDaily()],['home-settings',showSettings],['map-back',goHome],['map-crew',showCrew],['map-settings',showSettings],['help-button',openTutorial],['sound-button',()=>{preferences.mute=!preferences.mute;persistPrefs();$('#sound-button').textContent=preferences.mute?'♪̸':'♫';$('#sound-button').classList.toggle('muted',preferences.mute);sound('click')}],['settings-button',showSettings],['pause-button',showPause]]){let e=$('#'+id);if(e)e.addEventListener('click',()=>{initAudio();fn()})}
+ $('#training-dismiss').addEventListener('click',finishTutorial);
+ document.addEventListener('keydown',e=>{const key=e.code,modal=!$('#overlay').classList.contains('hidden');
+  if(modal){if(key==='Escape'){e.preventDefault();if(world?.state.winning&&gameMode==='playing'){closeOverlay();selectMap()}else{closeOverlay();activity=null;paused=false;clearInputs()}}return}
+  if(dialog){if(key==='Escape'){e.preventDefault();closeComic()}else if(key==='KeyE'&&!e.repeat){e.preventDefault();advanceComic()}return}
+  if(e.target.closest?.('button,input,select,textarea')&&['Space','Enter'].includes(key))return;
+  if(gameMode!=='playing'){if(gameMode==='home'&&key==='Enter'){e.preventDefault();startLevel(0)}return}
+  if(['ArrowLeft','ArrowRight','ArrowUp','Space','KeyA','KeyD','KeyW','KeyE','Escape','KeyP','KeyR'].includes(key))e.preventDefault();
+  if(key==='ArrowLeft'||key==='KeyA')keyboard.left=true;if(key==='ArrowRight'||key==='KeyD')keyboard.right=true;
+  if(['Space','ArrowUp','KeyW'].includes(key)){if(!e.repeat)keyboard.jumpTap=true;keyboard.jump=true}
+  if(key==='KeyE'&&!e.repeat)attemptInteract();if(['Escape','KeyP'].includes(key)&&!e.repeat)showPause();if(key==='KeyR'&&!e.repeat&&!world.state.winning)startLevel(loadedLevel,true)
+ });
+ document.addEventListener('keyup',e=>{const key=e.code;if(key==='ArrowLeft'||key==='KeyA')keyboard.left=false;if(key==='ArrowRight'||key==='KeyD')keyboard.right=false;if(key==='Space'||key==='ArrowUp'||key==='KeyW')keyboard.jump=false});addEventListener('blur',clearInputs);document.addEventListener('visibilitychange',()=>{if(document.hidden)clearInputs()});
+ document.querySelectorAll('.touch-button').forEach(btn=>{const k=btn.dataset.control;btn.addEventListener('pointerdown',e=>{e.preventDefault();if(paused||dialog||!$('#overlay').classList.contains('hidden'))return;initAudio();try{btn.setPointerCapture(e.pointerId)}catch{}touch[k]=true;btn.classList.add('pressed');if(k==='jump'){touch.jumpTap=true}if(k==='talk'){practiceKey('KeyE');attemptInteract()}});for(const ev of ['pointerup','pointercancel','lostpointercapture'])btn.addEventListener(ev,()=>{touch[k]=false;btn.classList.remove('pressed')})});
+ goHome();raf=requestAnimationFrame(loop)}
+if(window.__ALLY_ENABLE_QA===true){window.ALLY_DEBUG={getState:()=>({mode:gameMode,level:loadedLevel,selected:selectedCharacter,selectedSaved:progress.selected,x:player?.x,y:player?.y,done:world?.state.done.size,taskCount:world?.tasks.length,stars:world?.state.stars.size,unlocked:progress.unlocked,paused,dialog:!!dialog,cartX:world?.state.cartX,cartDelivered:world?.state.cartDelivered,training:training?.index}),forceCompleteTasks:()=>{for(const t of world.tasks)world.state.done.add(t.id);updateMission()},forcePosition:(x,y=567)=>{player.x=x;player.y=y;player.vx=0;player.vy=0},resetProgress:()=>{progress={unlocked:1,completed:{},selected:null,totalStars:0};persist();selectMap()},startLevel:(i)=>{progress.unlocked=Math.max(progress.unlocked,i+1);startLevel(i,true)},getLevels:()=>LEVELS.map(l=>({name:l.name,tasks:l.tasks.length,mechanic:l.mechanic,scene:l.scene})),getActor:()=>player,getWorld:()=>world,getPose:()=>characterPose(selectedCharacter,player),tick:(dt,input={})=>{keyboard.right=!!input.right;keyboard.left=!!input.left;keyboard.jump=!!input.jump;keyboard.jumpTap=!!input.jumpTap;update(dt)}};}
+
+setup();
+})();
+</script></body></html>
