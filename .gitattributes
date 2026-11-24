@@ -1,0 +1,6 @@
+*.png binary
+*.jpg binary
+*.webp binary
+*.html text eol=lf
+*.ts text eol=lf
+*.md text eol=lf

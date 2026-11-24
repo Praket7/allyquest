@@ -1,0 +1,7 @@
+#!/bin/sh
+branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)
+if [ "$branch" = "main" ] && [ "${ALLOW_MAIN_COMMIT:-0}" != "1" ]; then
+  echo "Protected main locally: create a feature branch and open a pull request (remote ruleset still required)." >&2
+  exit 1
+fi
+exit 0
