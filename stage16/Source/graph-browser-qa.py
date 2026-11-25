@@ -6,7 +6,7 @@ with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path=os.getenv('AQ_CHROMIUM','/usr/bin/chromium'),args=['--no-sandbox','--disable-dev-shm-usage'])
  def ok(s):passed.append(s);print('PASS',s,flush=True)
  def boot():
-  p=b.new_page(viewport={'width':1280,'height':720});p.on('pageerror',lambda e: (errors.append(str(e)),print('PAGE ERROR',str(e),flush=True)));p.evaluate('''()=>{for(const k of ['localStorage','sessionStorage']){const m=new Map();Object.defineProperty(window,k,{value:{getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,String(v)),removeItem:k=>m.delete(k)}})}window.__ALLY_ENABLE_QA=true;}''');p.set_content((ROOT/('Ally_Quest_Stage16_Authored_Demo.html' if '--authored' in sys.argv else 'Ally_Quest_Stage16_Branch_Demo.html')).read_text(),wait_until='load');p.locator('#home-map').click();p.locator('.map-card').filter(has_text='The Reunion Workshop').locator('button').first.click();p.wait_for_timeout(400);return p
+  p=b.new_page(viewport={'width':844,'height':390} if '--touch' in sys.argv else {'width':1280,'height':720},has_touch='--touch' in sys.argv,is_mobile='--touch' in sys.argv,device_scale_factor=2 if '--touch' in sys.argv else 1);p.on('pageerror',lambda e: (errors.append(str(e)),print('PAGE ERROR',str(e),flush=True)));p.evaluate('''()=>{for(const k of ['localStorage','sessionStorage']){const m=new Map();Object.defineProperty(window,k,{value:{getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,String(v)),removeItem:k=>m.delete(k)}})}window.__ALLY_ENABLE_QA=true;}''');p.set_content((ROOT/('Ally_Quest_Stage16_Authored_Demo.html' if '--authored' in sys.argv else 'Ally_Quest_Stage16_Branch_Demo.html')).read_text(),wait_until='load');p.locator('#home-map').click();p.locator('.map-card').filter(has_text='The Reunion Workshop').locator('button').first.click();p.wait_for_timeout(400);return p
  def walk(p,target,tol=22):
   end=time.monotonic()+14;held=None
   try:
@@ -30,7 +30,7 @@ with sync_playwright() as pw:
   assert p.evaluate('ALLY_DEBUG.getWorld().state.done.has("leo")');walk(p,845);p.keyboard.press('KeyE');p.wait_for_function('()=>!!ALLY_ROOM_QA.graph()');p.wait_for_timeout(500)
  def node(p):return p.evaluate('ALLY_ROOM_QA.graph()?.node')
  def click(p,i):
-  p.wait_for_timeout(60);pt=p.evaluate('i=>ALLY_ROOM_QA.point(i)',i);assert pt,i;p.mouse.click(pt['x'],pt['y']);p.wait_for_function('()=>!ALLY_ROOM_QA.state()?.moving',timeout=12000);p.wait_for_timeout(140)
+  p.wait_for_timeout(60);pt=p.evaluate('i=>ALLY_ROOM_QA.point(i)',i);assert pt,i;(p.touchscreen.tap if '--touch' in sys.argv else p.mouse.click)(pt['x'],pt['y']);p.wait_for_function('()=>!ALLY_ROOM_QA.state()?.moving',timeout=12000);p.wait_for_timeout(140)
  def act(p,i,expected):
   click(p,i);assert node(p)==expected,(i,expected,p.evaluate('ALLY_ROOM_QA.graph()'),p.evaluate('ALLY_ROOM_QA.state()'))
  def finish(p):
@@ -46,4 +46,4 @@ with sync_playwright() as pw:
  p=boot();enter(p);act(p,'adult','guided');click(p,'delivery');act(p,'hold','separated');p.locator('#aq-room-exit').click();p.wait_for_function('()=>!ALLY_ROOM_QA.state()');p.wait_for_timeout(450);assert not p.evaluate('ALLY_DEBUG.getWorld().state.done.has("reunion-lab")');p.keyboard.press('KeyE');p.wait_for_function('()=>!!ALLY_ROOM_QA.graph()');p.wait_for_timeout(450);assert node(p)=='separated';ok('Incomplete graph persists and does not mark checkpoint complete')
  click(p,'plan');act(p,'desk','arranged');act(p,'adult','done');ok('Help-first route reaches same valid adult-reviewed terminal');finish(p);ok('Help-first route completes exterior checkpoint and finale');p.close();b.close()
 assert not errors,errors
-(Q/('graph-authored-results.json' if '--authored' in sys.argv else 'graph-browser-results.json')).write_text(json.dumps({'passed':passed,'errors':errors},indent=2))
+(Q/('graph-touch-results.json' if '--touch' in sys.argv else 'graph-authored-results.json' if '--authored' in sys.argv else 'graph-browser-results.json')).write_text(json.dumps({'passed':passed,'errors':errors},indent=2))

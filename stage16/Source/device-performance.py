@@ -12,4 +12,8 @@ with sync_playwright() as w:
    ds=p.evaluate('''()=>new Promise(resolve=>{const a=[];let prev;function tick(t){if(prev!==undefined)a.push(t-prev);prev=t;if(a.length>=90)resolve(a);else requestAnimationFrame(tick)}requestAnimationFrame(tick)})''');s=sorted(ds);row={'profile':name,'scene':scene,'dpr':dpr,'cpu_throttle':throttle,'frames':len(ds),'median_ms':round(statistics.median(ds),2),'p95_ms':round(s[85],2),'max_ms':round(max(ds),2),'over_50ms':sum(t>50 for t in ds)};rows.append(row);print(row,flush=True)
   sample('exterior');p.evaluate('''()=>{let w=ALLY_DEBUG.getWorld();w.state.cartDelivered=true;w.state.cartX=1040;const t=w.tasks.find(t=>t.id==='station1');ALLY_DEBUG.forcePosition(t.x-40,567)}''');p.wait_for_timeout(300);p.keyboard.press('KeyE');p.wait_for_function('()=>!!ALLY_ROOM_QA.state()');p.wait_for_timeout(700);sample('interior');p.close()
  b.close()
-(Q/'device-emulation.json').write_text(json.dumps({'sha256':hashlib.sha256(F.read_bytes()).hexdigest(),'physical_device':False,'samples':rows,'errors':errors},indent=2));assert not errors
+budgets={'desktop':{'median_ms':25,'p95_ms':50},'mobile':{'median_ms':83.4,'p95_ms':133.4}}
+for row in rows:
+ limits=budgets['desktop' if row['profile']=='desktop' else 'mobile'];row['guardrail_pass']=all(row[k]<=v for k,v in limits.items());
+ if not row['guardrail_pass']:errors.append('Frame pacing regression guardrail exceeded: '+str(row))
+(Q/'device-emulation.json').write_text(json.dumps({'sha256':hashlib.sha256(F.read_bytes()).hexdigest(),'physical_device':False,'provisional_ci_guardrails':budgets,'samples':rows,'errors':errors},indent=2));assert not errors

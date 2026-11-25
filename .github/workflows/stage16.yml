@@ -57,11 +57,13 @@ jobs:
           python graph-editor-qa.py
           python build.py qa/graph-editor-export.json ../Ally_Quest_Stage16_Authored_Demo.html
           python graph-browser-qa.py --authored
+          python graph-browser-qa.py --touch
+          python profiler-qa.py
       - name: Matched visual regression
         if: matrix.suite == 'visual'
         run: |
           baseline=$(mktemp -d)
-          git archive cae7c423626aecfbc6e2946bc8d6dd27354e1790 stage16/Source | tar -x -C "$baseline"
+          git -C "$GITHUB_WORKSPACE" archive cae7c423626aecfbc6e2946bc8d6dd27354e1790 stage16/Source | tar -x -C "$baseline"
           python "$baseline/stage16/Source/build.py"
           python visual-regression.py "$baseline/stage16/Ally_Quest_Stage155.html"
       - name: Emulated device profiling (not physical hardware)
