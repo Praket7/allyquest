@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict'),s=require('./stage17-learning.js');let n=0;const check=(label,fn)=>{fn();n++;console.log('PASS '+label)};
+check('Six distinct learning objectives',()=>assert.equal(new Set(s.topics.map(t=>t.id)).size,6));
+check('All eleven rooms map to supported learning objectives',()=>{const p=require('./content.json');assert.deepEqual(Object.keys(s.roomTopics).sort(),Object.keys(p.rooms).sort());for(const a of Object.values(s.roomTopics))for(const id of a)assert(s.topics.some(t=>t.id===id))});
+check('Parallel forms are different scenarios with three choices each',()=>{for(const t of s.topics){assert.notEqual(t.a[0],t.b[0]);for(const f of ['a','b']){assert.equal(t[f][1].length,3);assert(t[f][2]>=0&&t[f][2]<3)}}});
+check('Forms counterbalanced',()=>{for(const f of ['a','b']){const v=s.fresh();v.form=f;assert.equal(s.formFor(v,'pre'),f);assert.notEqual(s.formFor(v,'post'),f)}});
+check('First answer immutable and invalid inputs rejected',()=>{const v=s.fresh();assert(s.record(v,'pre','ask',0));assert(!s.record(v,'pre','ask',1));assert(!s.record(v,'other','ask',0));assert(!s.record(v,'post','x',0));assert(!s.record(v,'post','ask',4));assert.equal(v.pre.ask,0)});
+check('Scoring uses the assigned form',()=>{for(const form of ['a','b']){const v=s.fresh();v.form=form;for(const phase of ['pre','post']){for(const t of s.topics)assert(s.record(v,phase,t.id,t[s.formFor(v,phase)][2]));assert.deepEqual(s.score(v,phase),{answered:6,correct:6,total:6})}}});
+check('Partial answer not counted as complete',()=>{const v=s.fresh();v.form='a';s.record(v,'pre','ask',0);assert.deepEqual(s.score(v,'pre'),{answered:1,correct:1,total:6})});
+check('Stored unknown fields dropped',()=>{const v=s.validState({version:1,form:'evil',pre:{ask:0,bad:0,labels:55},post:{},review:{wash:3000},name:'private'});assert.deepEqual(v,{version:1,form:null,pre:{ask:0},post:{},review:{wash:999}})});
+check('Export has no personal or tracking fields',()=>assert.deepEqual(Object.keys(s.exportData(s.fresh())).sort(),['form','notice','post','pre','review','schema','scores'].sort()));
+check('Emergency lesson says immediate escalation and epinephrine',()=>{const e=s.topics.find(t=>t.id==='emergency').lesson;assert.match(e,/immediately/);assert.match(e,/Epinephrine is first-line/);assert.match(e,/emergency services/)});
+check('Practice scenarios are distinct from both assessment forms',()=>{for(const t of s.topics){const q=s.practiceQuestions[t.id];assert(q&&q[0]!==t.a[0]&&q[0]!==t.b[0])}});
+console.log(n+' tests passed');
