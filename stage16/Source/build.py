@@ -17,7 +17,7 @@ js=scripts[-1].group(1)
 pack=Path(sys.argv[1]).resolve() if len(sys.argv)>1 else p/'content.json'
 subprocess.run(['node',str(p/'validate-content.cjs'),str(pack)],check=True)
 content=json.loads(pack.read_text())
-core=(p/'content-engine.js').read_text()+'\n'+(p/'runtime-content.js').read_text().replace('__AQ_PACK__',json.dumps(content,ensure_ascii=True,separators=(',',':')))
+core=(p/'graph-engine.js').read_text()+'\n'+(p/'content-engine.js').read_text()+'\n'+(p/'runtime-content.js').read_text().replace('__AQ_PACK__',json.dumps(content,ensure_ascii=True,separators=(',',':')))
 
 def patch(a,b):
  global js
@@ -31,7 +31,7 @@ patch("if(gameMode==='playing'&&!qaManual){advanceFrame(dt);","if(gameMode==='ro
 patch("function setup(){resize();","function setup(){resize();c.addEventListener('click',e=>{if(gameMode!=='playing'||paused||dialog||roomBusy||loadedLevel===0)return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/scale+cam,y=(e.clientY-r.top)/scale-verticalPad;const t=world.tasks.find(t=>isDoor(t)&&Math.abs(t.x-x)<48&&y>417&&y<574&&!world.state.done.has(t.id));if(t){if(Math.abs(player.x-t.x)<140&&Math.abs(player.y-567)<120)interactTask(t);else setPrompt('Walk closer to the door to enter.',2)}});for(const l of LEVELS)if(l!==LEVELS[0])for(const t of l.tasks)if(t.kind==='choice'&&ROOM_META[t.id])t.prompt='E · Enter '+ROOM_META[t.id][0];")
 patch('Math.min(5,loadedLevel+2)','Math.min(LEVELS.length,loadedLevel+2)')
 js=js.replace('loadedLevel<4','loadedLevel<LEVELS.length-1').replace('LEVEL ${index+1} / 5','LEVEL ${index+1} / ${LEVELS.length}').replace('level=n%5','level=n%LEVELS.length')
-patch('setup();\n})();', (p/'rooms.js').read_text()+'\n'+(p/'spatial.js').read_text()+'\n'+(p/'materials.js').read_text()+'\n'+(p/'realism.js').read_text()+'\n'+(p/'learning.js').read_text()+'\n'+(p/'immersion.js').read_text()+'\n'+(p/'polish.js').read_text()+'\n'+(p/'allergy.js').read_text()+'\n'+(p/'simulation.js').read_text()+'\n'+(p/'autonomy.js').read_text()+'\n'+core+'\nsetup();\n})();')
+patch('setup();\n})();', (p/'rooms.js').read_text()+'\n'+(p/'spatial.js').read_text()+'\n'+(p/'materials.js').read_text()+'\n'+(p/'realism.js').read_text()+'\n'+(p/'learning.js').read_text()+'\n'+(p/'immersion.js').read_text()+'\n'+(p/'polish.js').read_text()+'\n'+(p/'allergy.js').read_text()+'\n'+(p/'simulation.js').read_text()+'\n'+(p/'autonomy.js').read_text()+'\n'+core+'\n'+(p/'graph-runtime.js').read_text()+'\nsetup();\n})();')
 s=s[:scripts[-1].start(1)]+js+s[scripts[-1].end(1):]
 # asset append immediately after original asset script, before the game initializes
 m=re.search(r'</script>',s);s=s[:m.end()]+'\n<script>'+ read_source(p/'room-assets.js')+'\n'+(p/'motion-assets.js').read_text()+'</script>'+s[m.end():]
