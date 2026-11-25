@@ -33,6 +33,8 @@ jobs:
           echo "AQ_CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')" >> "$GITHUB_ENV"
       - name: Learning, accessibility and immediate escalation flows
         run: python stage17-qa.py
+      - name: Production standalone and native storage
+        run: python stage17-native-qa.py
       - name: All-room alternative input flows
         run: python stage17-access-qa.py
       - uses: actions/upload-artifact@v4

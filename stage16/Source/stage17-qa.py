@@ -13,10 +13,12 @@ with sync_playwright() as pw:
   p.evaluate('(n)=>ALLY_DEBUG.startLevel(n)',level);p.wait_for_timeout(200);p.evaluate('''id=>{const w=ALLY_DEBUG.getWorld(),t=w.tasks.find(t=>t.id===id);if(id==='station1'){w.state.cartDelivered=true;w.state.cartX=1040}if(id.startsWith('label'))w.state.done.add('magnifier');if(id==='check'){w.state.done.add('welcome');w.state.done.add('game')}ALLY_DEBUG.forcePosition(t.x-40,567)}''',id);p.wait_for_timeout(350);d=p.evaluate('id=>ALLY_ROOM_QA.door(id)',id);p.mouse.click(d['x'],d['y']);p.wait_for_function('()=>!!ALLY_ROOM_QA.state()');p.wait_for_timeout(400);assert p.evaluate('ALLY_ROOM_QA.state().task')==id
  try:
   guide=p.locator('#aq17-guide-home');guide.focus();p.keyboard.press('Enter');assert p.locator('#aq17-notebook').is_visible();ok('Field guide opens from keyboard without starting game')
-  p.get_by_role('button',name='Start before-playing check-in').click();assert '1 of 6' in p.locator('#aq17-title').inner_text();shot('assessment');
-  for i in range(6):p.locator('#aq17-notebook button').nth(1).click()
+  p.keyboard.press('Tab');assert p.evaluate('document.activeElement.textContent')=='Start before-playing check-in';p.keyboard.press('Enter');assert '1 of 6' in p.locator('#aq17-title').inner_text();assert p.evaluate('document.activeElement.id')=='aq17-title';ok('Keyboard-only page transition moves focus to the new heading');shot('assessment');
+  for i in range(6):
+   p.keyboard.press('Tab');assert p.evaluate('document.activeElement.textContent')=='Close';p.keyboard.press('Tab');assert p.evaluate('document.activeElement===document.querySelectorAll("#aq17-notebook button")[1]');p.keyboard.press('Enter');assert p.evaluate('document.activeElement.id')=='aq17-title'
+  ok('All six before-playing responses can be entered by keyboard with stable focus')
   assert 'complete' in p.locator('#aq17-title').inner_text().lower();s=p.evaluate("JSON.parse(localStorage.getItem('allyquest.stage17.study.v1'))");assert len(s['pre'])==6 and not s['post'];ok('Six first-attempt answers stored locally')
-  p.get_by_role('button',name='Return to field guide').click();p.get_by_role('button',name='Practice a new situation').click();p.locator('#aq17-notebook button').nth(1).click();assert 'Good choice' in p.locator('#aq17-notebook [role=status]').inner_text();ok('Separate practice activity gives feedback')
+  p.get_by_role('button',name='Return to field guide').click();p.get_by_role('button',name='Practice a new situation').click();p.locator('#aq17-notebook button').nth(1).click();assert 'Good choice' in p.locator('#aq17-notebook [role=status]').inner_text();assert p.evaluate('document.activeElement.textContent')=='Next topic';ok('Separate practice activity gives feedback and moves focus off disabled choices')
   p.get_by_role('button',name='Back to guide').click();p.get_by_role('button',name='After playing').click();
   for i in range(6):p.locator('#aq17-notebook button').nth(2).click()
   p.get_by_role('button',name='Review results').click();assert '6/6 answered' in p.locator('#aq17-notebook').inner_text();shot('results');ok('Parallel post-check and scores displayed')
