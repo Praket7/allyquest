@@ -34,7 +34,7 @@ def run(spec):
     p.locator('#comic-actions button').first.click();p.wait_for_timeout(70)
    assert p.evaluate('id=>ALLY_DEBUG.getWorld().state.done.has(id)',l['tasks'][0]['id']),st()
    walk(l['tasks'][1]['x']-20);p.wait_for_timeout(120);p.screenshot(path=str(Q/(label+'-outside.png')));p.keyboard.press('KeyE');p.wait_for_function('()=>!!ALLY_ROOM_QA.graph()');p.wait_for_timeout(250)
-   assert p.evaluate('ALLY_ROOM_QA.state().hero')==st()['selected'];p.screenshot(path=str(Q/(label+'-room.png')))
+   assert p.evaluate('ALLY_ROOM_QA.state().hero')==st()['selected'];arch=p.evaluate('ALLY_ROOM_QA.architecture()');assert arch and arch['fixtureCount']>0,(id,arch);(Q/(label+'-architecture.json')).write_text(json.dumps(arch,indent=2));p.screenshot(path=str(Q/(label+'-room.png')))
    def graph():return p.evaluate('ALLY_ROOM_QA.graph()')
    def click(obj):
     if variant=='pointer':

@@ -121,6 +121,48 @@ for i,s in enumerate(S,6):
  nodes['done']=node(end+' Return outside to continue.',complete=True);r['graph']={'start':'arrived','nodes':nodes}
  # Two actors use independent, state-aware policy weights, never authorize or handle food.
  r['crew']={'jobs':['Check '+evidence.lower(),'Arrange the non-food activity'],'favor':['friendship note','Listen and invite without food pressure.'],'routine':['organize','check supplies','visit a friend','rest'],'profiles':{'peer':{'goals':[{'id':'records','mode':'organize','target':'record','weight':4,'speed':88,'dwell':1.6},{'id':'notice','mode':'check supplies','target':'board','weight':3,'speed':78,'dwell':2.2},{'id':'rest','mode':'rest','weight':1,'speed':65,'dwell':1.8}]},'helper':{'goals':[{'id':'visit','mode':'visit a friend','weight':4,'speed':77,'dwell':2.1},{'id':'records','mode':'check supplies','target':'record','weight':2,'speed':92,'dwell':1.4},{'id':'rest','mode':'rest','weight':1,'speed':62,'dwell':1.1}]}}}
+ # Set-specific circulation: keep the validated footprints, but shift their positions
+ # in relation to the existing doorway and actors. Supported props and collision bounds move together.
+ shifts={
+ 'birthday-invitation':[(20,-7),(-20,9),(10,5),(-12,-8)],
+ 'bakery-order':[(0,-10),(12,-10),(-18,4),(18,5)],
+ 'library-club':[(25,0),(-30,7),(0,8),(-25,-5)],
+ 'shared-lunch':[(0,-7),(-10,-7),(22,5),(-12,5)],
+ 'sports-break':[(28,-7),(-22,-6),(16,-7),(-8,7)],
+ 'class-science':[(8,-10),(10,-10),(-12,4),(10,4)],
+ 'art-supplies':[(18,6),(-12,-7),(-8,-4),(16,5)],
+ 'market-stall':[(12,-6),(-10,-6),(18,5),(-12,5)],
+ 'substitute-teacher':[(12,-8),(-15,6),(12,4),(-15,4)],
+ 'welcome-rehearsal':[(12,-7),(-22,-7),(15,3),(-15,3)],
+ 'festival-supply':[(8,-8),(12,-8),(-8,4),(8,4)]}
+ for j,(dx,dz) in enumerate(shifts.get(rid,[])):
+  if j>=len(r['shelves']):break
+  f=r['shelves'][j];f['x']+=dx;f['z']+=dz
+  for o in r['objects']:
+   if o['surface']==j:
+    for key in ['x','ox','wx']:o[key]+=dx
+    o['wz']+=dz
+  for b in r['solids']:
+   if b['ref']==['shelf',j]:
+    b['x1']+=dx;b['x2']+=dx;b['z1']+=dz;b['z2']+=dz
+ # Give investigation a third route when a distinct clue board is present; all
+ # paths retain the adult gate before any transfer or cleaning.
+ if not emergency and rid in ('shared-lunch','class-science','club-bullying','cafe-order','substitute-teacher','welcome-promise'):
+  nodes['arrived']['edges'].insert(1,edge('use','board','notice-read','Inspect the notice',efact))
+  nodes['notice-read']=node('Bring your concern to '+adults[adult]+'.',edge('consult','adult','guided','Discuss the notice','Thank you for telling me. We will follow the individual plan and work together.'))
+ # A real second ordering decision for independent non-food activity setup.
+ # Preserve all mandatory actions and do not permit food handling before consultation.
+ flexible={'birthday-invitation':('games','board'),'library-club':('bookmarks','board'),'substitute-teacher':('kit','board'),'club-bullying':('invite','notice'),'art-supplies':('heartpiece','sunpiece'),'bus-trip':('schedule','notice')}
+ if rid in flexible:
+  pair=flexible[rid]
+  for key,n in list(nodes.items()):
+   if len(n['edges'])!=1 or n['edges'][0]['id']!=pair[0]:continue
+   a=n['edges'][0];later=nodes[a['next']]
+   if len(later['edges'])!=1 or later['edges'][0]['id']!=pair[1]:continue
+   b=later['edges'][0];swap='alternate-'+key
+   nodes[swap]=node(n['prompt'],dict(a,next=b['next']))
+   n['prompt']+=' Or '+later['prompt'][0].lower()+later['prompt'][1:]
+   n['edges'].append(dict(b,next=swap));break
  pack['rooms'][rid]=r
  # Exterior route: actual entrance and gate; optional elevated stars, no compulsory timed hazards.
  # Distinct lengths, platform clusters and alternate paths, ground always reachable.

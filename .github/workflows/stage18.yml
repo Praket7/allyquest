@@ -34,7 +34,9 @@ jobs:
       - name: Complete every new level by both interaction modes
         env:
           AQ_WORKERS: '3'
-        run: python stage18-qa.py
+        run: |
+          python stage18-qa.py
+          python stage18-interior-audit.py
       - name: Verify map, progression and native release
         run: |
           python stage18-map-qa.py
