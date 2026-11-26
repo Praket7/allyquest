@@ -9,7 +9,7 @@ const line=(x,y,X,Y,c,w=1)=>rline(x,y,X,Y,c,w);
 function metal(x,y,w,h){rect(x,y,w,h,rgrad(0,y,h,'#e3eaeb','#758b91'),3);texRect('steel',x+2,y+2,w-4,h-4,.46);line(x+3,y+3,x+w-3,y+3,'#ffffffae',1.6)}
 function cabinet(x,y,w,h,n,front,edge){rect(x-4,y-5,w+8,h+8,edge,5);rect(x,y,w,h,front,2);for(let i=0;i<n;i++){let a=x+i*w/n,ww=w/n;rect(a+3,y+5,ww-6,h-10,rgrad(0,y,h,front,edge),3);line(a+ww-16,y+16,a+ww-16,y+35,'#f0e6d0',3);line(a+6,y+8,a+ww-6,y+8,'#ffffff65',1);}}
 function notice(x,y,w,h,title,rows,col){paperNotice(x,y,w,h,title,rows,col);}
-function glass(x,y,w,h){rect(x-5,y-5,w+10,h+10,'#516d75',5);rect(x,y,w,h,rgrad(0,y,h,'#8fc7df','#e2eee0'),1);for(let i=0;i<5;i++)rell(x+w*(i+.5)/5,y+h*.84,w*.13,h*.20,['#89ad83','#a3be88'][i%2]);line(x+w/2,y,x+w/2,y+h,'#ecedda',5);line(x,y+h*.55,x+w,y+h*.55,'#ecedda',5);poly([[x+8,y+8],[x+w*.42,y+8],[x+8,y+h*.52]],'#ffffff3b');rect(x-8,y+h,w+16,7,'#b7c8c2',2)}
+function glass(x,y,w,h){rect(x-5,y-5,w+10,h+10,'#516d75',5);rect(x,y,w,h,rgrad(0,y,h,'#8fc7df','#e2eee0'),1);rx.save();rx.beginPath();rx.rect(x,y,w,h);rx.clip();for(let i=0;i<5;i++)rell(x+w*(i+.5)/5,y+h*.84,w*.13,h*.20,['#89ad83','#a3be88'][i%2]);rx.restore();line(x+w/2,y,x+w/2,y+h,'#ecedda',5);line(x,y+h*.55,x+w,y+h*.55,'#ecedda',5);poly([[x+8,y+8],[x+w*.42,y+8],[x+8,y+h*.52]],'#ffffff3b');rect(x-8,y+h,w+16,7,'#b7c8c2',2)}
 function books(x,y,w,h){rect(x,y,w,h,'#634e3e',3);for(let row=0;row<2;row++){const yy=y+row*h/2;rect(x+5,yy+5,w-10,h/2-10,'#473c36',1);for(let i=0;i<Math.floor((w-16)/21);i++){let bh=28+(i*13+row*19)%Math.max(18,Math.floor(h/2)-33),xx=x+9+i*21,bottom=yy+h/2-7;const c=['#c26b64','#5c829d','#bca263','#71967f','#8b7da8'][i%5];rect(xx,bottom-bh,16,bh,rgrad(0,bottom-bh,bh,c,'#534b4c'),2);line(xx+3,bottom-bh+9,xx+13,bottom-bh+9,'#f4e8c6',1.7)}rect(x,yy+h/2-5,w,7,'#a6825d',1)}}
 function lockers(x,y,w,h,front,edge,n=5){cabinet(x,y,w,h,n,front,edge);for(let i=0;i<n;i++){let a=x+(i+.5)*w/n;for(let j=0;j<4;j++)line(a-12,y+16+j*5,a+12,y+16+j*5,'#344c5570',1.5)}}
 function shelfStock(x,y,w,h,col){rect(x,y,w,h,'#647881',4);for(let j=0;j<3;j++){let yy=y+j*h/3;rect(x+5,yy+5,w-10,h/3-9,'#36464b',1);for(let i=0;i<Math.floor(w/48);i++){const xx=x+8+i*48,hh=22+(i+j)%3*8;rect(xx,yy+h/3-hh-6,38,hh,['#caa06c','#9eb2ae','#e0c9a3'][i%3],2);rect(xx+6,yy+h/3-hh+2,25,10,'#f6edd8',2)}rect(x,yy+h/3-5,w,6,col,1)}}
@@ -47,15 +47,72 @@ function detailedFloor(p,t){const [k,wall,lower,accent,top,floor]=p,wood=['court
  const sh=rx.createLinearGradient(0,FLOOR,0,sy(160));sh.addColorStop(0,'#24363c45');sh.addColorStop(1,'#24363c00');rect(0,FLOOR,1280,sy(160)-FLOOR,sh,0);rect(0,sy(SZ),1280,720-sy(SZ),accent,0);rect(0,sy(SZ),1280,5,'#f3e7d0',0);
 }
 realisticRoomShell=function(t,kind){const p=roomArt();if(!p)return shellBefore(t,kind);const key=room.task.id+'-'+materialRevision;let im=architectureCache.get(key);if(!im){im=document.createElement('canvas');im.width=1280;im.height=720;const old=rx;try{rx=im.getContext('2d');wallArt(p,t);detailedFloor(p,t)}finally{rx=old}if(architectureCache.size>=6)architectureCache.clear();architectureCache.set(key,im)}rx.drawImage(im,0,0)};
-const oldFixture=drawFixture;
-drawFixture=function(f,t){oldFixture(f,t);const p=roomArt();if(!p||['sink','counter','rack'].includes(f.style))return;const [k,wall,lower,accent,top]=p,h=fixtureHeight(f),w=f.w,d=f.d,x=f.x,z=f.z,front=plane(x-w/2+5,z+d/2-1,x+w/2-5,z+d/2-1),X=sx(x,z),Y=sy(z+d/2-1),left=front[0][0],right=front[1][0],W=right-left;
- const a=plane(x-w/2+4,z-d/2+4,x+w/2-4,z+d/2-4,h);poly(a,top);texFace(['science','factory','clinic','cafeteria','cafe','bakery'].includes(k)?'steel':'oak',a,.38);shadeFace(a,'#ffffff50','#14282b14');line(...a[3],...a[2],'#ffffffd0',1.8);
- if(['factory','science','clinic','office','transit','bakery','cafe'].includes(k)){const n=k==='factory'?3:Math.max(2,Math.floor(W/78));rect(left+4,Y-h+15,W-8,h-25,rgrad(0,Y-h+15,h-25,lower,accent),3);for(let i=0;i<n;i++){const u=left+8+i*(W-16)/n,v=(W-16)/n;rect(u+2,Y-h+20,v-4,h-35,rgrad(0,Y-h+20,h-35,lower,accent),3);line(u+v*.26,Y-h+29,u+v*.74,Y-h+29,'#f4eee1',2.5)}}
- else if(k==='cafeteria'||k==='gym'){rect(left+5,Y-39,W-10,12,accent,4);for(let i=0;i<3;i++)line(left+16+i*(W-32)/2,Y-28,left+16+i*(W-32)/2,Y-5,accent,5)}
- else if(k==='band'){rect(left+5,Y-h+16,W-10,19,accent,3);for(let i=0;i<Math.floor(W/22);i++)rect(left+10+i*22,Y-h+19,14,10,'#d3bdca',2)}
- else if(k==='library'||k==='games'||k==='support'){rect(left+8,Y-49,W-16,14,accent,3);for(let i=0;i<Math.floor(W/25);i++)rect(left+10+i*25,Y-43,16,24,['#ba8873','#7da3a2','#9d8cb4'][i%3],2)}
- else {rect(left+4,Y-h+15,W-8,17,accent,3);line(left+9,Y-h+19,right-9,Y-h+19,'#fff3d6a0',1)}
- rect(X-65,Y-36,130,16,'#f6edd8',3);spText(f.name,X,Y-25,9,'#304951',124)
+/* A structural furniture vocabulary: silhouettes, supports and surfaces are
+   projected from the same rectangles used by the collision system. Only special
+   sink/rack/scrubbing fixtures retain the prior animation renderer. */
+const oldFixture=drawFixture,customFixtureCache=new WeakMap();
+function volume(x,z,w,d,h,base,front,side,top,material=null){
+ const upper=plane(x-w/2,z-d/2,x+w/2,z+d/2,base+h),lower=plane(x-w/2,z-d/2,x+w/2,z+d/2,base);
+ const F=[upper[3],upper[2],lower[2],lower[3]],R=[upper[1],upper[2],lower[2],lower[1]],L=[upper[0],upper[3],lower[3],lower[0]];
+ poly(F,front);poly(R,side);poly(L,side);poly(upper,top);
+ if(material){texFace(material,F,.28);texFace(material,R,.22);texFace(material,upper,.37)}
+ shadeFace(F,'#ffffff10','#1b242838');shadeFace(R,'#ffffff05','#20303b45');shadeFace(upper,'#ffffff32','#263a3d16');line(...upper[3],...upper[2],'#ffffff9b',1.4);
+}
+function supportLegs(f,h,c,side,top){for(const dx of [-f.w/2+16,f.w/2-16])for(const dz of [-f.d/2+11,f.d/2-11])volume(f.x+dx,f.z+dz,12,12,h-8,0,c,side,top,'steel')}
+function counterFace(f,h,p,n){const [k,wall,lower,accent,top]=p,xx=f.x,zz=f.z,w=f.w,d=f.d,cols=Math.max(2,n);
+ volume(xx,zz,w-14,d-12,h-11,0,lower,accent,lower,['science','clinic','factory','bakery','cafe'].includes(k)?'steel':null);
+ const fplane=plane(xx-w/2+10,zz+d/2-5,xx+w/2-10,zz+d/2-5),L=fplane[0][0],R=fplane[1][0],Y=fplane[0][1];
+ for(let i=0;i<cols;i++){const u=L+(R-L)*i/cols,v=(R-L)/cols;rect(u+3,Y-h+18,v-6,h-26,rgrad(0,Y-h+18,h-26,lower,accent),3);line(u+v*.27,Y-h+29,u+v*.73,Y-h+29,'#f6f2e6',2.5)}
+}
+function physicalFurniture(f,p){const [k,wall,lower,accent,top]=p,h=fixtureHeight(f),x=f.x,z=f.z,w=f.w,d=f.d,X=sx(x,z),Y=sy(z+d/2);softShadow(X,Y+3,w*zscale(z)*.58,d*.32,.35);
+ const topBlock=(mat='oak',color=top,depth=d)=>volume(x,z,w,depth,10,h-10,accent,accent,color,mat);
+ switch(k){
+ case 'cafeteria': // Integrated school lunch table with two bench seats in its real footprint.
+  supportLegs(f,h,'#9cb8b7','#527781','#c6d1cd');
+  volume(x,z,w-35,d*.25,8,24,'#7698a0','#526e78','#b9d6d0','steel');
+  for(const q of [-1,1]){let zz=z+q*d*.36;volume(x,zz,w-12,d*.26,8,29,accent,'#4a6771','#abcac5','steel');for(const dx of [-w/2+24,w/2-24])volume(x+dx,zz,11,10,29,0,'#a9bec1','#657d84','#cbd5d2','steel')}
+  topBlock('steel','#d7e5e1',d*.54);break;
+ case 'factory': // Raised roller conveyor, solid side guards and numbered empty bins.
+  supportLegs(f,h,'#9aaeb2','#445c68','#d6e0e0');
+  volume(x,z,w-12,d-13,9,15,'#91a5ac','#405861','#9aafb4','steel');
+  topBlock('steel','#beced1');for(let j=0;j<Math.floor(w/16);j++){const q=x-w/2+11+j*16;let u=plane(q,z-d/2+7,q+8,z+d/2-7,h+.6);poly(u,'#8a9ca3');line(...u[0],...u[3],'#e9f1ee',1)}
+  for(const q of [-1,1])volume(x,z+q*(d/2-4),w,7,7,h-1,'#607b83','#415a62','#c1d2d2','steel');break;
+ case 'science':case 'clinic': // Enclosed lab storage, reagent-free counter, clean work area.
+  counterFace(f,h,p,Math.floor(w/70));topBlock('ceramic',k==='science'?'#49686e':'#d7e9e2');break;
+ case 'classroom': // Individual classroom desk, open knee space and modesty panel.
+  supportLegs(f,h,'#afbfbd','#627c79','#d5e3d9');volume(x,z-d*.24,w-23,7,37,11,accent,'#496259',lower);topBlock('oak','#d9bc88');break;
+ case 'gym': // Metal equipment stand with low shelves; never a generic kitchen island.
+  supportLegs(f,h,'#adc0c5','#456d82','#c4d1d4');volume(x,z,w-19,d-15,7,19,accent,'#4d6b7e','#98abb7','steel');for(let j=0;j<Math.floor(w/52);j++){const q=x-w/2+30+j*52,xx=sx(q,z),yy=sy(z)-29;rell(xx,yy,13,9,['#d6a35a','#668fa6','#bc796f'][j%3]);line(xx-6,yy-4,xx+6,yy+4,'#ffffff83',1.1)}
+  topBlock('steel','#b7c8cc');break;
+ case 'band': // Instrument console with a recessed grille, key strip and cable shelf.
+  counterFace(f,h,p,3);topBlock('oak','#c9b3c5');
+  {const q=plane(x-w/2+10,z+d/2-4,x+w/2-10,z+d/2-4),L=q[0][0],R=q[1][0],B=q[0][1];rect(L+8,B-55,R-L-16,28,'#3e4254',3);for(let j=0;j<Math.floor((R-L-26)/9);j++)line(L+15+j*9,B-51,L+15+j*9,B-30,'#85909c',1.1)}
+  break;
+ case 'library':case 'games': // Reading table above reachable storage cubbies.
+  supportLegs(f,h,'#b79b77','#6f655d','#e0c9a1');volume(x,z,w-17,d-17,7,18,accent,'#756c66','#c4a784','oak');
+  for(let j=0;j<Math.floor(w/25);j++){let xx=sx(x-w/2+20+j*25,z),yy=sy(z)-26,hh=18+(j%3)*5;rect(xx-8,yy-hh,16,hh,['#ad796b','#7794a2','#8b9e7b','#b49a70'][j%4],2)}
+  topBlock('oak',k==='games'?'#d7c6db':'#d9bf94');break;
+ case 'art': // Drafting worktable with shallow trays and a tool shelf beneath.
+  supportLegs(f,h,'#c1aa8f','#806d5a','#e0cfaa');volume(x,z,w-20,d-16,6,19,accent,'#88715f','#d9bd95','oak');for(let j=0;j<3;j++)volume(x-w*.28+j*w*.28,z,Math.min(55,w*.23),d*.43,16,26,['#c4a787','#a7b5a1','#b49bb9'][j],accent,top);
+  topBlock('oak','#e5cfaa');break;
+ case 'bakery':case 'cafe': // Empty glass display cabinet. It cannot imply approval of real food.
+  counterFace(f,h,p,Math.floor(w/85));topBlock('steel','#e0ded1');
+  {const q=plane(x-w/2+10,z+d/2-4,x+w/2-10,z+d/2-4),L=q[0][0],R=q[1][0],B=q[0][1];rect(L+5,B-61,R-L-10,34,rgrad(0,B-61,34,'#c6dee0','#72969b'),4);for(let j=0;j<3;j++)line(L+12+j*(R-L-24)/3,B-56,L+29+j*(R-L-24)/3,B-31,'#ffffff79',2);line(L+8,B-32,R-8,B-32,'#e8ede3',3)}
+  break;
+ case 'office':case 'transit':case 'support':counterFace(f,h,p,Math.floor(w/84));topBlock('oak',top);break;
+ case 'shelter': // Outdoor-style trestle table, protected interior pavilion.
+  supportLegs(f,h,'#b19b7b','#756d56','#e1cca8');for(const q of [-1,1])volume(x,z+q*d*.30,w-25,7,7,26,accent,'#6b7357',top,'oak');topBlock('oak',top);break;
+ default: // Event booths with fabric skirt; solid outline and true work surface.
+  supportLegs(f,h,'#bdb7ac','#7b7771',top);volume(x,z,w-7,d-8,h-13,0,lower,accent,top);topBlock('oak',top);{
+   let q=plane(x-w/2+5,z+d/2-3,x+w/2-5,z+d/2-3),L=q[0][0],R=q[1][0],B=q[0][1];for(let j=0;j<Math.floor((R-L)/27);j++)rect(L+j*27+5,B-h+15,13,h-24,'#fff4d726',1)}
+ }
+}
+drawFixture=function(f,t){const p=roomArt();if(!p||['sink','counter','rack'].includes(f.style))return oldFixture(f,t);
+ const h=fixtureHeight(f),X=sx(f.x,f.z),Y=sy(f.z),key=[materialRevision,room.task.id,f.x,f.z,f.w,f.d,f.style].join('|');
+ let c=customFixtureCache.get(f);if(!c||c.key!==key){const points=plane(f.x-f.w/2,f.z-f.d/2,f.x+f.w/2,f.z+f.d/2),left=Math.floor(Math.min(...points.map(q=>q[0]))-45),top=Math.floor(Math.min(...points.map(q=>q[1]))-h-35),width=Math.ceil(Math.max(...points.map(q=>q[0]))-left+45),height=Math.ceil(Math.max(...points.map(q=>q[1]))-top+40);
+  const im=document.createElement('canvas');im.width=Math.ceil(width*1.3);im.height=Math.ceil(height*1.3);const old=rx;try{rx=im.getContext('2d');rx.setTransform(1.3,0,0,1.3,-left*1.3,-top*1.3);physicalFurniture(f,p)}finally{rx=old}c={key,im,left,top,width,height};customFixtureCache.set(f,c)}
+ rx.drawImage(c.im,c.left,c.top,c.width,c.height);const labelY=sy(f.z+f.d/2)-38;rect(X-65,labelY,130,16,'#f6edd8',3);spText(f.name,X,labelY+11,9,'#304951',124);
+ if(f.anchor){const o=f.anchor;roomHit.push({o,x:X,y:Y+f.d*.35,w:f.w*zscale(f.z),h:91});if(activeObject(o))drawTag(o,X,Y+f.d*.35+9)}
 };
 // State-dependent physical feedback follows the actual quest interaction. This is
 // intentionally outside the collision layer: no new invisible hit regions.

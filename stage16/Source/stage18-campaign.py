@@ -123,28 +123,42 @@ for i,s in enumerate(S,6):
  r['crew']={'jobs':['Check '+evidence.lower(),'Arrange the non-food activity'],'favor':['friendship note','Listen and invite without food pressure.'],'routine':['organize','check supplies','visit a friend','rest'],'profiles':{'peer':{'goals':[{'id':'records','mode':'organize','target':'record','weight':4,'speed':88,'dwell':1.6},{'id':'notice','mode':'check supplies','target':'board','weight':3,'speed':78,'dwell':2.2},{'id':'rest','mode':'rest','weight':1,'speed':65,'dwell':1.8}]},'helper':{'goals':[{'id':'visit','mode':'visit a friend','weight':4,'speed':77,'dwell':2.1},{'id':'records','mode':'check supplies','target':'record','weight':2,'speed':92,'dwell':1.4},{'id':'rest','mode':'rest','weight':1,'speed':62,'dwell':1.1}]}}}
  # Set-specific circulation: keep the validated footprints, but shift their positions
  # in relation to the existing doorway and actors. Supported props and collision bounds move together.
- shifts={
- 'birthday-invitation':[(20,-7),(-20,9),(10,5),(-12,-8)],
- 'bakery-order':[(0,-10),(12,-10),(-18,4),(18,5)],
- 'library-club':[(25,0),(-30,7),(0,8),(-25,-5)],
- 'shared-lunch':[(0,-7),(-10,-7),(22,5),(-12,5)],
- 'sports-break':[(28,-7),(-22,-6),(16,-7),(-8,7)],
- 'class-science':[(8,-10),(10,-10),(-12,4),(10,4)],
- 'art-supplies':[(18,6),(-12,-7),(-8,-4),(16,5)],
- 'market-stall':[(12,-6),(-10,-6),(18,5),(-12,5)],
- 'substitute-teacher':[(12,-8),(-15,6),(12,4),(-15,4)],
- 'welcome-rehearsal':[(12,-7),(-22,-7),(15,3),(-15,3)],
- 'festival-supply':[(8,-8),(12,-8),(-8,4),(8,4)]}
- for j,(dx,dz) in enumerate(shifts.get(rid,[])):
+ # Authored circulation layouts. Values are centres (x,z) and width/depth deltas.
+ # Actual object positions, support surfaces and solid footprints are moved together.
+ # Rear/foreground work areas remain separated; the exit and adult are kept clear.
+ layouts={
+ 'birthday-invitation':[(350,105,12,0),(835,128,-8,-4),(350,304,20,0),(810,267,0,-2)],
+ 'bakery-order':[(315,101,24,0),(840,110,16,4),(348,280,12,0),(825,301,12,0)],
+ 'library-club':[(285,110,4,0),(875,110,0,0),(360,299,0,2),(820,270,12,0)],
+ 'shared-lunch':[(330,107,28,8),(855,110,8,4),(347,295,34,6),(817,285,28,6)],
+ 'sports-break':[(285,101,-8,-2),(884,105,-8,-2),(300,287,-4,0),(850,306,-10,0)],
+ 'recipe-revision':[(340,100,16,0),(860,135,0,0),(345,283,12,0),(810,298,16,0)],
+ 'class-science':[(338,105,12,4),(836,108,12,4),(350,287,22,2),(818,288,20,2)],
+ 'art-supplies':[(320,115,12,0),(855,105,10,-2),(355,306,24,2),(810,270,14,0)],
+ 'bus-trip':[(320,105,10,0),(845,120,4,0),(350,283,12,0),(824,305,12,0)],
+ 'market-stall':[(354,105,28,4),(858,110,12,4),(318,287,28,4),(825,297,26,4)],
+ 'handwash-club':[(308,105,12,0),(840,113,8,0),(365,292,10,0),(808,288,12,0)],
+ 'picnic-weather':[(314,115,12,2),(870,110,4,0),(340,301,18,2),(810,267,16,0)],
+ 'club-bullying':[(286,108,0,0),(864,114,0,0),(345,299,12,0),(816,276,8,0)],
+ 'cafe-order':[(319,106,22,2),(842,105,14,2),(347,289,14,0),(820,302,20,2)],
+ 'substitute-teacher':[(320,103,12,0),(858,133,0,0),(343,299,12,0),(814,280,8,0)],
+ 'emergency-rehearsal':[(315,107,0,0)],
+ 'accessible-fair':[(314,111,10,2),(863,107,14,0),(350,305,20,0),(817,276,16,0)],
+ 'festival-supply':[(350,105,24,4),(853,108,14,2),(318,286,26,2),(818,299,22,4)],
+ 'welcome-rehearsal':[(285,107,6,0),(864,103,10,0),(347,299,18,0),(812,272,12,0)],
+ 'welcome-promise':[(322,106,12,0),(856,110,12,0),(350,298,18,0),(817,280,20,0)]}
+ for j,(nx,nz,dw,dd) in enumerate(layouts[rid]):
   if j>=len(r['shelves']):break
-  f=r['shelves'][j];f['x']+=dx;f['z']+=dz
+  f=r['shelves'][j];dx=nx-f['x'];dz=nz-f['z']
+  f['x']=nx;f['z']=nz;f['w']+=dw;f['d']+=dd
   for o in r['objects']:
    if o['surface']==j:
     for key in ['x','ox','wx']:o[key]+=dx
     o['wz']+=dz
   for b in r['solids']:
    if b['ref']==['shelf',j]:
-    b['x1']+=dx;b['x2']+=dx;b['z1']+=dz;b['z2']+=dz
+    b['x1']=nx-f['w']/2;b['x2']=nx+f['w']/2
+    b['z1']=nz-f['d']/2;b['z2']=nz+f['d']/2
  # Give investigation a third route when a distinct clue board is present; all
  # paths retain the adult gate before any transfer or cleaning.
  if not emergency and rid in ('shared-lunch','class-science','club-bullying','cafe-order','substitute-teacher','welcome-promise'):

@@ -41,6 +41,14 @@ jobs:
         run: |
           python stage18-map-qa.py
           python stage18-native-qa.py
+      - name: Upload compact visual review
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage18-interior-preview
+          path: |
+            stage16/Source/qa/stage18/interior-contact-sheet.jpg
+            stage16/Source/qa/stage18/interior-art-audit.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
