@@ -1,0 +1,1 @@
+const fs=require('node:fs'),C=require('./content-engine.js');const p=JSON.parse(fs.readFileSync(process.argv[2]||require('node:path').join(__dirname,'content.json'),'utf8'));const v=C.validate(p);console.log(JSON.stringify(v,null,2));if(v.errors.length)process.exitCode=1;

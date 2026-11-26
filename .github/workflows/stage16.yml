@@ -1,0 +1,76 @@
+name: Stage 16 content and campaign
+on:
+  pull_request:
+    paths:
+      - 'stage16/**'
+      - '.github/workflows/stage16.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verification:
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [campaign, authoring, visual, performance]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: stage16/Source
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate and test content
+        run: |
+          python make-branch-demo.py
+          node validate-content.cjs
+          node validate-content.cjs demo-content.json
+          node validate-content.cjs branch-demo-content.json
+          node content-tests.cjs
+          node graph-tests.cjs
+      - name: Build releases and editor
+        run: |
+          python build.py
+          python build-editor.py
+          python build.py demo-content.json ../Ally_Quest_Stage16_Demo.html
+          python build.py branch-demo-content.json ../Ally_Quest_Stage16_Branch_Demo.html
+      - name: Install pinned browser harness
+        run: |
+          pip install playwright==1.51.0 pillow==11.2.1
+          python -m playwright install --with-deps chromium
+          echo "AQ_CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')" >> "$GITHUB_ENV"
+      - name: Exact release campaign and regressions
+        if: matrix.suite == 'campaign'
+        run: python run-qa.py
+      - name: Branching room and editor export
+        if: matrix.suite == 'authoring'
+        run: |
+          python graph-browser-qa.py
+          python graph-editor-qa.py
+          python build.py qa/graph-editor-export.json ../Ally_Quest_Stage16_Authored_Demo.html
+          python graph-browser-qa.py --authored
+          python graph-browser-qa.py --touch
+          python profiler-qa.py
+      - name: Matched visual regression
+        if: matrix.suite == 'visual'
+        run: |
+          baseline=$(mktemp -d)
+          git -C "$GITHUB_WORKSPACE" archive cae7c423626aecfbc6e2946bc8d6dd27354e1790 stage16/Source | tar -x -C "$baseline"
+          python "$baseline/stage16/Source/build.py"
+          python visual-regression.py "$baseline/stage16/Ally_Quest_Stage155.html"
+      - name: Emulated device profiling (not physical hardware)
+        if: matrix.suite == 'performance'
+        run: python device-performance.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage16-${{ matrix.suite }}-evidence
+          path: stage16/Source/qa/

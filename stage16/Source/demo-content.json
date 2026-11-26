@@ -1,0 +1,6363 @@
+{
+  "version": 1,
+  "levels": [
+    {
+      "id": "banner",
+      "name": "The Missing Banner",
+      "subtitle": "A schoolyard mystery",
+      "scene": "school",
+      "color": "#43a4ff",
+      "icon": "🏫",
+      "hero": "ethan",
+      "npc": "maya",
+      "npcX": 425,
+      "npcName": "Maya",
+      "width": 3450,
+      "intro": "The welcome banner has disappeared! Meet Maya, follow three golden ribbons, and bring them to the celebration garden.",
+      "mission": "Find the banner pieces",
+      "mechanic": "Bounce and explore",
+      "lesson": "Friendship starts with listening and helping everyone feel included.",
+      "platforms": [
+        {
+          "x": 650,
+          "y": 454,
+          "w": 165
+        },
+        {
+          "x": 1130,
+          "y": 420,
+          "w": 162
+        },
+        {
+          "x": 1655,
+          "y": 446,
+          "w": 175
+        },
+        {
+          "x": 2250,
+          "y": 425,
+          "w": 168
+        },
+        {
+          "x": 2790,
+          "y": 444,
+          "w": 170
+        }
+      ],
+      "springs": [
+        {
+          "x": 795,
+          "y": 544,
+          "w": 102
+        },
+        {
+          "x": 1960,
+          "y": 544,
+          "w": 102
+        }
+      ],
+      "walls": [
+        {
+          "x": 930,
+          "y": 250,
+          "w": 34,
+          "h": 317
+        },
+        {
+          "x": 2097,
+          "y": 312,
+          "w": 36,
+          "h": 255
+        }
+      ],
+      "stars": [
+        {
+          "x": 725,
+          "y": 404
+        },
+        {
+          "x": 1170,
+          "y": 371
+        },
+        {
+          "x": 1690,
+          "y": 390
+        },
+        {
+          "x": 2370,
+          "y": 520
+        },
+        {
+          "x": 2860,
+          "y": 397
+        }
+      ],
+      "tasks": [
+        {
+          "id": "maya",
+          "x": 425,
+          "y": 567,
+          "kind": "npc",
+          "icon": "💬",
+          "title": "Ask Maya",
+          "prompt": "E  Talk to Maya",
+          "speaker": "Maya",
+          "lines": [
+            "Ethan! Our celebration banner is missing. Can you help me find three golden ribbons?",
+            "Thanks for helping! Let’s make our celebration fun for all our friends."
+          ],
+          "choices": [
+            {
+              "label": "Let’s look together!",
+              "correct": true,
+              "reply": "Great! Bounce and explore. Follow the glowing ribbon pieces."
+            },
+            {
+              "label": "Can we skip the party?",
+              "correct": false,
+              "reply": "We can include everyone! Let’s help prepare an event everyone can enjoy."
+            }
+          ]
+        },
+        {
+          "id": "piece1",
+          "x": 1260,
+          "y": 530,
+          "kind": "pickup",
+          "icon": "🎗️",
+          "title": "Golden ribbon 1",
+          "prompt": "Collect a ribbon"
+        },
+        {
+          "id": "piece2",
+          "x": 2030,
+          "y": 530,
+          "kind": "pickup",
+          "icon": "🎗️",
+          "title": "Golden ribbon 2",
+          "prompt": "Collect a ribbon"
+        },
+        {
+          "id": "piece3",
+          "x": 2980,
+          "y": 530,
+          "kind": "pickup",
+          "icon": "🎗️",
+          "title": "Golden ribbon 3",
+          "prompt": "Collect the final ribbon"
+        }
+      ],
+      "finishX": 3290,
+      "finishName": "CELEBRATION GARDEN"
+    },
+    {
+      "id": "cafeteria",
+      "name": "Cafeteria Clue",
+      "subtitle": "A delivery we cannot guess about",
+      "scene": "cafeteria",
+      "color": "#ff9c48",
+      "icon": "🥗",
+      "hero": "maya",
+      "npc": "ari",
+      "npcX": 380,
+      "npcName": "Ari",
+      "width": 3440,
+      "intro": "A replacement delivery arrived without the expected information. Help Chef Marco check the practice plan, prevent cross-contact, and create a non-food activity for every friend.",
+      "mission": "Prepare the lunch stations",
+      "mechanic": "Conveyor belts and adult check",
+      "lesson": "Labels can change. A trusted adult should verify ingredients and each student’s individual needs.",
+      "platforms": [
+        {
+          "x": 640,
+          "y": 457,
+          "w": 210
+        },
+        {
+          "x": 1280,
+          "y": 445,
+          "w": 195,
+          "moving": true,
+          "amplitude": 82,
+          "period": 2.8
+        },
+        {
+          "x": 1920,
+          "y": 425,
+          "w": 194
+        },
+        {
+          "x": 2540,
+          "y": 443,
+          "w": 204
+        }
+      ],
+      "conveyors": [
+        {
+          "x": 1000,
+          "w": 310,
+          "dir": 1
+        },
+        {
+          "x": 2010,
+          "w": 315,
+          "dir": -1
+        }
+      ],
+      "springs": [
+        {
+          "x": 1670,
+          "y": 544,
+          "w": 98
+        }
+      ],
+      "walls": [
+        {
+          "x": 1815,
+          "y": 340,
+          "w": 37,
+          "h": 227
+        }
+      ],
+      "stars": [
+        {
+          "x": 690,
+          "y": 410
+        },
+        {
+          "x": 1350,
+          "y": 400
+        },
+        {
+          "x": 2000,
+          "y": 382
+        },
+        {
+          "x": 2410,
+          "y": 519
+        },
+        {
+          "x": 2820,
+          "y": 401
+        }
+      ],
+      "tasks": [
+        {
+          "id": "ari",
+          "x": 380,
+          "y": 567,
+          "kind": "npc",
+          "icon": "💬",
+          "title": "Ask Ari",
+          "prompt": "E  Talk to Ari",
+          "speaker": "Ari",
+          "lines": [
+            "Ari: I want everyone to join our festival, even friends with food allergies. But today’s delivery is different.",
+            "Chef Marco is holding it. Help check the information and separate used tools."
+          ],
+          "choices": [
+            {
+              "label": "Ask an adult to help",
+              "correct": true,
+              "reply": "Exactly! A trusted adult can check labels and each friend’s plan."
+            },
+            {
+              "label": "Guess from the food photo",
+              "correct": false,
+              "reply": "A picture cannot tell us ingredients or whether something is suitable. Let’s ask an adult."
+            }
+          ]
+        },
+        {
+          "id": "station1",
+          "x": 1040,
+          "y": 567,
+          "kind": "choice",
+          "icon": "🥪",
+          "title": "Lunch tray",
+          "prompt": "E · Enter Kitchen",
+          "speaker": "Cafeteria helper",
+          "lines": [
+            "A tray looks familiar, but ingredients and preparation can change. What should we do before offering it?"
+          ],
+          "choices": [
+            {
+              "label": "Have a trusted adult check",
+              "correct": true,
+              "reply": "Right. We should never guess about food safety."
+            },
+            {
+              "label": "Assume it is the same",
+              "correct": false,
+              "reply": "Recipes can change. Ask a trusted adult to check before sharing."
+            }
+          ]
+        },
+        {
+          "id": "station2",
+          "x": 2120,
+          "y": 567,
+          "kind": "choice",
+          "icon": "🧼",
+          "title": "Shared utensils",
+          "prompt": "E · Enter Wash & prep",
+          "speaker": "Cafeteria helper",
+          "lines": [
+            "Different foods have used these utensils. How can we help avoid cross-contact?"
+          ],
+          "choices": [
+            {
+              "label": "Ask an adult to provide clean equipment",
+              "correct": true,
+              "reply": "Great. Clean equipment and adult guidance help manage cross-contact."
+            },
+            {
+              "label": "Just wipe them with a sleeve",
+              "correct": false,
+              "reply": "That is not a reliable way to prevent cross-contact. Ask an adult to handle it."
+            }
+          ]
+        },
+        {
+          "id": "station3",
+          "x": 2790,
+          "y": 567,
+          "kind": "choice",
+          "icon": "🎨",
+          "title": "Inclusive lunch activity",
+          "prompt": "E · Enter Mural studio",
+          "speaker": "Ari",
+          "lines": [
+            "What activity could everyone enjoy without needing to share food?"
+          ],
+          "choices": [
+            {
+              "label": "Create a table mural",
+              "correct": true,
+              "reply": "A colorful class mural is something everyone can join!"
+            },
+            {
+              "label": "Require everyone to eat the same snack",
+              "correct": false,
+              "reply": "Friends have different food needs. A non-food activity includes everyone."
+            }
+          ]
+        }
+      ],
+      "finishX": 3295,
+      "finishName": "LUNCH PLAN READY"
+    },
+    {
+      "id": "labels",
+      "name": "Label Detectives",
+      "subtitle": "The allergy evidence trail",
+      "scene": "label_lab",
+      "color": "#63dcb8",
+      "icon": "🔎",
+      "hero": "leo",
+      "npc": "maya",
+      "npcX": 360,
+      "npcName": "Maya",
+      "width": 3500,
+      "intro": "Nurse Lina needs evidence: milk, missing details, and a changed soy recipe. Inspect current labels and report them; never taste food to test an allergy.",
+      "mission": "Investigate three packages",
+      "mechanic": "Magnifier and label clues",
+      "lesson": "A missing warning does not mean a food is suitable. Labels need careful review by a trusted adult.",
+      "platforms": [
+        {
+          "x": 610,
+          "y": 455,
+          "w": 185
+        },
+        {
+          "x": 1200,
+          "y": 415,
+          "w": 174
+        },
+        {
+          "x": 1790,
+          "y": 437,
+          "w": 170,
+          "moving": true,
+          "amplitude": 65,
+          "period": 3
+        },
+        {
+          "x": 2590,
+          "y": 412,
+          "w": 190
+        }
+      ],
+      "springs": [
+        {
+          "x": 1440,
+          "y": 544,
+          "w": 98
+        },
+        {
+          "x": 2300,
+          "y": 544,
+          "w": 100
+        }
+      ],
+      "walls": [
+        {
+          "x": 1510,
+          "y": 235,
+          "w": 40,
+          "h": 332
+        },
+        {
+          "x": 2380,
+          "y": 235,
+          "w": 34,
+          "h": 332
+        }
+      ],
+      "stars": [
+        {
+          "x": 700,
+          "y": 403
+        },
+        {
+          "x": 1225,
+          "y": 366
+        },
+        {
+          "x": 1850,
+          "y": 384
+        },
+        {
+          "x": 2640,
+          "y": 363
+        },
+        {
+          "x": 3000,
+          "y": 522
+        }
+      ],
+      "tasks": [
+        {
+          "id": "maya",
+          "x": 360,
+          "y": 567,
+          "kind": "npc",
+          "icon": "💬",
+          "title": "Meet Maya",
+          "prompt": "E  Talk to Maya",
+          "speaker": "Maya",
+          "lines": [
+            "Maya: Nurse Lina has three packages from the delivery. Ingredient lists matter, even when the package looks familiar.",
+            "Collect evidence. Never taste something to test an allergy; bring food questions to an adult."
+          ],
+          "choices": [
+            {
+              "label": "Find the magnifier!",
+              "correct": true,
+              "reply": "Great! It’s by the first reading desk."
+            },
+            {
+              "label": "Taste-test to find out",
+              "correct": false,
+              "reply": "Never taste a food to test an allergy. Let’s use information and adult support."
+            }
+          ]
+        },
+        {
+          "id": "magnifier",
+          "x": 735,
+          "y": 567,
+          "kind": "pickup",
+          "icon": "🔎",
+          "title": "Detective magnifier",
+          "prompt": "E  Take the magnifier"
+        },
+        {
+          "id": "label1",
+          "x": 1150,
+          "y": 567,
+          "kind": "choice",
+          "requires": "magnifier",
+          "icon": "📦",
+          "title": "Package A",
+          "prompt": "E · Enter Package A lab",
+          "speaker": "Label Detective",
+          "lines": [
+            "The ingredient list names an allergen. What should you do before offering it?"
+          ],
+          "choices": [
+            {
+              "label": "Do not share it; tell the adult",
+              "correct": true,
+              "reply": "Good detective work. We should not offer food that may be unsuitable."
+            },
+            {
+              "label": "Remove the visible ingredient",
+              "correct": false,
+              "reply": "Removing what you can see does not make it safe. Ask an adult."
+            }
+          ]
+        },
+        {
+          "id": "label2",
+          "x": 2100,
+          "y": 567,
+          "kind": "choice",
+          "requires": "magnifier",
+          "icon": "📋",
+          "title": "Package B",
+          "prompt": "E · Enter Package B lab",
+          "speaker": "Label Detective",
+          "lines": [
+            "The label is hard to read and has no visible precautionary warning. Is that enough to know it is suitable?"
+          ],
+          "choices": [
+            {
+              "label": "No — ask a trusted adult to verify",
+              "correct": true,
+              "reply": "Right. No warning is not proof of safety. Adults can check the details."
+            },
+            {
+              "label": "Yes — no warning means safe",
+              "correct": false,
+              "reply": "A missing warning does not prove the food is safe. Ask an adult."
+            }
+          ]
+        },
+        {
+          "id": "label3",
+          "x": 2820,
+          "y": 567,
+          "kind": "choice",
+          "requires": "magnifier",
+          "icon": "🧾",
+          "title": "Package C",
+          "prompt": "E · Enter Package C lab",
+          "speaker": "Label Detective",
+          "lines": [
+            "This brand has changed its recipe. Who should check before anyone eats it?"
+          ],
+          "choices": [
+            {
+              "label": "A trusted adult, using the current label",
+              "correct": true,
+              "reply": "Exactly. The current ingredients matter, even with familiar products."
+            },
+            {
+              "label": "Use last month’s package",
+              "correct": false,
+              "reply": "Recipes change. An adult should check the current package."
+            }
+          ]
+        }
+      ],
+      "finishX": 3330,
+      "finishName": "CASE SOLVED"
+    },
+    {
+      "id": "party",
+      "name": "Garden Party Prep",
+      "subtitle": "Allergy-aware activities",
+      "scene": "garden",
+      "color": "#eb79d4",
+      "icon": "🎈",
+      "hero": "ari",
+      "npc": "leo",
+      "npcX": 400,
+      "npcName": "Leo",
+      "width": 3490,
+      "intro": "Food ingredients can turn up in craft materials and on shared instruments. Check supplies, separate snacks, and make ways to join without eating.",
+      "mission": "Prepare three party activities",
+      "mechanic": "Lever bridge and decoration pickups",
+      "lesson": "Inclusive celebrations can focus on art, games, music and friendship rather than shared food.",
+      "platforms": [
+        {
+          "x": 670,
+          "y": 447,
+          "w": 189
+        },
+        {
+          "x": 1240,
+          "y": 420,
+          "w": 175
+        },
+        {
+          "x": 1890,
+          "y": 438,
+          "w": 185
+        },
+        {
+          "x": 2520,
+          "y": 424,
+          "w": 190
+        }
+      ],
+      "springs": [
+        {
+          "x": 990,
+          "y": 544,
+          "w": 100
+        },
+        {
+          "x": 2250,
+          "y": 544,
+          "w": 96
+        }
+      ],
+      "walls": [
+        {
+          "x": 1080,
+          "y": 330,
+          "w": 38,
+          "h": 237
+        }
+      ],
+      "gaps": [
+        {
+          "x": 1710,
+          "w": 190,
+          "bridgeBy": "lever"
+        }
+      ],
+      "stars": [
+        {
+          "x": 700,
+          "y": 390
+        },
+        {
+          "x": 1320,
+          "y": 368
+        },
+        {
+          "x": 1950,
+          "y": 389
+        },
+        {
+          "x": 2600,
+          "y": 371
+        },
+        {
+          "x": 2940,
+          "y": 522
+        }
+      ],
+      "tasks": [
+        {
+          "id": "leo",
+          "x": 400,
+          "y": 567,
+          "kind": "npc",
+          "icon": "💬",
+          "title": "Meet Leo",
+          "prompt": "E  Talk to Leo",
+          "speaker": "Leo",
+          "lines": [
+            "Leo: A friend can react to a food ingredient in an activity, too. Let’s check craft supplies and keep snacks away from the instruments as the adult directs.",
+            "Everyone can participate without eating."
+          ],
+          "choices": [
+            {
+              "label": "Let’s plan non-food activities",
+              "correct": true,
+              "reply": "Awesome! Find the craft table, balloon kit, and music box."
+            },
+            {
+              "label": "Only invite friends eating the same food",
+              "correct": false,
+              "reply": "Friends have different needs. Everyone deserves a chance to join in."
+            }
+          ]
+        },
+        {
+          "id": "crafts",
+          "x": 900,
+          "y": 567,
+          "kind": "choice",
+          "icon": "🎨",
+          "title": "Art table",
+          "prompt": "E · Enter Craft workshop",
+          "speaker": "Leo",
+          "lines": [
+            "What could we do at this table instead of using food in crafts?"
+          ],
+          "choices": [
+            {
+              "label": "Draw colorful posters",
+              "correct": true,
+              "reply": "Fantastic! Art supplies can make this a fun food-free activity."
+            },
+            {
+              "label": "Use peanut shells for collage",
+              "correct": false,
+              "reply": "Food allergens can be risky in activities. Let’s choose non-food art supplies."
+            }
+          ]
+        },
+        {
+          "id": "lever",
+          "x": 1530,
+          "y": 567,
+          "kind": "lever",
+          "icon": "⚙️",
+          "title": "Bridge lever",
+          "prompt": "E  Lower the garden bridge"
+        },
+        {
+          "id": "balloons",
+          "x": 2050,
+          "y": 567,
+          "kind": "pickup",
+          "icon": "🎈",
+          "title": "Balloon decorations",
+          "prompt": "E  Collect balloons"
+        },
+        {
+          "id": "music",
+          "x": 2760,
+          "y": 567,
+          "kind": "choice",
+          "icon": "🎶",
+          "title": "Music station",
+          "prompt": "E · Enter Music pavilion",
+          "speaker": "Leo",
+          "lines": [
+            "Which activity can include friends who bring different foods or choose not to eat?"
+          ],
+          "choices": [
+            {
+              "label": "A group dance and games",
+              "correct": true,
+              "reply": "Yes! Music and games let everyone join in."
+            },
+            {
+              "label": "A food-eating contest",
+              "correct": false,
+              "reply": "A food competition may exclude people. Let’s celebrate with music and games."
+            }
+          ]
+        }
+      ],
+      "finishX": 3305,
+      "finishName": "GARDEN READY"
+    },
+    {
+      "id": "celebration",
+      "name": "The Big Celebration",
+      "subtitle": "The festival allergy promise",
+      "scene": "celebration",
+      "color": "#ffcb57",
+      "icon": "🎉",
+      "hero": "ethan",
+      "npc": "ari",
+      "npcX": 395,
+      "npcName": "Ari",
+      "width": 3550,
+      "intro": "Listen, prevent food sharing, bring questions to adults, and practice getting immediate help for a possible reaction. Everyone should belong.",
+      "mission": "Finish the celebration together",
+      "mechanic": "Switches, teamwork, grand finale",
+      "lesson": "A good ally listens, includes others, and seeks trusted adult help about food-related safety.",
+      "platforms": [
+        {
+          "x": 710,
+          "y": 446,
+          "w": 185
+        },
+        {
+          "x": 1240,
+          "y": 414,
+          "w": 195,
+          "moving": true,
+          "amplitude": 80,
+          "period": 3.2
+        },
+        {
+          "x": 1870,
+          "y": 440,
+          "w": 184
+        },
+        {
+          "x": 2460,
+          "y": 405,
+          "w": 195
+        },
+        {
+          "x": 2950,
+          "y": 433,
+          "w": 185
+        }
+      ],
+      "springs": [
+        {
+          "x": 960,
+          "y": 544,
+          "w": 95
+        },
+        {
+          "x": 2160,
+          "y": 544,
+          "w": 98
+        }
+      ],
+      "walls": [
+        {
+          "x": 1080,
+          "y": 260,
+          "w": 36,
+          "h": 307
+        },
+        {
+          "x": 2310,
+          "y": 331,
+          "w": 36,
+          "h": 236
+        }
+      ],
+      "stars": [
+        {
+          "x": 770,
+          "y": 397
+        },
+        {
+          "x": 1320,
+          "y": 363
+        },
+        {
+          "x": 1930,
+          "y": 392
+        },
+        {
+          "x": 2570,
+          "y": 355
+        },
+        {
+          "x": 3070,
+          "y": 386
+        }
+      ],
+      "tasks": [
+        {
+          "id": "ari",
+          "x": 395,
+          "y": 567,
+          "kind": "npc",
+          "icon": "💬",
+          "title": "Ask Ari",
+          "prompt": "E  Talk to Ari",
+          "speaker": "Ari",
+          "lines": [
+            "Ari: Our allergy-aware festival is nearly ready. Let’s welcome friends without pressure and practice speaking up if someone feels unwell.",
+            "Adults handle food decisions and emergency plans. We can be good allies."
+          ],
+          "choices": [
+            {
+              "label": "Let’s work as a team!",
+              "correct": true,
+              "reply": "Hooray! Complete the three celebration stations and meet everyone by the banner."
+            },
+            {
+              "label": "Leave someone out?",
+              "correct": false,
+              "reply": "An ally makes room for everyone. Let’s make the party welcoming."
+            }
+          ]
+        },
+        {
+          "id": "welcome",
+          "x": 935,
+          "y": 567,
+          "kind": "choice",
+          "icon": "🤝",
+          "title": "Welcome station",
+          "prompt": "E · Enter Welcome studio",
+          "speaker": "Maya",
+          "lines": [
+            "A friend feels unsure about participating. What should we do?"
+          ],
+          "choices": [
+            {
+              "label": "Ask what would help them join",
+              "correct": true,
+              "reply": "Listening matters. Invite friends without pressuring them."
+            },
+            {
+              "label": "Tell them they must join",
+              "correct": false,
+              "reply": "Friends have choices. Listen and make them feel welcome."
+            }
+          ]
+        },
+        {
+          "id": "game",
+          "x": 1900,
+          "y": 567,
+          "kind": "choice",
+          "icon": "🎲",
+          "title": "Game station",
+          "prompt": "E · Enter Game clubhouse",
+          "speaker": "Leo",
+          "lines": [
+            "Which game gives every friend a way to participate without sharing snacks?"
+          ],
+          "choices": [
+            {
+              "label": "Team scavenger hunt",
+              "correct": true,
+              "reply": "Perfect! Find clues together and celebrate everyone’s ideas."
+            },
+            {
+              "label": "Guess whose food is safe",
+              "correct": false,
+              "reply": "We never guess about food safety. Choose a fun team activity instead."
+            }
+          ]
+        },
+        {
+          "id": "check",
+          "x": 2760,
+          "y": 567,
+          "kind": "choice",
+          "icon": "💛",
+          "title": "Friendship station",
+          "prompt": "E · Enter Friendship hall",
+          "speaker": "Ari",
+          "lines": [
+            "A friend asks about a treat. What is a helpful response?"
+          ],
+          "choices": [
+            {
+              "label": "Ask a trusted adult to check",
+              "correct": true,
+              "reply": "That’s being an ally. Never decide for someone else."
+            },
+            {
+              "label": "Say it looks safe",
+              "correct": false,
+              "reply": "Appearance cannot establish food safety. Get a trusted adult."
+            }
+          ]
+        }
+      ],
+      "finishX": 3390,
+      "finishName": "ALLY CREW CELEBRATION"
+    },
+    {
+      "id": "reunion",
+      "name": "The Reunion Workshop",
+      "subtitle": "A new non-food activity",
+      "scene": "garden",
+      "color": "#eb79d4",
+      "icon": "🎈",
+      "hero": "ari",
+      "npc": "leo",
+      "npcX": 310,
+      "npcName": "Leo",
+      "width": 1980,
+      "intro": "A new group has arrived. Help Leo set up an inclusive art activity, and make sure an adult handles unexpected food materials.",
+      "mission": "Make the reunion welcoming",
+      "mechanic": "Explore and collaborate",
+      "lesson": "Invite everyone to participate without sharing food. Ask an adult about uncertain materials.",
+      "platforms": [
+        {
+          "x": 550,
+          "y": 460,
+          "w": 180
+        },
+        {
+          "x": 1240,
+          "y": 455,
+          "w": 180
+        }
+      ],
+      "springs": [],
+      "walls": [],
+      "gaps": [],
+      "stars": [
+        {
+          "x": 450,
+          "y": 520
+        },
+        {
+          "x": 625,
+          "y": 410
+        },
+        {
+          "x": 1050,
+          "y": 520
+        },
+        {
+          "x": 1300,
+          "y": 405
+        },
+        {
+          "x": 1600,
+          "y": 520
+        }
+      ],
+      "tasks": [
+        {
+          "id": "leo",
+          "x": 310,
+          "y": 567,
+          "kind": "npc",
+          "icon": "💬",
+          "title": "Meet Leo",
+          "prompt": "E  Talk to Leo",
+          "speaker": "Leo",
+          "lines": [
+            "A new group wants to join our reunion. We have paper art, but a volunteer brought a food decoration. Can you help make a non-food activity?"
+          ],
+          "choices": [
+            {
+              "label": "Let’s plan non-food activities",
+              "correct": true,
+              "reply": "Awesome! Find the craft table, balloon kit, and music box."
+            },
+            {
+              "label": "Only invite friends eating the same food",
+              "correct": false,
+              "reply": "Friends have different needs. Everyone deserves a chance to join in."
+            }
+          ]
+        },
+        {
+          "id": "station3",
+          "x": 900,
+          "y": 567,
+          "kind": "choice",
+          "icon": "🎨",
+          "title": "Reunion art room",
+          "prompt": "E · Enter Mural studio",
+          "speaker": "Ari",
+          "lines": [
+            "What activity could everyone enjoy without needing to share food?"
+          ],
+          "choices": [
+            {
+              "label": "Create a table mural",
+              "correct": true,
+              "reply": "A colorful class mural is something everyone can join!"
+            },
+            {
+              "label": "Require everyone to eat the same snack",
+              "correct": false,
+              "reply": "Friends have different food needs. A non-food activity includes everyone."
+            }
+          ]
+        }
+      ],
+      "finishX": 1825,
+      "finishName": "REUNION GARDEN"
+    }
+  ],
+  "chapters": [
+    [
+      "01",
+      "The missing allergy-awareness banner",
+      "Welcome Street is planning a festival where friends with food allergies can join. The welcome banner is missing; help the crew recover it.",
+      "The banner is found. A surprise food delivery puts the allergy plans at risk. Chef Marco needs help."
+    ],
+    [
+      "02",
+      "A delivery we cannot guess about",
+      "A replacement delivery arrived without the expected information. Help Chef Marco check the practice plan, prevent cross-contact, and create a non-food activity for every friend.",
+      "Chef Marco keeps unverified food on hold. Nurse Lina needs the current labels to investigate three problems."
+    ],
+    [
+      "03",
+      "The allergy evidence trail",
+      "Nurse Lina needs evidence: milk, missing details, and a changed soy recipe. Inspect current labels and report them; never taste food to test an allergy.",
+      "The adults have the evidence. Make sure the festival activities do not create new allergy risks."
+    ],
+    [
+      "04",
+      "Allergy-aware activities",
+      "Food ingredients can turn up in craft materials and on shared instruments. Check supplies, separate snacks, and make ways to join without eating.",
+      "The garden team is ready. Welcome friends without food pressure and practice getting help if someone feels unwell."
+    ],
+    [
+      "05",
+      "The festival allergy promise",
+      "Listen, prevent food sharing, bring questions to adults, and practice getting immediate help for a possible reaction. Everyone should belong.",
+      "The festival opens with non-food activities and allergy questions with responsible adults. The crew learned to ask, check, prevent cross-contact, include, and speak up."
+    ],
+    [
+      "06",
+      "The reunion workshop",
+      "A new group has arrived. Help Leo set up an inclusive art activity, and make sure an adult handles unexpected food materials.",
+      "You helped new friends join the reunion through an activity that does not depend on eating."
+    ]
+  ],
+  "rooms": {
+    "station1": {
+      "meta": [
+        "Kitchen",
+        "kitchen",
+        "chef"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Chef Marco",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "tray",
+          "label": "Delivered tray",
+          "type": "tray",
+          "x": 200,
+          "y": 485,
+          "ox": 200,
+          "oy": 485,
+          "wx": 206.5,
+          "wz": 147,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "desk",
+          "label": "Review desk",
+          "type": "table",
+          "x": 390,
+          "y": 485,
+          "ox": 390,
+          "oy": 485,
+          "wx": 320,
+          "wz": 147,
+          "fixture": true,
+          "surface": 0
+        },
+        {
+          "id": "details",
+          "label": "Current recipe",
+          "type": "paper",
+          "x": 540,
+          "y": 485,
+          "ox": 540,
+          "oy": 485,
+          "wx": 320,
+          "wz": 147,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "sink",
+          "label": "Wash hands",
+          "type": "sink",
+          "x": 690,
+          "y": 485,
+          "ox": 690,
+          "oy": 485,
+          "wx": 697,
+          "wz": 144,
+          "fixture": true,
+          "surface": 1
+        },
+        {
+          "id": "oats",
+          "label": "Practice ingredient A",
+          "type": "jar",
+          "x": 840,
+          "y": 485,
+          "ox": 840,
+          "oy": 485,
+          "wx": 660.5,
+          "wz": 297,
+          "slot": 0,
+          "surface": 2
+        },
+        {
+          "id": "fruit",
+          "label": "Practice ingredient B",
+          "type": "fruit",
+          "x": 925,
+          "y": 485,
+          "ox": 925,
+          "oy": 485,
+          "wx": 751.5,
+          "wz": 297,
+          "slot": 1,
+          "surface": 2
+        },
+        {
+          "id": "bowl",
+          "label": "Mixing bowl",
+          "type": "bowl",
+          "x": 990,
+          "y": 490,
+          "ox": 990,
+          "oy": 490,
+          "wx": 842.5,
+          "wz": 297,
+          "slot": 2,
+          "surface": 2
+        },
+        {
+          "id": "cover",
+          "label": "Tray lid",
+          "type": "lid",
+          "x": 570,
+          "y": 390,
+          "ox": 570,
+          "oy": 390,
+          "wx": 933.5,
+          "wz": 297,
+          "slot": 3,
+          "surface": 2
+        },
+        {
+          "id": "unknown",
+          "label": "Unverified package",
+          "type": "package",
+          "x": 300,
+          "y": 390,
+          "ox": 300,
+          "oy": 390,
+          "wx": 433.5,
+          "wz": 147,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "festival-note",
+          "label": "Unverified delivery",
+          "type": "package",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "festival-hold",
+          "label": "Hold for Chef Marco",
+          "type": "bin",
+          "x": 1155,
+          "y": 480,
+          "ox": 1155,
+          "oy": 480,
+          "late": false,
+          "wx": 1155,
+          "wz": 276,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Copper whisk",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "soap",
+          "label": "Soap dispenser",
+          "type": "soap",
+          "x": 550,
+          "y": 485,
+          "ox": 550,
+          "oy": 485,
+          "wx": 634,
+          "wz": 144,
+          "surface": 1
+        },
+        {
+          "id": "towel",
+          "label": "Fresh towel",
+          "type": "towel",
+          "x": 835,
+          "y": 485,
+          "ox": 835,
+          "oy": 485,
+          "wx": 760,
+          "wz": 144,
+          "surface": 1
+        },
+        {
+          "id": "case-observe",
+          "label": "Delivery carton",
+          "type": "package",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 166,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Review hold tag",
+          "type": "bin",
+          "visual": "hold",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 205,
+          "wz": 340,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Delivery record",
+          "type": "reference",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 430,
+          "wz": 235,
+          "simRole": "context",
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Ask Chef Marco about the individual plan before preparing anything.",
+          "key": "original-0",
+          "lesson": "Tell an adult what you are preparing. They need to follow the individual allergy plan."
+        },
+        {
+          "kind": "move",
+          "id": "tray",
+          "to": "desk",
+          "txt": "Carry the delivered tray to the review desk.",
+          "key": "original-1",
+          "lesson": "Keep the delivered tray separate until an adult checks it.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "use",
+          "id": "details",
+          "to": null,
+          "txt": "Attach the current product and preparation information.",
+          "key": "original-2",
+          "lesson": "Read the current preparation information; adults need it before deciding.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Ask the chef to review the plan. The game does not certify a food as safe.",
+          "key": "original-3",
+          "lesson": "An adult reviews the individual plan; a game cannot tell you a food is safe."
+        },
+        {
+          "kind": "use",
+          "id": "soap",
+          "txt": "Use soap at the sink.",
+          "key": "soap",
+          "lesson": "Use soap and running water to wash away food proteins."
+        },
+        {
+          "kind": "gesture",
+          "id": "sink",
+          "n": 5,
+          "txt": "Practice washing hands with soap and water: scrub the sink area.",
+          "key": "original-4",
+          "lesson": "Soap and water help remove food proteins from hands. In real life, wash for at least 20 seconds."
+        },
+        {
+          "kind": "use",
+          "id": "towel",
+          "txt": "Dry your hands with a fresh practice towel.",
+          "key": "dry",
+          "lesson": "Use a fresh towel so you do not transfer residue back to your hands."
+        },
+        {
+          "kind": "move",
+          "id": "oats",
+          "to": "bowl",
+          "txt": "Add the chef-provided pretend ingredient A to the mixing bowl.",
+          "key": "original-5",
+          "lesson": "These are pretend ingredients supplied for this practice activity, not a real safe-food list.",
+          "group": "batch-1"
+        },
+        {
+          "kind": "move",
+          "id": "fruit",
+          "to": "bowl",
+          "txt": "Add the chef-provided pretend ingredient B.",
+          "key": "original-6",
+          "lesson": "Different people have different allergies; never assume an ingredient is suitable.",
+          "group": "batch-1"
+        },
+        {
+          "kind": "gesture",
+          "id": "bowl",
+          "n": 7,
+          "txt": "Stir the pretend recipe in circles.",
+          "key": "original-7",
+          "lesson": "Mix only the practice ingredients that the adult supplied."
+        },
+        {
+          "kind": "move",
+          "id": "cover",
+          "to": "bowl",
+          "txt": "Cover the practice tray before the handoff.",
+          "key": "original-8",
+          "lesson": "Covering the tray helps keep it separate; it does not prove safety."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Ask Chef Marco to review the practice preparation.",
+          "key": "original-9",
+          "lesson": "Tell the adult what you did and wait for their instructions before serving."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Investigate the carton and its delivery record, or speak to Sam and ask Chef Marco for help.",
+          "lesson": "The delivery is on hold for adult review. Nobody has been asked to eat it."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "festival-hold",
+          "txt": "Set aside the unverified package for Chef Marco.",
+          "key": "handoff",
+          "lesson": "A familiar-looking package is not enough information. Keep it separate and ask the adult."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Chef Marco.",
+          "key": "report",
+          "lesson": "Ask, check current information, wash hands, keep equipment separate, and let the responsible adult review."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Review desk",
+          "x": 320,
+          "z": 147,
+          "w": 292,
+          "d": 72,
+          "style": "desk",
+          "items": [
+            "tray",
+            "details",
+            "unknown"
+          ],
+          "anchor": "desk"
+        },
+        {
+          "name": "Handwashing",
+          "x": 697,
+          "z": 144,
+          "w": 198,
+          "d": 76,
+          "style": "sink",
+          "items": [
+            "soap",
+            "towel"
+          ],
+          "anchor": "sink"
+        },
+        {
+          "name": "Preparation island",
+          "x": 797,
+          "z": 297,
+          "w": 338,
+          "d": 91,
+          "style": "steel",
+          "items": [
+            "oats",
+            "fruit",
+            "bowl",
+            "cover"
+          ],
+          "anchor": null
+        }
+      ],
+      "solids": [
+        {
+          "x1": 174,
+          "x2": 466,
+          "z1": 111,
+          "z2": 183,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 598,
+          "x2": 796,
+          "z1": 106,
+          "z2": 182,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 628,
+          "x2": 966,
+          "z1": 251.5,
+          "z2": 342.5,
+          "ref": [
+            "shelf",
+            2
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 1125,
+          "x2": 1185,
+          "z1": 260,
+          "z2": 292,
+          "ref": [
+            "object",
+            "festival-hold"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 156,
+          "z2": 176,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 177,
+          "x2": 233,
+          "z1": 330,
+          "z2": 350,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 402,
+          "x2": 458,
+          "z1": 225,
+          "z2": 245,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Ask before preparing",
+        "theme": "Teaching kitchen",
+        "why": "Food allergies are individual. Check the current ingredients and preparation plan with a trusted adult before handling food.",
+        "steps": [
+          "Tell an adult what you are preparing. They need to follow the individual allergy plan.",
+          "Keep the delivered tray separate until an adult checks it.",
+          "Current ingredients and preparation details help adults make informed decisions.",
+          "An adult reviews the individual plan; a game cannot tell you a food is safe.",
+          "Soap and water help remove food proteins from hands. In real life, wash for at least 20 seconds.",
+          "These are pretend ingredients supplied for this practice activity, not a real safe-food list.",
+          "Different people have different allergies; never assume an ingredient is suitable.",
+          "Mix only the practice ingredients that the adult supplied.",
+          "Covering the tray helps keep it separate; it does not prove safety.",
+          "Tell the adult what you did and wait for their instructions before serving."
+        ],
+        "end": "Ask, check current information, wash hands, keep equipment separate, and let the responsible adult review."
+      },
+      "look": [
+        "#e8dfcc",
+        "#d9d4c4",
+        "#3f6a70",
+        "CULINARY CLASSROOM",
+        "kitchen"
+      ],
+      "story": [
+        "A second delivery",
+        "Another carton arrived without its current ingredient list. Food allergies are individual. Check the current ingredients and preparation plan with a trusted adult before handling food.",
+        "The preparation is documented. Now keep the unverified delivery separate.",
+        "Unverified delivery",
+        "Set aside the unverified package for Chef Marco.",
+        "A familiar-looking package is not enough information. Keep it separate and ask the adult.",
+        "festival-hold"
+      ],
+      "incident": {
+        "title": "The second delivery",
+        "event": "Sam: Another delivery arrived, but its ingredient list is missing.",
+        "hazard": [
+          "Delivery carton",
+          "package",
+          "The current ingredient list is missing. An earlier approval does not apply to this delivery."
+        ],
+        "context": [
+          "Delivery record",
+          "reference",
+          "The record belongs to the previous delivery, not this carton."
+        ],
+        "action": [
+          "Review hold tag",
+          "bin",
+          "Attach a HOLD tag so the adult can manage the carton."
+        ],
+        "guided": "Investigate the carton and its delivery record, or speak to Sam and ask Chef Marco for help.",
+        "adult": "Keep the new carton separate. I will contact the supplier and check the individual plan before making any food decision.",
+        "help": "Place a hold tag at the review bin. I will handle the carton.",
+        "finish": "The delivery is on hold for adult review. Nobody has been asked to eat it."
+      },
+      "crew": {
+        "jobs": [
+          "Check the delivery record",
+          "Organize the recipe cards"
+        ],
+        "favor": [
+          "recipe card",
+          "We need the current recipe, not an old approval."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Copper whisk",
+      "kit": "Delivery hold tag",
+      "education": {
+        "objective": "adult-review",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "station2": {
+      "meta": [
+        "Wash & prep",
+        "kitchen",
+        "chef"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Chef Marco",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "spoon",
+          "label": "Used spoon",
+          "type": "spoon",
+          "x": 200,
+          "y": 485,
+          "ox": 200,
+          "oy": 485,
+          "wx": 205.5,
+          "wz": 143,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "tongs",
+          "label": "Used tongs",
+          "type": "tongs",
+          "x": 300,
+          "y": 485,
+          "ox": 300,
+          "oy": 485,
+          "wx": 308,
+          "wz": 143,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "return",
+          "label": "Used equipment return",
+          "type": "bin",
+          "x": 465,
+          "y": 485,
+          "ox": 465,
+          "oy": 485,
+          "wx": 410.5,
+          "wz": 143,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "sponge",
+          "label": "Soap & sponge",
+          "type": "sponge",
+          "x": 580,
+          "y": 485,
+          "ox": 580,
+          "oy": 485,
+          "wx": 653.5,
+          "wz": 298,
+          "slot": 0,
+          "surface": 2
+        },
+        {
+          "id": "counter",
+          "label": "Counter with residue",
+          "type": "counter",
+          "x": 760,
+          "y": 480,
+          "ox": 760,
+          "oy": 480,
+          "wx": 780,
+          "wz": 298,
+          "fixture": true,
+          "surface": 2
+        },
+        {
+          "id": "kit",
+          "label": "Adult-issued unused kit",
+          "type": "crate",
+          "x": 900,
+          "y": 390,
+          "ox": 900,
+          "oy": 390,
+          "wx": 708,
+          "wz": 146,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "rack",
+          "label": "Designated equipment rack",
+          "type": "rack",
+          "x": 1000,
+          "y": 485,
+          "ox": 1000,
+          "oy": 485,
+          "wx": 708,
+          "wz": 146,
+          "fixture": true,
+          "surface": 1
+        },
+        {
+          "id": "sleeve",
+          "label": "Sleeve",
+          "type": "cloth",
+          "x": 350,
+          "y": 390,
+          "ox": 350,
+          "oy": 390,
+          "wx": 906.5,
+          "wz": 298,
+          "slot": 1,
+          "surface": 2
+        },
+        {
+          "id": "festival-note",
+          "label": "Used cleaning cloth",
+          "type": "cloth",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Water drop",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Used practice spoon",
+          "type": "spoon",
+          "visual": "spoon",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 166,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Close affected rack",
+          "type": "bin",
+          "visual": "alert",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 430,
+          "wz": 235,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Rack contact record",
+          "type": "reference",
+          "visual": "cloth",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 205,
+          "wz": 340,
+          "simRole": "context",
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Ask the chef which equipment has been used.",
+          "key": "original-0",
+          "lesson": "Used equipment may carry food proteins that cannot be seen."
+        },
+        {
+          "kind": "move",
+          "id": "spoon",
+          "to": "return",
+          "txt": "Carry the used spoon to the return bin.",
+          "key": "original-1",
+          "lesson": "Separate used utensils from unused equipment.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "tongs",
+          "to": "return",
+          "txt": "Carry the used tongs away from the serving area.",
+          "key": "original-2",
+          "lesson": "Keep used tongs out of the designated preparation area.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "sponge",
+          "to": "counter",
+          "txt": "Bring the soap and sponge to the practice counter.",
+          "key": "original-3",
+          "lesson": "Use soap and water; wiping with a dry cloth is not enough."
+        },
+        {
+          "kind": "gesture",
+          "id": "counter",
+          "n": 9,
+          "txt": "Scrub the visible practice residue in different directions.",
+          "key": "original-4",
+          "lesson": "Visible marks are only practice clues. Adults must follow the full cleaning and sanitizing procedure."
+        },
+        {
+          "kind": "use",
+          "id": "counter",
+          "txt": "Inspect the cleaned practice counter.",
+          "key": "inspect-counter",
+          "lesson": "Visible marks are only practice clues. Ask the adult about the full cleaning procedure."
+        },
+        {
+          "kind": "use",
+          "id": "rack",
+          "txt": "Inspect the designated rack for simulated transfer traces.",
+          "key": "inspect-rack",
+          "lesson": "Food proteins can be invisible. If a used utensil touched the rack, stop and have the adult direct the full cleaning process."
+        },
+        {
+          "kind": "move",
+          "id": "kit",
+          "to": "rack",
+          "txt": "Move the adult-issued unused kit to its designated rack.",
+          "key": "original-5",
+          "lesson": "Keep adult-issued equipment separate from used items."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Ask the chef to check the work. Appearance alone cannot confirm equipment safety.",
+          "key": "original-6",
+          "lesson": "Ask an adult to check; looking clean is not proof that allergens are gone."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Find what touched the rack, or stop Sam from using it and get the chef.",
+          "lesson": "The affected equipment is out of use until the adult directs cleaning."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "return",
+          "txt": "Return the used practice cloth to the used-equipment station.",
+          "key": "handoff",
+          "lesson": "Even a clean-looking cloth may transfer food proteins. Follow the adult’s cleaning procedure."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Chef Marco.",
+          "key": "report",
+          "lesson": "Separate used items, clean as directed, and ask an adult. Invisible food proteins can still be present."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Return station",
+          "x": 308,
+          "z": 143,
+          "w": 270,
+          "d": 70,
+          "style": "steel",
+          "items": [
+            "spoon",
+            "tongs",
+            "return"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Equipment rack",
+          "x": 708,
+          "z": 146,
+          "w": 274,
+          "d": 70,
+          "style": "rack",
+          "items": [
+            "kit"
+          ],
+          "anchor": "rack"
+        },
+        {
+          "name": "Cleaning island",
+          "x": 780,
+          "z": 298,
+          "w": 318,
+          "d": 90,
+          "style": "counter",
+          "items": [
+            "sponge",
+            "sleeve"
+          ],
+          "anchor": "counter"
+        }
+      ],
+      "solids": [
+        {
+          "x1": 173,
+          "x2": 443,
+          "z1": 108,
+          "z2": 178,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 571,
+          "x2": 845,
+          "z1": 111,
+          "z2": 181,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 621,
+          "x2": 939,
+          "z1": 253,
+          "z2": 343,
+          "ref": [
+            "shelf",
+            2
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 156,
+          "z2": 176,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 402,
+          "x2": 458,
+          "z1": 225,
+          "z2": 245,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 177,
+          "x2": 233,
+          "z1": 330,
+          "z2": 350,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Stop cross-contact",
+        "theme": "Equipment washroom",
+        "why": "Cross-contact happens when food proteins transfer from one food or surface to another, even when you cannot see them.",
+        "steps": [
+          "Used equipment may carry food proteins that cannot be seen.",
+          "Separate used utensils from unused equipment.",
+          "Keep used tongs out of the designated preparation area.",
+          "Use soap and water; wiping with a dry cloth is not enough.",
+          "Visible marks are only practice clues. Adults must follow the full cleaning and sanitizing procedure.",
+          "Keep adult-issued equipment separate from used items.",
+          "Ask an adult to check; looking clean is not proof that allergens are gone."
+        ],
+        "end": "Separate used items, clean as directed, and ask an adult. Invisible food proteins can still be present."
+      },
+      "look": [
+        "#dbe5e4",
+        "#cbd9d5",
+        "#426b72",
+        "WASH & EQUIPMENT",
+        "wash"
+      ],
+      "story": [
+        "Invisible transfer",
+        "A used spoon touched the designated equipment area. It looks clean. Cross-contact happens when food proteins transfer from one food or surface to another, even when you cannot see them.",
+        "The station is organized. Make sure the used cleaning materials are kept apart too.",
+        "Used practice cloth",
+        "Return the used practice cloth to the used-equipment station.",
+        "Even a clean-looking cloth may transfer food proteins. Follow the adult’s cleaning procedure.",
+        "return"
+      ],
+      "incident": {
+        "title": "A clean-looking rack",
+        "event": "Sam: I just saw a used spoon touch the rack.",
+        "hazard": [
+          "Used practice spoon",
+          "spoon",
+          "This simulated used spoon touched the equipment rack. Food protein can transfer even when you cannot see it."
+        ],
+        "context": [
+          "Rack contact record",
+          "reference",
+          "The rack was contacted by the used spoon; it is no longer ready for use."
+        ],
+        "action": [
+          "Close affected rack",
+          "bin",
+          "Mark the affected rack closed until the chef directs cleaning."
+        ],
+        "guided": "Find what touched the rack, or stop Sam from using it and get the chef.",
+        "adult": "Stop using that rack. I will direct the cleaning and decide when the equipment can be used again.",
+        "help": "Put the CLOSED tag at the affected rack. Do not use it before my review.",
+        "finish": "The affected equipment is out of use until the adult directs cleaning."
+      },
+      "crew": {
+        "jobs": [
+          "Check the equipment area",
+          "Find the cleaning checklist"
+        ],
+        "favor": [
+          "equipment checklist",
+          "The adult decides when affected equipment can be used."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Water drop",
+      "kit": "Do-not-use tag",
+      "education": {
+        "objective": "cross-contact",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "station3": {
+      "meta": [
+        "Mural studio",
+        "art",
+        "teacher"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Ms. Rivera",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "paper",
+          "label": "Blank mural paper",
+          "type": "paper",
+          "x": 190,
+          "y": 485,
+          "ox": 190,
+          "oy": 485,
+          "wx": 251.5,
+          "wz": 287,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "board",
+          "label": "Community mural",
+          "type": "board",
+          "x": 650,
+          "y": 370,
+          "ox": 650,
+          "oy": 370,
+          "wx": 750,
+          "wz": 83,
+          "surface": null
+        },
+        {
+          "id": "sun",
+          "label": "Sun shape",
+          "type": "sun",
+          "x": 350,
+          "y": 485,
+          "ox": 350,
+          "oy": 485,
+          "wx": 320.75,
+          "wz": 287,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "star",
+          "label": "Star shape",
+          "type": "star",
+          "x": 455,
+          "y": 485,
+          "ox": 455,
+          "oy": 485,
+          "wx": 390,
+          "wz": 287,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "heart",
+          "label": "Heart shape",
+          "type": "heart",
+          "x": 555,
+          "y": 485,
+          "ox": 555,
+          "oy": 485,
+          "wx": 459.25,
+          "wz": 287,
+          "slot": 3,
+          "surface": 0
+        },
+        {
+          "id": "markers",
+          "label": "Art supplies",
+          "type": "crate",
+          "x": 840,
+          "y": 485,
+          "ox": 840,
+          "oy": 485,
+          "wx": 1003,
+          "wz": 293,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "table",
+          "label": "Accessible activity table",
+          "type": "table",
+          "x": 965,
+          "y": 485,
+          "ox": 965,
+          "oy": 485,
+          "wx": 1003,
+          "wz": 293,
+          "fixture": true,
+          "surface": 1
+        },
+        {
+          "id": "snack",
+          "label": "Cereal craft prop",
+          "type": "package",
+          "x": 295,
+          "y": 390,
+          "ox": 295,
+          "oy": 390,
+          "wx": 528.5,
+          "wz": 287,
+          "slot": 4,
+          "surface": 0
+        },
+        {
+          "id": "festival-note",
+          "label": "Food-free activity plan",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Painted sun",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "slot-sun",
+          "label": "Sun shape outline",
+          "type": "slot",
+          "x": 750,
+          "y": 485,
+          "ox": 750,
+          "oy": 485,
+          "shape": "sun",
+          "boardId": "board",
+          "wx": 703,
+          "wz": 83.1,
+          "surface": null
+        },
+        {
+          "id": "slot-star",
+          "label": "Star shape outline",
+          "type": "slot",
+          "x": 750,
+          "y": 485,
+          "ox": 750,
+          "oy": 485,
+          "shape": "star",
+          "boardId": "board",
+          "wx": 750,
+          "wz": 83.11,
+          "surface": null
+        },
+        {
+          "id": "slot-heart",
+          "label": "Heart shape outline",
+          "type": "slot",
+          "x": 750,
+          "y": 485,
+          "ox": 750,
+          "oy": 485,
+          "shape": "heart",
+          "boardId": "board",
+          "wx": 797,
+          "wz": 83.11999999999999,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Cereal decoration carton",
+          "type": "package",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 86,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Paper activity tray",
+          "type": "tray",
+          "visual": "craft",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 345,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Paper art supplies",
+          "type": "paper",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 320,
+          "wz": 86,
+          "simRole": "context",
+          "surface": null
+        },
+        {
+          "id": "allergy-hold",
+          "label": "Adult review bin",
+          "type": "bin",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "allergyCorrection": true,
+          "wx": 125,
+          "wz": 345,
+          "simRetired": true,
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "move",
+          "id": "paper",
+          "to": "board",
+          "txt": "Bring the blank paper to the mural easel.",
+          "key": "original-0",
+          "lesson": "Information helps the team understand what everyone needs."
+        },
+        {
+          "kind": "move",
+          "id": "sun",
+          "to": "slot-sun",
+          "txt": "Place the first non-food decoration on the mural.",
+          "key": "original-1",
+          "lesson": "Non-food decorations let everyone contribute.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "star",
+          "to": "slot-star",
+          "txt": "Add a second decoration.",
+          "key": "original-2",
+          "lesson": "A shared non-food activity can include more friends.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "heart",
+          "to": "slot-heart",
+          "txt": "Add the final decoration.",
+          "key": "original-3",
+          "lesson": "Make an activity welcoming, not dependent on eating.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "use",
+          "id": "board",
+          "txt": "Inspect the finished matching pattern.",
+          "key": "inspect-pattern",
+          "lesson": "A shared non-food activity gives everyone a way to take part."
+        },
+        {
+          "kind": "move",
+          "id": "markers",
+          "to": "table",
+          "txt": "Set out non-food art supplies where everyone can reach them.",
+          "key": "original-4",
+          "lesson": "Place supplies where friends can reach them."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Invite your friend to help without requiring anyone to eat or share food.",
+          "key": "original-5",
+          "lesson": "Invite people to join in a way they choose."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Explore the cereal and paper supplies, or ask Sam to wait while you speak to Ms. Rivera.",
+          "lesson": "The mural uses adult-reviewed non-food materials instead of cereal."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "board",
+          "txt": "Add the food-free activity plan to the mural.",
+          "key": "handoff",
+          "lesson": "Invite friends to contribute their own ideas without pressure."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Ms. Rivera.",
+          "key": "report",
+          "lesson": "Offer a non-food activity and invite everyone to participate in the way they choose."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Craft island",
+          "x": 390,
+          "z": 287,
+          "w": 342,
+          "d": 84,
+          "style": "craft",
+          "items": [
+            "paper",
+            "sun",
+            "star",
+            "heart",
+            "snack"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Supply table",
+          "x": 1003,
+          "z": 293,
+          "w": 213,
+          "d": 76,
+          "style": "desk",
+          "items": [
+            "markers"
+          ],
+          "anchor": "table"
+        }
+      ],
+      "solids": [
+        {
+          "x1": 219,
+          "x2": 561,
+          "z1": 245,
+          "z2": 329,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 896.5,
+          "x2": 1109.5,
+          "z1": 255,
+          "z2": 331,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 689,
+          "x2": 811,
+          "z1": 66,
+          "z2": 100,
+          "ref": [
+            "object",
+            "board"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 335,
+          "z2": 355,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 292,
+          "x2": 348,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Create together",
+        "theme": "Community mural studio",
+        "why": "A shared activity does not need to involve food. Everyone can help make the mural.",
+        "end": "Offer a non-food activity and invite everyone to participate in the way they choose."
+      },
+      "look": [
+        "#f1e0c9",
+        "#e7cbb8",
+        "#865f68",
+        "COMMUNITY MURAL",
+        "mural"
+      ],
+      "story": [
+        "A craft for every friend",
+        "A volunteer offered cereal for the mural. A friend has a food allergy. A shared activity does not need to involve food. Everyone can help make the mural.",
+        "The mural needs one more contribution: a place for a friend’s idea.",
+        "Friend’s design card",
+        "Add the friend’s design card to the mural.",
+        "Invite friends to contribute their own ideas without pressure.",
+        "board"
+      ],
+      "incident": {
+        "title": "The cereal decorations",
+        "event": "Sam: A volunteer brought cereal for our mural. Can we use it?",
+        "hazard": [
+          "Cereal decoration carton",
+          "package",
+          "This craft plan uses food. A friend may be exposed to an allergen."
+        ],
+        "context": [
+          "Paper art supplies",
+          "paper",
+          "Paper shapes offer a shared non-food activity; an adult still checks the materials."
+        ],
+        "action": [
+          "Paper activity tray",
+          "tray",
+          "Set out the paper activity for the group."
+        ],
+        "guided": "Explore the cereal and paper supplies, or ask Sam to wait while you speak to Ms. Rivera.",
+        "adult": "We will not use the cereal for shared art. I can check the craft materials and arrange a non-food alternative.",
+        "help": "Set out the paper activity while I handle the food supplies.",
+        "finish": "The mural uses adult-reviewed non-food materials instead of cereal."
+      },
+      "crew": {
+        "jobs": [
+          "Plan the mural",
+          "Organize paper supplies"
+        ],
+        "favor": [
+          "paper pattern",
+          "Shared art does not have to involve food."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Painted sun",
+      "kit": "Paper craft kit",
+      "education": {
+        "objective": "non-food-inclusion",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "label1": {
+      "meta": [
+        "Package A lab",
+        "lab",
+        "nurse"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Nurse Lina",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "magnifier",
+          "label": "Magnifier",
+          "type": "magnifier",
+          "x": 180,
+          "y": 485,
+          "ox": 180,
+          "oy": 485,
+          "wx": 209.5,
+          "wz": 140,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "package",
+          "label": "Maple bites",
+          "type": "package",
+          "x": 390,
+          "y": 485,
+          "ox": 390,
+          "oy": 485,
+          "wx": 326,
+          "wz": 140,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "label",
+          "label": "Wheat • Milk • Sugar",
+          "type": "label",
+          "x": 590,
+          "y": 365,
+          "ox": 590,
+          "oy": 365,
+          "wx": 442.5,
+          "wz": 140,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "evidence",
+          "label": "Milk",
+          "type": "paper",
+          "x": 475,
+          "y": 485,
+          "ox": 475,
+          "oy": 485,
+          "wx": 528.5,
+          "wz": 291,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "decoy1",
+          "label": "Sugar",
+          "type": "paper",
+          "x": 650,
+          "y": 485,
+          "ox": 650,
+          "oy": 485,
+          "wx": 660,
+          "wz": 291,
+          "slot": 1,
+          "surface": 1
+        },
+        {
+          "id": "decoy2",
+          "label": "Wheat",
+          "type": "paper",
+          "x": 810,
+          "y": 485,
+          "ox": 810,
+          "oy": 485,
+          "wx": 791.5,
+          "wz": 291,
+          "slot": 2,
+          "surface": 1
+        },
+        {
+          "id": "hold",
+          "label": "Hold for adult review",
+          "type": "bin",
+          "x": 960,
+          "y": 485,
+          "ox": 960,
+          "oy": 485,
+          "wx": 1000,
+          "wz": 115,
+          "surface": null
+        },
+        {
+          "id": "festival-note",
+          "label": "Milk evidence report",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Detective lens",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "reference",
+          "label": "Plan: report milk",
+          "type": "reference",
+          "x": 890,
+          "y": 485,
+          "ox": 890,
+          "oy": 485,
+          "wx": 950,
+          "wz": 285,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Current milk label",
+          "type": "document",
+          "visual": "document",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 166,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Evidence hold tray",
+          "type": "tray",
+          "visual": "alert",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 430,
+          "wz": 235,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Individual plan question",
+          "type": "reference",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 205,
+          "wz": 340,
+          "simRole": "context",
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "move",
+          "id": "magnifier",
+          "to": "package",
+          "txt": "Carry your magnifier to the current fictional package.",
+          "key": "original-0",
+          "lesson": "Look at the package being used now, not a familiar brand or old label."
+        },
+        {
+          "kind": "use",
+          "id": "label",
+          "txt": "Inspect the actual current label on the reading stand.",
+          "key": "original-1",
+          "lesson": "Read the full current ingredient list."
+        },
+        {
+          "kind": "use",
+          "id": "reference",
+          "txt": "Read the nurse’s reference card and compare it with the current label.",
+          "key": "compare-label",
+          "lesson": "Read the entire current label and report only what you actually find."
+        },
+        {
+          "kind": "use",
+          "id": "evidence",
+          "txt": "Identify the milk ingredient as information the adult needs.",
+          "key": "original-2",
+          "lesson": "You found milk, the ingredient the adult needs to know about."
+        },
+        {
+          "kind": "move",
+          "id": "package",
+          "to": "hold",
+          "txt": "Set the package aside without offering it to anyone.",
+          "key": "original-3",
+          "lesson": "Keep the package separate until the adult reviews it."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Tell Nurse Lina what you found and ask her to review the individual plan.",
+          "key": "original-4",
+          "lesson": "Explain exactly what the label says and follow the adult’s directions."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Compare the current label with the plan question, or pause Sam and ask the nurse to review it.",
+          "lesson": "Nurse Lina has the current milk evidence and keeps the decision with the adult."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "hold",
+          "txt": "Bring the evidence note to the hold area for Nurse Lina.",
+          "key": "handoff",
+          "lesson": "Tell an adult the ingredient you found, rather than deciding whether someone can eat it."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Nurse Lina.",
+          "key": "report",
+          "lesson": "Read each current label and bring the actual evidence to an adult."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Current package",
+          "x": 326,
+          "z": 140,
+          "w": 298,
+          "d": 72,
+          "style": "lab",
+          "items": [
+            "magnifier",
+            "package",
+            "label"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Evidence desk",
+          "x": 660,
+          "z": 291,
+          "w": 328,
+          "d": 80,
+          "style": "desk",
+          "items": [
+            "evidence",
+            "decoy1",
+            "decoy2"
+          ],
+          "anchor": null
+        }
+      ],
+      "solids": [
+        {
+          "x1": 177,
+          "x2": 475,
+          "z1": 104,
+          "z2": 176,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 496,
+          "x2": 824,
+          "z1": 251,
+          "z2": 331,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 976,
+          "x2": 1024,
+          "z1": 98,
+          "z2": 132,
+          "ref": [
+            "object",
+            "hold"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 156,
+          "z2": 176,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 402,
+          "x2": 458,
+          "z1": 225,
+          "z2": 245,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 177,
+          "x2": 233,
+          "z1": 330,
+          "z2": 350,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Read the current label",
+        "theme": "Ingredient reading lab",
+        "why": "An ingredient list is evidence for an adult, not permission to eat. The fictional plan in this activity asks about milk.",
+        "steps": [
+          "Look at the package being used now, not a familiar brand or old label.",
+          "Read the full current ingredient list.",
+          "You found milk, the ingredient the adult needs to know about.",
+          "Keep the package separate until the adult reviews it.",
+          "Explain exactly what the label says and follow the adult’s directions."
+        ],
+        "end": "Read each current label and bring the actual evidence to an adult."
+      },
+      "look": [
+        "#e1ebeb",
+        "#d4e2e4",
+        "#376f84",
+        "INGREDIENT READING",
+        "reading"
+      ],
+      "story": [
+        "The milk clue",
+        "The fictional plan asks about milk. The current package lists milk. An ingredient list is evidence for an adult, not permission to eat. The fictional plan in this activity asks about milk.",
+        "You found the ingredient to report. Make a written evidence handoff.",
+        "Milk evidence note",
+        "Bring the evidence note to the hold area for Nurse Lina.",
+        "Tell an adult the ingredient you found, rather than deciding whether someone can eat it.",
+        "hold"
+      ],
+      "incident": {
+        "title": "The milk clue",
+        "event": "Sam: The new carton looks exactly like the old one.",
+        "hazard": [
+          "Current milk label",
+          "document",
+          "Fictional ingredients: wheat flour, milk powder, sugar. The current label lists milk."
+        ],
+        "context": [
+          "Individual plan question",
+          "reference",
+          "The practice plan asks the adult to check for milk. Report the actual current label."
+        ],
+        "action": [
+          "Evidence hold tray",
+          "tray",
+          "Flag the current carton for Nurse Lina to review."
+        ],
+        "guided": "Compare the current label with the plan question, or pause Sam and ask the nurse to review it.",
+        "adult": "The current label lists milk. I will review this information against the individual plan; nobody should guess that a little is okay.",
+        "help": "Mark the carton for my review. Do not approve it or taste it.",
+        "finish": "Nurse Lina has the current milk evidence and keeps the decision with the adult."
+      },
+      "crew": {
+        "jobs": [
+          "Find the current ingredient list",
+          "Collect investigation notes"
+        ],
+        "favor": [
+          "notebook",
+          "Write down what the current label actually says."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Detective lens",
+      "kit": "Milk evidence card",
+      "education": {
+        "objective": "current-label",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "label2": {
+      "meta": [
+        "Package B lab",
+        "lab",
+        "nurse"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Nurse Lina",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "magnifier",
+          "label": "Magnifier",
+          "type": "magnifier",
+          "x": 180,
+          "y": 485,
+          "ox": 180,
+          "oy": 485,
+          "wx": 209.5,
+          "wz": 140,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "package",
+          "label": "Trail crunch",
+          "type": "package",
+          "x": 390,
+          "y": 485,
+          "ox": 390,
+          "oy": 485,
+          "wx": 326,
+          "wz": 140,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "label",
+          "label": "Oats • Oil • Flavoring details unclear",
+          "type": "label",
+          "x": 590,
+          "y": 365,
+          "ox": 590,
+          "oy": 365,
+          "wx": 442.5,
+          "wz": 140,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "evidence",
+          "label": "Flavoring details unclear",
+          "type": "paper",
+          "x": 475,
+          "y": 485,
+          "ox": 475,
+          "oy": 485,
+          "wx": 528.5,
+          "wz": 291,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "decoy1",
+          "label": "Oil",
+          "type": "paper",
+          "x": 650,
+          "y": 485,
+          "ox": 650,
+          "oy": 485,
+          "wx": 660,
+          "wz": 291,
+          "slot": 1,
+          "surface": 1
+        },
+        {
+          "id": "decoy2",
+          "label": "Oats",
+          "type": "paper",
+          "x": 810,
+          "y": 485,
+          "ox": 810,
+          "oy": 485,
+          "wx": 791.5,
+          "wz": 291,
+          "slot": 2,
+          "surface": 1
+        },
+        {
+          "id": "hold",
+          "label": "Hold for adult review",
+          "type": "bin",
+          "x": 960,
+          "y": 485,
+          "ox": 960,
+          "oy": 485,
+          "wx": 1000,
+          "wz": 115,
+          "surface": null
+        },
+        {
+          "id": "festival-note",
+          "label": "Missing details report",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Question mark",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "reference",
+          "label": "Question: flavoring details",
+          "type": "reference",
+          "x": 890,
+          "y": 485,
+          "ox": 890,
+          "oy": 485,
+          "wx": 950,
+          "wz": 285,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Incomplete label",
+          "type": "document",
+          "visual": "document",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 166,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Unverified evidence tray",
+          "type": "tray",
+          "visual": "hold",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 205,
+          "wz": 340,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Supplier information request",
+          "type": "reference",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 430,
+          "wz": 235,
+          "simRole": "context",
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "move",
+          "id": "magnifier",
+          "to": "package",
+          "txt": "Carry your magnifier to the current fictional package.",
+          "key": "original-0",
+          "lesson": "Examine the current package."
+        },
+        {
+          "kind": "use",
+          "id": "label",
+          "txt": "Inspect the actual current label on the reading stand.",
+          "key": "original-1",
+          "lesson": "Read all available information; do not guess about flavoring."
+        },
+        {
+          "kind": "use",
+          "id": "reference",
+          "txt": "Read the nurse’s reference card and compare it with the current label.",
+          "key": "compare-label",
+          "lesson": "Read the entire current label and report only what you actually find."
+        },
+        {
+          "kind": "use",
+          "id": "evidence",
+          "txt": "Identify the unclear flavoring information; no warning is not proof of suitability.",
+          "key": "original-2",
+          "lesson": "The flavoring details are unclear. This is evidence to share with the adult."
+        },
+        {
+          "kind": "move",
+          "id": "package",
+          "to": "hold",
+          "txt": "Set the package aside without offering it to anyone.",
+          "key": "original-3",
+          "lesson": "Set the item aside rather than offer it to someone."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Tell Nurse Lina what you found and ask her to review the individual plan.",
+          "key": "original-4",
+          "lesson": "Ask the adult to check the individual plan and obtain reliable information."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Check the missing information and the supplier record, or tell Sam to wait and get the nurse.",
+          "lesson": "The package remains on hold. Uncertainty is a reason to ask, not to guess."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "hold",
+          "txt": "Place the missing-information note with the held package.",
+          "key": "handoff",
+          "lesson": "Do not infer safety from an absent warning or missing ingredient details."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Nurse Lina.",
+          "key": "report",
+          "lesson": "If information is missing, set the food aside and ask the responsible adult."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Current package",
+          "x": 326,
+          "z": 140,
+          "w": 298,
+          "d": 72,
+          "style": "lab",
+          "items": [
+            "magnifier",
+            "package",
+            "label"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Evidence desk",
+          "x": 660,
+          "z": 291,
+          "w": 328,
+          "d": 80,
+          "style": "desk",
+          "items": [
+            "evidence",
+            "decoy1",
+            "decoy2"
+          ],
+          "anchor": null
+        }
+      ],
+      "solids": [
+        {
+          "x1": 177,
+          "x2": 475,
+          "z1": 104,
+          "z2": 176,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 496,
+          "x2": 824,
+          "z1": 251,
+          "z2": 331,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 976,
+          "x2": 1024,
+          "z1": 98,
+          "z2": 132,
+          "ref": [
+            "object",
+            "hold"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 156,
+          "z2": 176,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 177,
+          "x2": 233,
+          "z1": 330,
+          "z2": 350,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 402,
+          "x2": 458,
+          "z1": 225,
+          "z2": 245,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "When information is unclear",
+        "theme": "Package investigation lab",
+        "why": "Unclear ingredient information is a reason to stop and ask. An absent warning is not proof of safety.",
+        "steps": [
+          "Examine the current package.",
+          "Read all available information; do not guess about flavoring.",
+          "The flavoring details are unclear. This is evidence to share with the adult.",
+          "Set the item aside rather than offer it to someone.",
+          "Ask the adult to check the individual plan and obtain reliable information."
+        ],
+        "end": "If information is missing, set the food aside and ask the responsible adult."
+      },
+      "look": [
+        "#e8e9dd",
+        "#d9ded2",
+        "#617864",
+        "PACKAGE INVESTIGATION",
+        "investigate"
+      ],
+      "story": [
+        "The missing details",
+        "A package has incomplete flavoring information. Unclear ingredient information is a reason to stop and ask. An absent warning is not proof of safety.",
+        "A missing answer is useful evidence. Record that the information needs checking.",
+        "Unclear ingredient note",
+        "Place the missing-information note with the held package.",
+        "Do not infer safety from an absent warning or missing ingredient details.",
+        "hold"
+      ],
+      "incident": {
+        "title": "The missing ingredient details",
+        "event": "Sam: There is no warning on this package. Does that mean we can use it?",
+        "hazard": [
+          "Incomplete label",
+          "document",
+          "Fictional ingredient information is incomplete. The flavoring details cannot be verified."
+        ],
+        "context": [
+          "Supplier information request",
+          "reference",
+          "The supplier has not provided the missing information. A missing warning is not proof of suitability."
+        ],
+        "action": [
+          "Unverified evidence tray",
+          "tray",
+          "Flag the uncertain package for the nurse and supplier."
+        ],
+        "guided": "Check the missing information and the supplier record, or tell Sam to wait and get the nurse.",
+        "adult": "We will set this package aside and request reliable ingredient information. No guessing and no tasting.",
+        "help": "Mark the package as unverified so I can follow up with the supplier.",
+        "finish": "The package remains on hold. Uncertainty is a reason to ask, not to guess."
+      },
+      "crew": {
+        "jobs": [
+          "Look for supplier details",
+          "Organize evidence cards"
+        ],
+        "favor": [
+          "supplier note",
+          "Missing information means we need to ask, not guess."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Question mark",
+      "kit": "Missing-information card",
+      "education": {
+        "objective": "missing-information",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "label3": {
+      "meta": [
+        "Package C lab",
+        "lab",
+        "nurse"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Nurse Lina",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "magnifier",
+          "label": "Magnifier",
+          "type": "magnifier",
+          "x": 180,
+          "y": 485,
+          "ox": 180,
+          "oy": 485,
+          "wx": 209.5,
+          "wz": 140,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "package",
+          "label": "Cocoa bites – new recipe",
+          "type": "package",
+          "x": 390,
+          "y": 485,
+          "ox": 390,
+          "oy": 485,
+          "wx": 326,
+          "wz": 140,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "label",
+          "label": "Cocoa • Soy • Sugar",
+          "type": "label",
+          "x": 590,
+          "y": 365,
+          "ox": 590,
+          "oy": 365,
+          "wx": 442.5,
+          "wz": 140,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "evidence",
+          "label": "Soy",
+          "type": "paper",
+          "x": 475,
+          "y": 485,
+          "ox": 475,
+          "oy": 485,
+          "wx": 528.5,
+          "wz": 291,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "decoy1",
+          "label": "Sugar",
+          "type": "paper",
+          "x": 650,
+          "y": 485,
+          "ox": 650,
+          "oy": 485,
+          "wx": 660,
+          "wz": 291,
+          "slot": 1,
+          "surface": 1
+        },
+        {
+          "id": "decoy2",
+          "label": "Cocoa",
+          "type": "paper",
+          "x": 810,
+          "y": 485,
+          "ox": 810,
+          "oy": 485,
+          "wx": 791.5,
+          "wz": 291,
+          "slot": 2,
+          "surface": 1
+        },
+        {
+          "id": "hold",
+          "label": "Hold for adult review",
+          "type": "bin",
+          "x": 960,
+          "y": 485,
+          "ox": 960,
+          "oy": 485,
+          "wx": 1000,
+          "wz": 115,
+          "surface": null
+        },
+        {
+          "id": "festival-note",
+          "label": "New soy recipe report",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Changed recipe",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "reference",
+          "label": "Old recipe: cocoa, sugar",
+          "type": "reference",
+          "x": 890,
+          "y": 485,
+          "ox": 890,
+          "oy": 485,
+          "wx": 950,
+          "wz": 285,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Current soy label",
+          "type": "document",
+          "visual": "document",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 166,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Recipe change flag",
+          "type": "tray",
+          "visual": "document",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 430,
+          "wz": 235,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Previous recipe card",
+          "type": "reference",
+          "visual": "document",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 205,
+          "wz": 340,
+          "simRole": "context",
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "move",
+          "id": "magnifier",
+          "to": "package",
+          "txt": "Carry your magnifier to the current fictional package.",
+          "key": "original-0",
+          "lesson": "Inspect the newly delivered package."
+        },
+        {
+          "kind": "use",
+          "id": "label",
+          "txt": "Inspect the actual current label on the reading stand.",
+          "key": "original-1",
+          "lesson": "Read the updated ingredient list."
+        },
+        {
+          "kind": "use",
+          "id": "reference",
+          "txt": "Read the nurse’s reference card and compare it with the current label.",
+          "key": "compare-label",
+          "lesson": "Read the entire current label and report only what you actually find."
+        },
+        {
+          "kind": "use",
+          "id": "evidence",
+          "txt": "Identify soy on the changed current recipe.",
+          "key": "original-2",
+          "lesson": "Soy is the changed ingredient to report to the adult."
+        },
+        {
+          "kind": "move",
+          "id": "package",
+          "to": "hold",
+          "txt": "Set the package aside without offering it to anyone.",
+          "key": "original-3",
+          "lesson": "Keep the changed product aside until an adult checks it."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Tell Nurse Lina what you found and ask her to review the individual plan.",
+          "key": "original-4",
+          "lesson": "Report the new information; never rely on a previous approval."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Compare the two recipes, or tell Sam to stop and ask the nurse to recheck.",
+          "lesson": "The old approval has not been reused. Nurse Lina reviews the current recipe."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "hold",
+          "txt": "Place the changed-recipe report with the held package.",
+          "key": "handoff",
+          "lesson": "Check every current package and tell the adult about changes."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Nurse Lina.",
+          "key": "report",
+          "lesson": "A previous package check is not a guarantee for the next package."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Current package",
+          "x": 326,
+          "z": 140,
+          "w": 298,
+          "d": 72,
+          "style": "lab",
+          "items": [
+            "magnifier",
+            "package",
+            "label"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Evidence desk",
+          "x": 660,
+          "z": 291,
+          "w": 328,
+          "d": 80,
+          "style": "desk",
+          "items": [
+            "evidence",
+            "decoy1",
+            "decoy2"
+          ],
+          "anchor": null
+        }
+      ],
+      "solids": [
+        {
+          "x1": 177,
+          "x2": 475,
+          "z1": 104,
+          "z2": 176,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 496,
+          "x2": 824,
+          "z1": 251,
+          "z2": 331,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 976,
+          "x2": 1024,
+          "z1": 98,
+          "z2": 132,
+          "ref": [
+            "object",
+            "hold"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 156,
+          "z2": 176,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 402,
+          "x2": 458,
+          "z1": 225,
+          "z2": 245,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 177,
+          "x2": 233,
+          "z1": 330,
+          "z2": 350,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Recipes can change",
+        "theme": "Recipe change lab",
+        "why": "A familiar package may have a different ingredient list today. Recheck every time.",
+        "steps": [
+          "Inspect the newly delivered package.",
+          "Read the updated ingredient list.",
+          "Soy is the changed ingredient to report to the adult.",
+          "Keep the changed product aside until an adult checks it.",
+          "Report the new information; never rely on a previous approval."
+        ],
+        "end": "A previous package check is not a guarantee for the next package."
+      },
+      "look": [
+        "#e2e1ef",
+        "#d6d9e4",
+        "#66628a",
+        "RECIPE CHANGE LAB",
+        "compare"
+      ],
+      "story": [
+        "New recipe, new check",
+        "The package looks the same, but the current recipe now lists soy. A familiar package may have a different ingredient list today. Recheck every time.",
+        "A current-label report helps the adult distinguish this delivery from a previous one.",
+        "Current recipe note",
+        "Place the changed-recipe report with the held package.",
+        "Check every current package and tell the adult about changes.",
+        "hold"
+      ],
+      "incident": {
+        "title": "The recipe change",
+        "event": "Sam: We used this brand last time, so I thought it was okay.",
+        "hazard": [
+          "Current soy label",
+          "document",
+          "Fictional current recipe: cocoa, sugar, soy flour. Soy is now listed."
+        ],
+        "context": [
+          "Previous recipe card",
+          "reference",
+          "The previous recipe listed cocoa and sugar. The current label, not the old card, is the evidence."
+        ],
+        "action": [
+          "Recipe change flag",
+          "tray",
+          "Flag the changed recipe for the nurse."
+        ],
+        "guided": "Compare the two recipes, or tell Sam to stop and ask the nurse to recheck.",
+        "adult": "Ingredients change. I need the current soy information and the individual plan before deciding anything about food.",
+        "help": "Put a review flag at the new recipe. I will check it against the current plan.",
+        "finish": "The old approval has not been reused. Nurse Lina reviews the current recipe."
+      },
+      "crew": {
+        "jobs": [
+          "Compare recipe records",
+          "Collect investigation notes"
+        ],
+        "favor": [
+          "record card",
+          "Always check the current ingredients."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Changed recipe",
+      "kit": "Recipe change card",
+      "education": {
+        "objective": "changed-recipe",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "crafts": {
+      "meta": [
+        "Craft workshop",
+        "garden",
+        "teacher"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Ms. Rivera",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "paper",
+          "label": "Blank mural paper",
+          "type": "paper",
+          "x": 190,
+          "y": 485,
+          "ox": 190,
+          "oy": 485,
+          "wx": 251.5,
+          "wz": 287,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "board",
+          "label": "Community mural",
+          "type": "board",
+          "x": 650,
+          "y": 370,
+          "ox": 650,
+          "oy": 370,
+          "wx": 750,
+          "wz": 83,
+          "surface": null
+        },
+        {
+          "id": "sun",
+          "label": "Flower shape",
+          "type": "flower",
+          "x": 350,
+          "y": 485,
+          "ox": 350,
+          "oy": 485,
+          "wx": 320.75,
+          "wz": 287,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "star",
+          "label": "Ribbon shape",
+          "type": "ribbon",
+          "x": 455,
+          "y": 485,
+          "ox": 455,
+          "oy": 485,
+          "wx": 390,
+          "wz": 287,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "heart",
+          "label": "Leaf shape",
+          "type": "leaf",
+          "x": 555,
+          "y": 485,
+          "ox": 555,
+          "oy": 485,
+          "wx": 459.25,
+          "wz": 287,
+          "slot": 3,
+          "surface": 0
+        },
+        {
+          "id": "markers",
+          "label": "Art supplies",
+          "type": "crate",
+          "x": 840,
+          "y": 485,
+          "ox": 840,
+          "oy": 485,
+          "wx": 1003,
+          "wz": 293,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "table",
+          "label": "Accessible activity table",
+          "type": "table",
+          "x": 965,
+          "y": 485,
+          "ox": 965,
+          "oy": 485,
+          "wx": 1003,
+          "wz": 293,
+          "fixture": true,
+          "surface": 1
+        },
+        {
+          "id": "snack",
+          "label": "Unverified craft dough",
+          "type": "jar",
+          "x": 295,
+          "y": 390,
+          "ox": 295,
+          "oy": 390,
+          "wx": 528.5,
+          "wz": 287,
+          "slot": 4,
+          "surface": 0
+        },
+        {
+          "id": "festival-note",
+          "label": "Materials check card",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Garden leaf",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "slot-sun",
+          "label": "Flower shape outline",
+          "type": "slot",
+          "x": 750,
+          "y": 485,
+          "ox": 750,
+          "oy": 485,
+          "shape": "flower",
+          "boardId": "board",
+          "wx": 703,
+          "wz": 83.1,
+          "surface": null
+        },
+        {
+          "id": "slot-star",
+          "label": "Ribbon shape outline",
+          "type": "slot",
+          "x": 750,
+          "y": 485,
+          "ox": 750,
+          "oy": 485,
+          "shape": "ribbon",
+          "boardId": "board",
+          "wx": 750,
+          "wz": 83.11,
+          "surface": null
+        },
+        {
+          "id": "slot-heart",
+          "label": "Leaf shape outline",
+          "type": "slot",
+          "x": 750,
+          "y": 485,
+          "ox": 750,
+          "oy": 485,
+          "shape": "leaf",
+          "boardId": "board",
+          "wx": 797,
+          "wz": 83.11999999999999,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Unverified craft dough",
+          "type": "jar",
+          "visual": "jar",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 86,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Paper craft tray",
+          "type": "tray",
+          "visual": "craft",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 345,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Paper craft kit",
+          "type": "paper",
+          "visual": "jar",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 320,
+          "wz": 86,
+          "simRole": "context",
+          "surface": null
+        },
+        {
+          "id": "allergy-hold",
+          "label": "Adult review bin",
+          "type": "bin",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "allergyCorrection": true,
+          "wx": 125,
+          "wz": 345,
+          "simRetired": true,
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "move",
+          "id": "paper",
+          "to": "board",
+          "txt": "Bring the blank paper to the mural easel.",
+          "key": "original-0",
+          "lesson": "Information helps the team understand what everyone needs."
+        },
+        {
+          "kind": "move",
+          "id": "sun",
+          "to": "slot-sun",
+          "txt": "Place the first non-food decoration on the mural.",
+          "key": "original-1",
+          "lesson": "Non-food decorations let everyone contribute.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "star",
+          "to": "slot-star",
+          "txt": "Add a second decoration.",
+          "key": "original-2",
+          "lesson": "A shared non-food activity can include more friends.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "heart",
+          "to": "slot-heart",
+          "txt": "Add the final decoration.",
+          "key": "original-3",
+          "lesson": "Make an activity welcoming, not dependent on eating.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "use",
+          "id": "board",
+          "txt": "Inspect the finished matching pattern.",
+          "key": "inspect-pattern",
+          "lesson": "A shared non-food activity gives everyone a way to take part."
+        },
+        {
+          "kind": "move",
+          "id": "markers",
+          "to": "table",
+          "txt": "Set out non-food art supplies where everyone can reach them.",
+          "key": "original-4",
+          "lesson": "Place supplies where friends can reach them."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Invite your friend to help without requiring anyone to eat or share food.",
+          "key": "original-5",
+          "lesson": "Invite people to join in a way they choose."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Compare the craft supplies, or ask Sam to pause and get the adult.",
+          "lesson": "The group has an alternative to unverified craft dough."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "table",
+          "txt": "Place the materials check card at the craft station.",
+          "key": "handoff",
+          "lesson": "Non-food activities should be accessible and voluntary."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Ms. Rivera.",
+          "key": "report",
+          "lesson": "Use non-food materials, make them reachable, and welcome everyone."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Craft island",
+          "x": 390,
+          "z": 287,
+          "w": 342,
+          "d": 84,
+          "style": "craft",
+          "items": [
+            "paper",
+            "sun",
+            "star",
+            "heart",
+            "snack"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Supply table",
+          "x": 1003,
+          "z": 293,
+          "w": 213,
+          "d": 76,
+          "style": "desk",
+          "items": [
+            "markers"
+          ],
+          "anchor": "table"
+        }
+      ],
+      "solids": [
+        {
+          "x1": 219,
+          "x2": 561,
+          "z1": 245,
+          "z2": 329,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 896.5,
+          "x2": 1109.5,
+          "z1": 255,
+          "z2": 331,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 689,
+          "x2": 811,
+          "z1": 66,
+          "z2": 100,
+          "ref": [
+            "object",
+            "board"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 335,
+          "z2": 355,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 292,
+          "x2": 348,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Make space for every friend",
+        "theme": "Garden craft greenhouse",
+        "why": "Inclusive activities use accessible materials and let friends join without eating or sharing food.",
+        "end": "Use non-food materials, make them reachable, and welcome everyone."
+      },
+      "look": [
+        "#dfeadb",
+        "#c9dbc6",
+        "#467552",
+        "GARDEN CRAFTS",
+        "greenhouse"
+      ],
+      "story": [
+        "Check the materials",
+        "A tub of craft dough has no ingredient information. Inclusive activities use accessible materials and let friends join without eating or sharing food.",
+        "Add an activity instruction that allows friends to choose how they participate.",
+        "Choice of activity card",
+        "Bring the choice card to the shared craft table.",
+        "Non-food activities should be accessible and voluntary.",
+        "table"
+      ],
+      "incident": {
+        "title": "The mystery craft dough",
+        "event": "Sam: Someone opened a tub of craft dough, but the ingredients are not listed.",
+        "hazard": [
+          "Unverified craft dough",
+          "jar",
+          "Craft materials sometimes contain food ingredients. The ingredients of this practice tub are unknown."
+        ],
+        "context": [
+          "Paper craft kit",
+          "paper",
+          "Paper and other non-food supplies offer a different activity; adults check them first."
+        ],
+        "action": [
+          "Paper craft tray",
+          "tray",
+          "Arrange a paper craft instead of the unknown dough."
+        ],
+        "guided": "Compare the craft supplies, or ask Sam to pause and get the adult.",
+        "adult": "I will check the craft materials. While waiting, we can use an adult-reviewed non-food activity.",
+        "help": "Arrange the paper activity while I manage the unknown material.",
+        "finish": "The group has an alternative to unverified craft dough."
+      },
+      "crew": {
+        "jobs": [
+          "Organize paper craft supplies",
+          "Plan an inclusive activity"
+        ],
+        "favor": [
+          "paper template",
+          "Ask an adult to check unfamiliar craft materials."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Garden leaf",
+      "kit": "Paper craft kit",
+      "education": {
+        "objective": "non-food-materials",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "music": {
+      "meta": [
+        "Music pavilion",
+        "hall",
+        "student"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Sam",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "drum",
+          "label": "Drum",
+          "type": "drum",
+          "x": 420,
+          "y": 485,
+          "ox": 420,
+          "oy": 485,
+          "wx": 630,
+          "wz": 140,
+          "surface": null
+        },
+        {
+          "id": "bell",
+          "label": "Bell",
+          "type": "bell",
+          "x": 660,
+          "y": 485,
+          "ox": 660,
+          "oy": 485,
+          "wx": 425.5,
+          "wz": 154,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "clap",
+          "label": "Clap pads",
+          "type": "clap",
+          "x": 220,
+          "y": 485,
+          "ox": 220,
+          "oy": 485,
+          "wx": 246.5,
+          "wz": 154,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "stand",
+          "label": "Music stand",
+          "type": "paper",
+          "x": 850,
+          "y": 390,
+          "ox": 850,
+          "oy": 390,
+          "wx": 920.5,
+          "wz": 126,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "rug",
+          "label": "Dance space",
+          "type": "rug",
+          "x": 900,
+          "y": 550,
+          "ox": 900,
+          "oy": 550,
+          "wx": 925,
+          "wz": 291,
+          "surface": null
+        },
+        {
+          "id": "box",
+          "label": "Equipment box",
+          "type": "crate",
+          "x": 310,
+          "y": 390,
+          "ox": 310,
+          "oy": 390,
+          "wx": 1025.5,
+          "wz": 126,
+          "slot": 1,
+          "surface": 1
+        },
+        {
+          "id": "festival-note",
+          "label": "Snack separation reminder",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Music note",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Shared snack bowl",
+          "type": "bowl",
+          "visual": "bowl",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 86,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Music area marker",
+          "type": "rug",
+          "visual": "hold",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 320,
+          "wz": 86,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Instrument care card",
+          "type": "reference",
+          "visual": "bowl",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 205,
+          "wz": 340,
+          "simRole": "context",
+          "surface": null
+        },
+        {
+          "id": "allergy-snacks",
+          "label": "Shared snack bowl",
+          "type": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "allergyCorrection": true,
+          "wx": 205,
+          "wz": 340,
+          "simRetired": true,
+          "surface": null
+        },
+        {
+          "id": "allergy-hold",
+          "label": "Adult review bin",
+          "type": "bin",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "allergyCorrection": true,
+          "wx": 320,
+          "wz": 86,
+          "simRetired": true,
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "move",
+          "id": "box",
+          "to": "rug",
+          "txt": "Move the equipment box out of the middle of the dance space to its marked edge.",
+          "key": "original-0",
+          "lesson": "Clear the activity area so people can move through it."
+        },
+        {
+          "kind": "use",
+          "id": "stand",
+          "txt": "Read the four-beat pattern: clap, drum, clap, bell.",
+          "key": "original-1",
+          "lesson": "Remember the four beats: clap, drum, clap, bell. You can look at the music stand again."
+        },
+        {
+          "kind": "use",
+          "id": "clap",
+          "txt": "Play beat 1 of 4: clap.",
+          "key": "original-2",
+          "lesson": "Clapping is one way to join; listening is welcome too."
+        },
+        {
+          "kind": "use",
+          "id": "drum",
+          "txt": "Play beat 2 of 4: drum.",
+          "key": "original-3",
+          "lesson": "Music is a shared non-food activity."
+        },
+        {
+          "kind": "use",
+          "id": "clap",
+          "txt": "Play beat 3 of 4: clap.",
+          "key": "original-4",
+          "lesson": "Clapping is one way to join; listening is welcome too."
+        },
+        {
+          "kind": "use",
+          "id": "bell",
+          "txt": "Play beat 4 of 4: bell.",
+          "key": "original-5",
+          "lesson": "Different sounds give the group different roles."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Invite Sam to join the music in any way he chooses.",
+          "key": "original-6",
+          "lesson": "Invite people to join in a way they choose."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Investigate the snack bowl and care card, or ask Sam to pause and get the adult.",
+          "lesson": "The music activity is separated from the shared snacks and awaits adult review."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "rug",
+          "txt": "Post the snack separation reminder by the gathering area.",
+          "key": "handoff",
+          "lesson": "Listening, clapping and playing are all valid ways to participate."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Sam.",
+          "key": "report",
+          "lesson": "Invite friends without pressure and offer different ways to participate."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Instrument bench",
+          "x": 336,
+          "z": 154,
+          "w": 244,
+          "d": 65,
+          "style": "desk",
+          "items": [
+            "clap",
+            "bell"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Music stand",
+          "x": 973,
+          "z": 126,
+          "w": 170,
+          "d": 60,
+          "style": "desk",
+          "items": [
+            "stand",
+            "box"
+          ],
+          "anchor": null
+        }
+      ],
+      "solids": [
+        {
+          "x1": 214,
+          "x2": 458,
+          "z1": 121.5,
+          "z2": 186.5,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 888,
+          "x2": 1058,
+          "z1": 96,
+          "z2": 156,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 606,
+          "x2": 654,
+          "z1": 123,
+          "z2": 157,
+          "ref": [
+            "object",
+            "drum"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 292,
+          "x2": 348,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 177,
+          "x2": 233,
+          "z1": 330,
+          "z2": 350,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Many ways to join",
+        "theme": "Music rehearsal pavilion",
+        "why": "A friend can participate by listening, clapping, playing or simply being there. Nobody has to eat to join.",
+        "end": "Invite friends without pressure and offer different ways to participate."
+      },
+      "look": [
+        "#ebdfd5",
+        "#ddc8bd",
+        "#775771",
+        "MUSIC REHEARSAL",
+        "music"
+      ],
+      "story": [
+        "Rehearsal refreshments",
+        "An open snack bowl sits beside the shared instruments. A friend can participate by listening, clapping, playing or simply being there. Nobody has to eat to join.",
+        "Set out the music choices at the edge of the gathering space.",
+        "Listen or play card",
+        "Place the music choice card in the gathering space.",
+        "Listening, clapping and playing are all valid ways to participate.",
+        "rug"
+      ],
+      "incident": {
+        "title": "Snacks near the instruments",
+        "event": "Sam: A shared snack bowl has appeared beside the instruments.",
+        "hazard": [
+          "Shared snack bowl",
+          "bowl",
+          "Food residue can transfer from shared snacks or hands onto the instruments."
+        ],
+        "context": [
+          "Instrument care card",
+          "reference",
+          "Keep food away from shared equipment. Ask the adult about cleaning and wash hands with soap and water."
+        ],
+        "action": [
+          "Music area marker",
+          "rug",
+          "Mark a non-food music area, away from the snacks."
+        ],
+        "guided": "Investigate the snack bowl and care card, or ask Sam to pause and get the adult.",
+        "adult": "I will separate the snacks and direct any cleaning. Wash hands with soap and water before shared activities.",
+        "help": "Mark the music area for non-food participation while I manage the snacks.",
+        "finish": "The music activity is separated from the shared snacks and awaits adult review."
+      },
+      "crew": {
+        "jobs": [
+          "Plan the rehearsal",
+          "Check the instrument area"
+        ],
+        "favor": [
+          "music sheet",
+          "Everyone can take part without sharing food."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Music note",
+      "kit": null,
+      "education": {
+        "objective": "shared-surfaces",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "welcome": {
+      "meta": [
+        "Welcome studio",
+        "art",
+        "teacher"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Ms. Rivera",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "listen",
+          "label": "Listen first",
+          "type": "paper",
+          "x": 220,
+          "y": 485,
+          "ox": 220,
+          "oy": 485,
+          "wx": 252.5,
+          "wz": 291,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "space",
+          "label": "Make room",
+          "type": "chair",
+          "x": 450,
+          "y": 485,
+          "ox": 450,
+          "oy": 485,
+          "wx": 390,
+          "wz": 167,
+          "surface": null
+        },
+        {
+          "id": "invite",
+          "label": "Invite without pressure",
+          "type": "paper",
+          "x": 660,
+          "y": 485,
+          "ox": 660,
+          "oy": 485,
+          "wx": 350,
+          "wz": 291,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "board",
+          "label": "Welcome sign",
+          "type": "board",
+          "x": 890,
+          "y": 370,
+          "ox": 890,
+          "oy": 370,
+          "wx": 798,
+          "wz": 89,
+          "surface": null
+        },
+        {
+          "id": "route",
+          "label": "Clear activity space",
+          "type": "rug",
+          "x": 730,
+          "y": 550,
+          "ox": 730,
+          "oy": 550,
+          "wx": 900,
+          "wz": 300,
+          "surface": null
+        },
+        {
+          "id": "exclude",
+          "label": "Same snacks only",
+          "type": "paper",
+          "x": 310,
+          "y": 390,
+          "ox": 310,
+          "oy": 390,
+          "wx": 447.5,
+          "wz": 291,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "festival-note",
+          "label": "No food pressure pledge",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Open door",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Food-only invitation",
+          "type": "document",
+          "visual": "heart",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 166,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Open invitation",
+          "type": "heart",
+          "visual": "craft",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 345,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Activity invitation",
+          "type": "reference",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 320,
+          "wz": 86,
+          "simRole": "context",
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Listen to Ms. Rivera: a friend wants to join without being pressured to eat.",
+          "key": "original-0",
+          "lesson": "Listen first instead of deciding for your friend."
+        },
+        {
+          "kind": "move",
+          "id": "listen",
+          "to": "board",
+          "txt": "Place the listening message on the welcome sign.",
+          "key": "original-1",
+          "lesson": "Make listening part of the welcome message.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "space",
+          "to": "route",
+          "txt": "Move the chair to the marked accessible activity space.",
+          "key": "original-2",
+          "lesson": "Keep a clear route to the activity area.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "invite",
+          "to": "board",
+          "txt": "Add the invitation without pressure.",
+          "key": "original-3",
+          "lesson": "Invite friends without asking them to eat.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "use",
+          "id": "route",
+          "txt": "Check that the activity route is clear.",
+          "key": "inspect-route",
+          "lesson": "Make room to move and ask your friend what works for them."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Ask Ms. Rivera to check the welcome setup.",
+          "key": "original-4",
+          "lesson": "Ask the teacher to check the arrangement."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Listen to Sam and explore the invitations. Find a way everyone can join.",
+          "lesson": "Sam can join without eating or explaining private health information."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "board",
+          "txt": "Add the no-food-pressure pledge to the sign.",
+          "key": "handoff",
+          "lesson": "Listen to people, give them choices and avoid asking for private health details."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Ms. Rivera.",
+          "key": "report",
+          "lesson": "Listen, make space, invite without pressure."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Message desk",
+          "x": 350,
+          "z": 291,
+          "w": 260,
+          "d": 76,
+          "style": "craft",
+          "items": [
+            "listen",
+            "invite",
+            "exclude"
+          ],
+          "anchor": null
+        }
+      ],
+      "solids": [
+        {
+          "x1": 220,
+          "x2": 480,
+          "z1": 253,
+          "z2": 329,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 366,
+          "x2": 414,
+          "z1": 150,
+          "z2": 184,
+          "ref": [
+            "object",
+            "space"
+          ]
+        },
+        {
+          "x1": 737,
+          "x2": 859,
+          "z1": 72,
+          "z2": 106,
+          "ref": [
+            "object",
+            "board"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 156,
+          "z2": 176,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 335,
+          "z2": 355,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 292,
+          "x2": 348,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Listen and include",
+        "theme": "Welcome and access studio",
+        "why": "Ask what a friend needs, make room, and never pressure them to eat something.",
+        "steps": [
+          "Listen first instead of deciding for your friend.",
+          "Make listening part of the welcome message.",
+          "Keep a clear route to the activity area.",
+          "Invite friends without asking them to eat.",
+          "Ask the teacher to check the arrangement."
+        ],
+        "end": "Listen, make space, invite without pressure."
+      },
+      "look": [
+        "#efe8d7",
+        "#e5d4b9",
+        "#496c84",
+        "WELCOME STUDIO",
+        "welcome"
+      ],
+      "story": [
+        "No pressure to eat",
+        "A friend cannot eat the festival snack but wants to join. Ask what a friend needs, make room, and never pressure them to eat something.",
+        "Make the invitation explicit: no friend needs to eat or explain their allergy to join.",
+        "Join your way card",
+        "Add the participation choice card to the welcome sign.",
+        "Listen to people, give them choices and avoid asking for private health details.",
+        "board"
+      ],
+      "incident": {
+        "title": "A friend left out",
+        "event": "Sam: I cannot eat the festival snack, but I still want to play.",
+        "hazard": [
+          "Food-only invitation",
+          "document",
+          "This invitation suggests eating is required to join. That can exclude friends."
+        ],
+        "context": [
+          "Activity invitation",
+          "reference",
+          "The activity offers drawing, games and music without requiring anyone to eat."
+        ],
+        "action": [
+          "Open invitation",
+          "heart",
+          "Invite your friend to join a non-food activity, without pressure."
+        ],
+        "guided": "Listen to Sam and explore the invitations. Find a way everyone can join.",
+        "adult": "Everyone belongs. We can offer activities without requiring food and let each person choose whether to join.",
+        "help": "Put out the open invitation. Sam can choose whether to participate.",
+        "finish": "Sam can join without eating or explaining private health information."
+      },
+      "crew": {
+        "jobs": [
+          "Prepare an open invitation",
+          "Find a group activity"
+        ],
+        "favor": [
+          "invitation card",
+          "A friend can join without eating."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Open door",
+      "kit": null,
+      "education": {
+        "objective": "no-pressure",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "game": {
+      "meta": [
+        "Game clubhouse",
+        "lobby",
+        "student"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Sam",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "box1",
+          "label": "Storage box A",
+          "type": "crate",
+          "x": 240,
+          "y": 485,
+          "ox": 240,
+          "oy": 485,
+          "wx": 247.5,
+          "wz": 143,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "box2",
+          "label": "Storage box B",
+          "type": "crate",
+          "x": 470,
+          "y": 485,
+          "ox": 470,
+          "oy": 485,
+          "wx": 420,
+          "wz": 143,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "box3",
+          "label": "Storage box C",
+          "type": "crate",
+          "x": 700,
+          "y": 485,
+          "ox": 700,
+          "oy": 485,
+          "wx": 592.5,
+          "wz": 143,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "balloon",
+          "label": "Balloon clue",
+          "type": "balloon",
+          "x": 240,
+          "y": 395,
+          "ox": 240,
+          "oy": 395,
+          "wx": 247.5,
+          "wz": 143,
+          "slot": 0,
+          "surface": 0
+        },
+        {
+          "id": "map",
+          "label": "Team map",
+          "type": "paper",
+          "x": 470,
+          "y": 395,
+          "ox": 470,
+          "oy": 395,
+          "wx": 420,
+          "wz": 143,
+          "slot": 1,
+          "surface": 0
+        },
+        {
+          "id": "scarf",
+          "label": "Friendship scarf",
+          "type": "cloth",
+          "x": 700,
+          "y": 395,
+          "ox": 700,
+          "oy": 395,
+          "wx": 592.5,
+          "wz": 143,
+          "slot": 2,
+          "surface": 0
+        },
+        {
+          "id": "basket",
+          "label": "Team clue basket",
+          "type": "bin",
+          "x": 935,
+          "y": 485,
+          "ox": 935,
+          "oy": 485,
+          "wx": 767.5,
+          "wz": 293,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "cake",
+          "label": "Unverified snack prizes",
+          "type": "package",
+          "x": 830,
+          "y": 390,
+          "ox": 830,
+          "oy": 390,
+          "wx": 936.5,
+          "wz": 293,
+          "slot": 1,
+          "surface": 1
+        },
+        {
+          "id": "festival-note",
+          "label": "Non-food reward plan",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Team key",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "route-stand",
+          "label": "Route stand",
+          "type": "route-stand",
+          "x": 670,
+          "y": 485,
+          "ox": 670,
+          "oy": 485,
+          "wx": 655,
+          "wz": 218,
+          "surface": null
+        },
+        {
+          "id": "scarf-hook",
+          "label": "Display hook",
+          "type": "scarf-hook",
+          "x": 1080,
+          "y": 485,
+          "ox": 1080,
+          "oy": 485,
+          "wx": 1100,
+          "wz": 235,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Mystery snack prize",
+          "type": "package",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 86,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Sticker reward tray",
+          "type": "tray",
+          "visual": "craft",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 430,
+          "wz": 235,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Friendship sticker kit",
+          "type": "paper",
+          "visual": "package",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 205,
+          "wz": 340,
+          "simRole": "context",
+          "surface": null
+        },
+        {
+          "id": "allergy-hold",
+          "label": "Adult review bin",
+          "type": "bin",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "allergyCorrection": true,
+          "wx": 430,
+          "wz": 235,
+          "simRetired": true,
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "use",
+          "id": "box1",
+          "txt": "Open the first storage box to discover a balloon.",
+          "key": "original-0",
+          "lesson": "Find clues through exploration, not food rewards."
+        },
+        {
+          "kind": "move",
+          "id": "balloon",
+          "to": "basket",
+          "txt": "Carry the balloon clue to the team basket.",
+          "key": "original-1",
+          "lesson": "A non-food clue is part of the team’s shared goal."
+        },
+        {
+          "kind": "use",
+          "id": "box2",
+          "txt": "Open the second storage box to find the map.",
+          "key": "original-2",
+          "lesson": "Explore together and share discoveries."
+        },
+        {
+          "kind": "move",
+          "id": "map",
+          "to": "route-stand",
+          "txt": "Bring the team map to the basket.",
+          "key": "original-3",
+          "lesson": "Share the map so everyone can help solve the hunt."
+        },
+        {
+          "kind": "use",
+          "id": "box3",
+          "txt": "Open the third storage box to find the scarf.",
+          "key": "original-4",
+          "lesson": "Everyone can contribute a different clue."
+        },
+        {
+          "kind": "move",
+          "id": "scarf",
+          "to": "scarf-hook",
+          "txt": "Bring the friendship scarf to the basket.",
+          "key": "original-5",
+          "lesson": "The team can use the scarf as a non-food prop."
+        },
+        {
+          "kind": "use",
+          "id": "route-stand",
+          "txt": "Inspect the assembled map and share the route.",
+          "key": "read-map",
+          "lesson": "Sharing the route helps everyone solve the hunt together."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Invite Sam to use the clues together.",
+          "key": "original-6",
+          "lesson": "Invite people to join in a way they choose."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Compare the prizes, or ask Sam to pause and speak to the activity leader.",
+          "lesson": "The clue hunt rewards teamwork without requiring food sharing."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "basket",
+          "txt": "Put the non-food reward plan in the clue basket.",
+          "key": "handoff",
+          "lesson": "Share discoveries and let every friend contribute in their own way."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Share your final handoff with Sam.",
+          "key": "report",
+          "lesson": "Share the clues, not food. Everyone can contribute to the team."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Discovery shelf",
+          "x": 420,
+          "z": 143,
+          "w": 410,
+          "d": 78,
+          "style": "desk",
+          "items": [
+            "box1",
+            "box2",
+            "box3",
+            "balloon",
+            "map",
+            "scarf"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Clue table",
+          "x": 852,
+          "z": 293,
+          "w": 234,
+          "d": 82,
+          "style": "craft",
+          "items": [
+            "basket",
+            "cake"
+          ],
+          "anchor": null
+        }
+      ],
+      "solids": [
+        {
+          "x1": 215,
+          "x2": 625,
+          "z1": 104,
+          "z2": 182,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 735,
+          "x2": 969,
+          "z1": 252,
+          "z2": 334,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 629,
+          "x2": 681,
+          "z1": 203,
+          "z2": 233,
+          "ref": [
+            "object",
+            "route-stand"
+          ]
+        },
+        {
+          "x1": 1074,
+          "x2": 1126,
+          "z1": 220,
+          "z2": 250,
+          "ref": [
+            "object",
+            "scarf-hook"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 402,
+          "x2": 458,
+          "z1": 225,
+          "z2": 245,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 177,
+          "x2": 233,
+          "z1": 330,
+          "z2": 350,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Work as a team",
+        "theme": "Clue clubhouse",
+        "why": "A shared scavenger hunt can be fun without using food as a reward.",
+        "end": "Share the clues, not food. Everyone can contribute to the team."
+      },
+      "look": [
+        "#dde7e8",
+        "#cbd8dc",
+        "#39677b",
+        "CLUE CLUBHOUSE",
+        "club"
+      ],
+      "story": [
+        "The reward mix-up",
+        "Someone put food prizes beside the clue trail. A shared scavenger hunt can be fun without using food as a reward.",
+        "Add the shared clue key so the team can solve the hunt together.",
+        "Team clue key",
+        "Place the shared clue key in the team basket.",
+        "Share discoveries and let every friend contribute in their own way.",
+        "basket"
+      ],
+      "incident": {
+        "title": "The prize mix-up",
+        "event": "Sam: The volunteer put mystery snack prizes beside our clue hunt.",
+        "hazard": [
+          "Mystery snack prize",
+          "package",
+          "Trading or sharing these unverified snacks could expose a friend to an allergen."
+        ],
+        "context": [
+          "Friendship sticker kit",
+          "paper",
+          "Non-food prizes let everyone participate without trading food."
+        ],
+        "action": [
+          "Sticker reward tray",
+          "tray",
+          "Arrange the non-food reward instead of snack prizes."
+        ],
+        "guided": "Compare the prizes, or ask Sam to pause and speak to the activity leader.",
+        "adult": "We will use non-food rewards. I will handle the snack prizes separately.",
+        "help": "Set up the sticker rewards while I manage the food prizes.",
+        "finish": "The clue hunt rewards teamwork without requiring food sharing."
+      },
+      "crew": {
+        "jobs": [
+          "Organize non-food rewards",
+          "Plan the clue hunt"
+        ],
+        "favor": [
+          "clue card",
+          "Non-food rewards can include everyone."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Team key",
+      "kit": "Sticker reward kit",
+      "education": {
+        "objective": "non-food-rewards",
+        "adultReview": true,
+        "emergency": false,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    },
+    "check": {
+      "meta": [
+        "Friendship hall",
+        "hall",
+        "teacher"
+      ],
+      "objects": [
+        {
+          "id": "adult",
+          "label": "Ms. Rivera",
+          "type": "npc",
+          "x": 1130,
+          "y": 565,
+          "ox": 1130,
+          "oy": 565,
+          "wx": 1140,
+          "wz": 162,
+          "surface": null
+        },
+        {
+          "id": "food",
+          "label": "Ingredient question",
+          "type": "package",
+          "x": 200,
+          "y": 485,
+          "ox": 200,
+          "oy": 485,
+          "wx": 232,
+          "wz": 157,
+          "slot": 0,
+          "surface": 1
+        },
+        {
+          "id": "label",
+          "label": "Unclear package",
+          "type": "paper",
+          "x": 400,
+          "y": 485,
+          "ox": 400,
+          "oy": 485,
+          "wx": 422,
+          "wz": 157,
+          "slot": 1,
+          "surface": 1
+        },
+        {
+          "id": "activity",
+          "label": "Friend wants to play",
+          "type": "star",
+          "x": 600,
+          "y": 485,
+          "ox": 600,
+          "oy": 485,
+          "wx": 335,
+          "wz": 297,
+          "slot": 0,
+          "surface": 2
+        },
+        {
+          "id": "review",
+          "label": "Adult review desk",
+          "type": "table",
+          "x": 940,
+          "y": 485,
+          "ox": 940,
+          "oy": 485,
+          "wx": 902,
+          "wz": 153,
+          "fixture": true,
+          "surface": 0
+        },
+        {
+          "id": "play",
+          "label": "Non-food game table",
+          "type": "rug",
+          "x": 780,
+          "y": 550,
+          "ox": 780,
+          "oy": 550,
+          "wx": 860,
+          "wz": 287,
+          "surface": null
+        },
+        {
+          "id": "sign",
+          "label": "Festival sign",
+          "type": "board",
+          "x": 550,
+          "y": 350,
+          "ox": 550,
+          "oy": 350,
+          "wx": 650,
+          "wz": 77,
+          "surface": null
+        },
+        {
+          "id": "festival-note",
+          "label": "Allergy awareness pledge",
+          "type": "paper",
+          "x": 120,
+          "y": 485,
+          "ox": 120,
+          "oy": 485,
+          "late": true,
+          "wx": 117,
+          "wz": 244,
+          "surface": null
+        },
+        {
+          "id": "charm",
+          "label": "Friendship ribbon",
+          "type": "charm",
+          "x": 1170,
+          "y": 485,
+          "ox": 1170,
+          "oy": 485,
+          "optional": true,
+          "wx": 1160,
+          "wz": 350,
+          "surface": null
+        },
+        {
+          "id": "case-observe",
+          "label": "Practice help point",
+          "type": "alert",
+          "visual": "alert",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 166,
+          "simRole": "hazard",
+          "surface": null
+        },
+        {
+          "id": "case-correct",
+          "label": "Call adult for help",
+          "type": "alert",
+          "visual": "alert",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 125,
+          "wz": 345,
+          "simRole": "action",
+          "surface": null
+        },
+        {
+          "id": "case-alternative",
+          "label": "Emergency plan card",
+          "type": "reference",
+          "visual": "clock",
+          "x": 100,
+          "y": 485,
+          "ox": 100,
+          "oy": 485,
+          "late": true,
+          "wx": 320,
+          "wz": 86,
+          "simRole": "context",
+          "surface": null
+        }
+      ],
+      "steps": [
+        {
+          "kind": "move",
+          "id": "food",
+          "to": "review",
+          "txt": "Carry the ingredient question to the trusted adult desk.",
+          "key": "original-0",
+          "lesson": "Do not make a food decision on your own. Bring the question to an adult.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "label",
+          "to": "review",
+          "txt": "Bring the unclear package information to the same desk.",
+          "key": "original-1",
+          "lesson": "Missing or unclear package information must be checked.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "move",
+          "id": "activity",
+          "to": "play",
+          "txt": "Bring the non-food game idea to the activity area.",
+          "key": "original-2",
+          "lesson": "A non-food game gives friends another way to join.",
+          "group": "batch-0"
+        },
+        {
+          "kind": "use",
+          "id": "play",
+          "txt": "Try the non-food activity area.",
+          "key": "inspect-play",
+          "lesson": "Offer a choice of activities without making food part of participation."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Ask Ms. Rivera to review food questions using the individual plan.",
+          "key": "original-3",
+          "lesson": "Adults follow individual allergy plans and school procedures."
+        },
+        {
+          "kind": "use",
+          "id": "sign",
+          "txt": "Hang the final welcome sign. Everyone belongs!",
+          "key": "original-4",
+          "lesson": "Celebrate with activities everyone can choose to join."
+        },
+        {
+          "kind": "incident",
+          "key": "live-incident",
+          "id": "case-observe",
+          "to": "case-correct",
+          "txt": "Practice drill: Sam says his throat feels tight after eating. Call Ms. Rivera now.",
+          "lesson": "You got adult help immediately. The practice drill is complete."
+        },
+        {
+          "kind": "move",
+          "id": "festival-note",
+          "to": "sign",
+          "txt": "Post the allergy promise on the festival sign.",
+          "key": "handoff",
+          "lesson": "Ask, check, keep equipment separate, and include everyone. Adults make real food decisions."
+        },
+        {
+          "kind": "use",
+          "id": "adult",
+          "txt": "Tell Ms. Rivera the final festival promise.",
+          "key": "report",
+          "lesson": "Ask an adult, check information, prevent cross-contact, and include everyone."
+        }
+      ],
+      "shelves": [
+        {
+          "name": "Review desk",
+          "x": 902,
+          "z": 153,
+          "w": 265,
+          "d": 77,
+          "style": "desk",
+          "items": [],
+          "anchor": "review"
+        },
+        {
+          "name": "Questions table",
+          "x": 327,
+          "z": 157,
+          "w": 255,
+          "d": 74,
+          "style": "desk",
+          "items": [
+            "food",
+            "label"
+          ],
+          "anchor": null
+        },
+        {
+          "name": "Activity supplies",
+          "x": 335,
+          "z": 297,
+          "w": 198,
+          "d": 76,
+          "style": "craft",
+          "items": [
+            "activity"
+          ],
+          "anchor": null
+        }
+      ],
+      "solids": [
+        {
+          "x1": 769.5,
+          "x2": 1034.5,
+          "z1": 114.5,
+          "z2": 191.5,
+          "ref": [
+            "shelf",
+            0
+          ]
+        },
+        {
+          "x1": 199.5,
+          "x2": 454.5,
+          "z1": 120,
+          "z2": 194,
+          "ref": [
+            "shelf",
+            1
+          ]
+        },
+        {
+          "x1": 236,
+          "x2": 434,
+          "z1": 259,
+          "z2": 335,
+          "ref": [
+            "shelf",
+            2
+          ]
+        },
+        {
+          "x1": 260,
+          "x2": 1075,
+          "z1": 0,
+          "z2": 42,
+          "back": true,
+          "ref": null
+        },
+        {
+          "x1": 1116,
+          "x2": 1164,
+          "z1": 145,
+          "z2": 179,
+          "ref": [
+            "object",
+            "adult"
+          ]
+        },
+        {
+          "x1": 589,
+          "x2": 711,
+          "z1": 60,
+          "z2": 94,
+          "ref": [
+            "object",
+            "sign"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 156,
+          "z2": 176,
+          "ref": [
+            "object",
+            "case-observe"
+          ]
+        },
+        {
+          "x1": 97,
+          "x2": 153,
+          "z1": 335,
+          "z2": 355,
+          "ref": [
+            "object",
+            "case-correct"
+          ]
+        },
+        {
+          "x1": 292,
+          "x2": 348,
+          "z1": 76,
+          "z2": 96,
+          "ref": [
+            "object",
+            "case-alternative"
+          ]
+        }
+      ],
+      "lesson": {
+        "title": "Put it all together",
+        "theme": "Festival friendship hall",
+        "why": "Bring food questions to a responsible adult and create non-food ways to join the celebration.",
+        "steps": [
+          "Do not make a food decision on your own. Bring the question to an adult.",
+          "Missing or unclear package information must be checked.",
+          "A non-food game gives friends another way to join.",
+          "Adults follow individual allergy plans and school procedures.",
+          "Celebrate with activities everyone can choose to join."
+        ],
+        "end": "Ask an adult, check information, prevent cross-contact, and include everyone."
+      },
+      "look": [
+        "#efe4d5",
+        "#e1cebc",
+        "#78536e",
+        "FESTIVAL HALL",
+        "festival"
+      ],
+      "story": [
+        "Get help immediately",
+        "Practice situation: a friend says their throat feels tight after eating. Bring food questions to a responsible adult and create non-food ways to join the celebration.",
+        "The crew has one final job: place the festival’s promise beside the sign.",
+        "Festival promise",
+        "Hang the festival promise beside the welcome sign.",
+        "Ask, check, keep equipment separate, and include everyone. Adults make real food decisions.",
+        "sign"
+      ],
+      "incident": {
+        "title": "Speak up immediately",
+        "event": "PRACTICE DRILL — Sam: My throat feels tight after eating.",
+        "hazard": [
+          "Practice help point",
+          "alert",
+          "A tight throat after eating may be a serious allergic reaction. Get adult help immediately."
+        ],
+        "context": [
+          "Emergency plan card",
+          "reference",
+          "Adults follow the emergency plan and obtain emergency help."
+        ],
+        "action": [
+          "Call adult for help",
+          "alert",
+          "Call a trusted adult immediately."
+        ],
+        "guided": "Practice drill: Sam says his throat feels tight after eating. Call Ms. Rivera now.",
+        "adult": "I am here. A suspected serious allergic reaction is an emergency. I will follow the emergency plan, give epinephrine promptly as indicated and call emergency services. This was a practice drill.",
+        "help": "Call the adult now. Do not wait to investigate.",
+        "finish": "You got adult help immediately. The practice drill is complete."
+      },
+      "crew": {
+        "jobs": [
+          "Prepare the celebration",
+          "Organize activity notes"
+        ],
+        "favor": [
+          "festival program",
+          "If someone may be having a reaction, get adult help immediately."
+        ],
+        "routine": [
+          "organize",
+          "check supplies",
+          "visit a friend",
+          "rest"
+        ]
+      },
+      "charm": "Friendship ribbon",
+      "kit": null,
+      "education": {
+        "objective": "emergency-escalation",
+        "adultReview": true,
+        "emergency": true,
+        "reviewStatus": "pending-specialist",
+        "source": "https://www.cdc.gov/school-health-conditions/food-allergies/"
+      }
+    }
+  },
+  "demo": true
+}
