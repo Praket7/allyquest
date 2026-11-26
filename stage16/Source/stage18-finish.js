@@ -201,6 +201,26 @@ if (compiledPack.levels.length > 6) {
     }
     rx.restore();
   };
+  // Autonomous pupils yield room around the adult and the player. The agent's
+  // authored goal and path are preserved; this only adds local collision-aware
+  // steering so a conversation cannot visually merge two character sprites.
+  const priorImmersionLayers18=immersionLayers;
+  immersionLayers=function(r,layers,now,dt,walking){
+    priorImmersionLayers18(r,layers,now,dt,walking);
+    if(!r?.peer||preferences.reducedMotion)return;
+    const p=r.peer;
+    const actors=[{x:r.x,z:r.z,clearance:60}];
+    for(const o of r.plan.objects)if(o.type==='npc')actors.push({x:o.wx,z:o.wz,clearance:112});
+    for(const a of actors){
+      let dx=p.x-a.x,dz=p.z-a.z,d=Math.hypot(dx,dz);
+      if(d>=a.clearance||d<.001)continue;
+      const step=Math.min(110*dt,a.clearance-d),ux=dx/d,uz=dz/d;
+      let nx=p.x+ux*step,nz=p.z+uz*step;
+      if(spatialFree(nx,nz)){p.x=nx;p.z=nz}
+      else if(spatialFree(nx,p.z))p.x=nx;
+      else if(spatialFree(p.x,nz))p.z=nz;
+    }
+  };
   // User interface: one task at the bottom, quiet room title, details on demand.
   const sheet=document.createElement('style');sheet.id='aq-premium-hud';sheet.textContent=`
     #aq-room .aq-storybar{display:none!important}
