@@ -3,6 +3,7 @@ Run from any directory. The original five levels and eleven rooms remain byte-id
 """
 from pathlib import Path
 import json, copy
+from stage18_layouts import apply_layout
 P=Path(__file__).parent
 pack=json.loads((P/'content.json').read_text());pack['archetypes']={}
 # chapter, location, character problem, setting, adult, teaching topics, object names / type, evidence, actions, concluding message
@@ -54,46 +55,17 @@ for i,s in enumerate(S,6):
  def obj(id,label,t,x,z,surface=None,**kw):
   if any(o['id']==id for o in r['objects']): return
   r['objects'].append(dict(id=id,label=label,type=t,x=x,y=485,ox=x,oy=485,wx=x,wz=z,surface=surface,**kw))
- def shelf(name,x,z,w,d,sty,anchor=None,items=()):
-  if not anchor and not items:return
-  j=len(r['shelves']);r['shelves'].append(dict(name=name,x=x,z=z,w=w,d=d,style=sty,items=[v[0] for v in items],anchor=anchor[0] if anchor else None));
-  if anchor: obj(*anchor,x,z,surface=j,fixture=True)
-  for k,(id,label,typ) in enumerate(items): obj(id,label,typ,x+(k-(len(items)-1)/2)*min(108,(w-68)/max(1,len(items)-1)),z,surface=j,slot=k)
  # Register task objects, retaining distinct physical types and destinations.
  defs={'record':(evidence,etype)}
  for kind,id,label,typ,to,tol,tot,msg in actions:
   defs[id]=(label,typ)
   if to:defs[to]=(tol,tot)
  if 'board' not in defs:defs['board']=('Community notice','board')
+ # Register objects without a generic furniture arrangement. The authored layout
+ # below assigns their actual world coordinates and all collision footprints.
+ for key,(label,typ) in defs.items():obj(key,label,typ,0,0)
  obj('adult',adults[adult],'npc',1142,152)
- # Large freestanding objects on rear/right wall, portable materials on shelves, nonportable sinks/tables as anchors.
- boarddefs=[(k,*v) for k,v in defs.items() if v[1]=='board']; bins=[(k,*v) for k,v in defs.items() if v[1]=='bin' or k=='returnbin']; anchors=[(k,*v) for k,v in defs.items() if v[1] in ('sink','counter','table','rack')]; floorobjs=[(k,*v) for k,v in defs.items() if v[1]=='drum'];
- excluded={v[0] for v in boarddefs+bins+anchors+floorobjs}; ports=[(k,*v) for k,v in defs.items() if k not in excluded];
- # Need independent click targets; use separated shelves and dedicate wide label stand when present.
- left=[v for v in ports if v[0]=='record' or v[2]=='label']; others=[v for v in ports if v not in left];
- # Three islands with clear center aisle and a small front supply stand if needed.
- # Screen positions and object occlusion audited in browser tests.
- rear_x=335 if i%2==0 else 360; rear2_x=820 if i%2==0 else 835
- shelf('Evidence desk',rear_x,119,300,70,style1,None,left)
- rear_anchor=next((a for a in anchors if a[2]=='sink'),None)
- if rear_anchor: anchors.remove(rear_anchor)
- shelf(rear_anchor[1] if rear_anchor else 'Supply station',rear2_x,119,240 if rear_anchor else 292,70,'sink' if rear_anchor else style2,rear_anchor,[] if rear_anchor else others[:2]);
- if not rear_anchor:others=others[2:]
- # Front islands with 2-3 small props each. Keep front edges below rear table foot line.
- a=anchors.pop(0) if anchors else None
- shelf(a[1] if a else 'Activity supplies',335,286,300,76,'counter' if a and a[2]=='counter' else style2,a,others[:2]);others=others[2:]
- a=anchors.pop(0) if anchors else None
- shelf(a[1] if a else 'Practice materials',800,286,300,76,'counter' if a and a[2]=='counter' else style1,a,others[:3]);others=others[3:]
- assert not anchors and not others,(rid,anchors,others)
- for j,(k,l,t) in enumerate(boarddefs):obj(k,l,t,600+j*120,59)
- for j,(k,l,t) in enumerate(bins):obj(k,l,t,1100,266+j*78)
- for j,(k,l,t) in enumerate(floorobjs):obj(k,l,t,600,195+j*50)
- obj('charm',r['charm'],'charm',1166,369,optional=True)
- r['solids']=[{'x1':f['x']-f['w']/2,'x2':f['x']+f['w']/2,'z1':f['z']-f['d']/2,'z2':f['z']+f['d']/2,'ref':['shelf',j]} for j,f in enumerate(r['shelves'])]
- # No false full-length wall behind an object. The back-wall boundary is the shared engine bound.
- for o in r['objects']:
-  if o['surface'] is None and o['type'] in ('board','bin','npc','drum'):
-   x,z=o['wx'],o['wz'];w=55 if o['type']=='board' else 25;r['solids'].append(dict(x1=x-w,x2=x+w,z1=z-16,z2=z+16,ref=['object',o['id']]))
+ obj('charm',r['charm'],'charm',1180,380,optional=True)
  def edge(kind,id,next,label,lesson,**kw):return dict(kind=kind,id=id,next=next,label=label,lesson=lesson,**kw)
  def node(prompt,*edges,complete=False):return dict(prompt=prompt,edges=list(edges),**({'complete':True} if complete else {}))
  nodes={}
@@ -121,44 +93,6 @@ for i,s in enumerate(S,6):
  nodes['done']=node(end+' Return outside to continue.',complete=True);r['graph']={'start':'arrived','nodes':nodes}
  # Two actors use independent, state-aware policy weights, never authorize or handle food.
  r['crew']={'jobs':['Check '+evidence.lower(),'Arrange the non-food activity'],'favor':['friendship note','Listen and invite without food pressure.'],'routine':['organize','check supplies','visit a friend','rest'],'profiles':{'peer':{'goals':[{'id':'records','mode':'organize','target':'record','weight':4,'speed':88,'dwell':1.6},{'id':'notice','mode':'check supplies','target':'board','weight':3,'speed':78,'dwell':2.2},{'id':'rest','mode':'rest','weight':1,'speed':65,'dwell':1.8}]},'helper':{'goals':[{'id':'visit','mode':'visit a friend','weight':4,'speed':77,'dwell':2.1},{'id':'records','mode':'check supplies','target':'record','weight':2,'speed':92,'dwell':1.4},{'id':'rest','mode':'rest','weight':1,'speed':62,'dwell':1.1}]}}}
- # Set-specific circulation: keep the validated footprints, but shift their positions
- # in relation to the existing doorway and actors. Supported props and collision bounds move together.
- # Authored circulation layouts. Values are centres (x,z) and width/depth deltas.
- # Actual object positions, support surfaces and solid footprints are moved together.
- # Rear/foreground work areas remain separated; the exit and adult are kept clear.
- layouts={
- 'birthday-invitation':[(350,105,12,0),(835,128,-8,-4),(350,304,20,0),(810,267,0,-2)],
- 'bakery-order':[(315,101,24,0),(840,110,16,4),(348,280,12,0),(825,301,12,0)],
- 'library-club':[(285,110,4,0),(875,110,0,0),(360,299,0,2),(820,270,12,0)],
- 'shared-lunch':[(330,107,28,8),(855,110,8,4),(347,295,34,6),(817,285,28,6)],
- 'sports-break':[(285,101,-8,-2),(884,105,-8,-2),(300,287,-4,0),(850,306,-10,0)],
- 'recipe-revision':[(340,100,16,0),(860,135,0,0),(345,283,12,0),(810,298,16,0)],
- 'class-science':[(338,105,12,4),(836,108,12,4),(350,287,22,2),(818,288,20,2)],
- 'art-supplies':[(320,115,12,0),(855,105,10,-2),(355,306,24,2),(810,270,14,0)],
- 'bus-trip':[(320,105,10,0),(845,120,4,0),(350,283,12,0),(824,305,12,0)],
- 'market-stall':[(354,105,28,4),(858,110,12,4),(318,287,28,4),(825,297,26,4)],
- 'handwash-club':[(308,105,12,0),(840,113,8,0),(365,292,10,0),(808,288,12,0)],
- 'picnic-weather':[(314,115,12,2),(870,110,4,0),(340,301,18,2),(810,267,16,0)],
- 'club-bullying':[(286,108,0,0),(864,114,0,0),(345,299,12,0),(816,276,8,0)],
- 'cafe-order':[(319,106,22,2),(842,105,14,2),(347,289,14,0),(820,302,20,2)],
- 'substitute-teacher':[(320,103,12,0),(858,133,0,0),(343,299,12,0),(814,280,8,0)],
- 'emergency-rehearsal':[(315,107,0,0)],
- 'accessible-fair':[(314,111,10,2),(863,107,14,0),(350,305,20,0),(817,276,16,0)],
- 'festival-supply':[(350,105,24,4),(853,108,14,2),(318,286,26,2),(818,299,22,4)],
- 'welcome-rehearsal':[(285,107,6,0),(864,103,10,0),(347,299,18,0),(812,272,12,0)],
- 'welcome-promise':[(322,106,12,0),(856,110,12,0),(350,298,18,0),(817,280,20,0)]}
- for j,(nx,nz,dw,dd) in enumerate(layouts[rid]):
-  if j>=len(r['shelves']):break
-  f=r['shelves'][j];dx=nx-f['x'];dz=nz-f['z']
-  f['x']=nx;f['z']=nz;f['w']+=dw;f['d']+=dd
-  for o in r['objects']:
-   if o['surface']==j:
-    for key in ['x','ox','wx']:o[key]+=dx
-    o['wz']+=dz
-  for b in r['solids']:
-   if b['ref']==['shelf',j]:
-    b['x1']=nx-f['w']/2;b['x2']=nx+f['w']/2
-    b['z1']=nz-f['d']/2;b['z2']=nz+f['d']/2
  # Give investigation a third route when a distinct clue board is present; all
  # paths retain the adult gate before any transfer or cleaning.
  if not emergency and rid in ('shared-lunch','class-science','club-bullying','cafe-order','substitute-teacher','welcome-promise'):
@@ -177,6 +111,7 @@ for i,s in enumerate(S,6):
    nodes[swap]=node(n['prompt'],dict(a,next=b['next']))
    n['prompt']+=' Or '+later['prompt'][0].lower()+later['prompt'][1:]
    n['edges'].append(dict(b,next=swap));break
+ apply_layout(r,rid)
  pack['rooms'][rid]=r
  # Exterior route: actual entrance and gate; optional elevated stars, no compulsory timed hazards.
  # Distinct lengths, platform clusters and alternate paths, ground always reachable.
