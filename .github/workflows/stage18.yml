@@ -43,6 +43,7 @@ jobs:
           python stage18-map-qa.py
           python stage18-native-qa.py
           python stage18-label-access-qa.py
+          python stage18-finish-qa.py
       - name: Upload compact visual review
         uses: actions/upload-artifact@v4
         if: always()
