@@ -42,6 +42,22 @@ def run(spec):
     else:
      p.locator('#aq17-objects').click();p.locator(f'[data-aq17-object="{obj}"]').click()
     p.wait_for_function('()=>!ALLY_ROOM_QA.state()?.moving',timeout=10000);p.wait_for_timeout(90)
+    if p.locator('#aq-label-detective').is_visible():
+     c=p.evaluate('ALLY_ROOM_QA.labelCase()');assert c and obj=='label';before=graph()['node']
+     assert p.locator('[data-answer=candidate]').is_disabled()
+     p.screenshot(path=str(Q/(label+'-package.png')))
+     p.locator('[data-side=back]').click();p.screenshot(path=str(Q/(label+'-label.png')))
+     wrong=next(x for x in ('candidate','conflict','hold') if x!=c['products'][0]['expected'])
+     p.locator('[data-answer='+wrong+']').click();assert graph()['node']==before and not p.evaluate('ALLY_ROOM_QA.labelCase().filed')
+     assert 'Not quite' in p.locator('#aq-label-detective [role=status]').inner_text()
+     for i,x in enumerate(c['products']):
+      if i:
+       p.locator('[data-receipt='+x['id']+']').click();p.locator('[data-side=back]').click()
+      p.locator('[data-answer='+x['expected']+']').click()
+      assert x['id'] in p.evaluate('ALLY_ROOM_QA.labelCase().filed') and graph()['node']==before
+     p.locator('#aqd-next').click();p.screenshot(path=str(Q/(label+'-report.png')))
+     p.locator('#aqd-submit').click();p.wait_for_timeout(100);assert not p.locator('#aq-label-detective').is_visible()
+
    for j in range(40):
     g=graph()
     if g['complete']:break

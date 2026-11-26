@@ -26,6 +26,7 @@ jobs:
         run: |
           python build-stage18.py
           node stage18-tests.cjs
+          node stage18-label-tests.cjs
       - name: Install pinned browser harness
         run: |
           pip install playwright==1.51.0 pillow==11.2.1
