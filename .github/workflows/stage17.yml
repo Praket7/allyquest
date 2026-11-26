@@ -1,0 +1,44 @@
+name: Stage 17 educational accessibility
+on:
+  pull_request:
+    paths:
+      - 'stage16/Source/**'
+      - '.github/workflows/stage17.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage17:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: stage16/Source
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate learning content and build exact standalone
+        run: |
+          node stage17-tests.cjs
+          python build.py
+      - name: Install pinned browser harness
+        run: |
+          pip install playwright==1.51.0 pillow==11.2.1
+          python -m playwright install --with-deps chromium
+          echo "AQ_CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')" >> "$GITHUB_ENV"
+      - name: Learning, accessibility and immediate escalation flows
+        run: python stage17-qa.py
+      - name: Production standalone and native storage
+        run: python stage17-native-qa.py
+      - name: All-room alternative input flows
+        run: python stage17-access-qa.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage17-evidence
+          path: stage16/Source/qa/
