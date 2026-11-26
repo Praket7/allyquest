@@ -53,6 +53,11 @@ def run(spec):
      for i,x in enumerate(c['products']):
       if i:
        p.locator('[data-receipt='+x['id']+']').click();p.locator('[data-side=back]').click()
+      if x['clues']:
+       p.locator('[data-answer='+x['expected']+']').click()
+       assert x['id'] not in p.evaluate('ALLY_ROOM_QA.labelCase().filed')
+       assert 'marked clues' in p.locator('#aq-label-detective [role=status]').inner_text()
+      for clue in x['clues']:p.locator('[data-clue='+clue+']').click()
       p.locator('[data-answer='+x['expected']+']').click()
       assert x['id'] in p.evaluate('ALLY_ROOM_QA.labelCase().filed') and graph()['node']==before
      p.locator('#aqd-next').click();p.screenshot(path=str(Q/(label+'-report.png')))

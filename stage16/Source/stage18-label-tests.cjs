@@ -11,4 +11,8 @@ assert.equal(api.result({avoid:['milk'],colorRule:'all'},{...p,ingredients:['cor
 assert.equal(api.result({avoid:[],colorRule:'all'},{...p,ingredients:null}),'hold');
 assert.equal(api.result({avoid:[],colorRule:'all'},{...p,ingredients:['corn'],receiptLot:'2'}),'hold');
 assert.match(api.reason({avoid:[],colorRule:'all'},{...p,ingredients:['corn']}),/not proof of safety/);
-console.log(`${n} fictional product classifications plus six independent safety/labeling checks passed`);
+assert.deepEqual(Array.from(api.clues(api.cases['recipe-revision'],api.cases['recipe-revision'].products[1])),['ingredient-3','contains-0']);
+assert.deepEqual(Array.from(api.clues(api.cases['market-stall'],api.cases['market-stall'].products[3])),['advisory-0']);
+assert.equal(api.matchesClues(api.cases['recipe-revision'],api.cases['recipe-revision'].products[1],[]),false);
+assert.equal(api.matchesClues(api.cases['recipe-revision'],api.cases['recipe-revision'].products[1],['contains-0','ingredient-3']),true);
+console.log(`${n} fictional product classifications plus ten independent safety/labeling checks passed`);
