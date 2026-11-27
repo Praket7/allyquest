@@ -112,7 +112,7 @@ drawFixture=function(f,t){const p=roomArt();if(!p||['sink','counter','rack'].inc
  const h=fixtureHeight(f),X=sx(f.x,f.z),Y=sy(f.z),key=[materialRevision,room.task.id,f.x,f.z,f.w,f.d,f.style].join('|');
  let c=customFixtureCache.get(f);if(!c||c.key!==key){const points=plane(f.x-f.w/2,f.z-f.d/2,f.x+f.w/2,f.z+f.d/2),left=Math.floor(Math.min(...points.map(q=>q[0]))-45),top=Math.floor(Math.min(...points.map(q=>q[1]))-h-35),width=Math.ceil(Math.max(...points.map(q=>q[0]))-left+45),height=Math.ceil(Math.max(...points.map(q=>q[1]))-top+40);
   const im=document.createElement('canvas');im.width=Math.ceil(width*1.3);im.height=Math.ceil(height*1.3);const old=rx;try{rx=im.getContext('2d');rx.setTransform(1.3,0,0,1.3,-left*1.3,-top*1.3);if(modelHeights[f.style])furnitureModel(f,p);else physicalFurniture(f,p)}finally{rx=old}c={key,im,left,top,width,height};customFixtureCache.set(f,c)}
- rx.drawImage(c.im,c.left,c.top,c.width,c.height);const labelY=sy(f.z+f.d/2)-25;if(f.anchor){rect(X-65,labelY,130,16,'#f6edd8',3);spText(f.name,X,labelY+11,9,'#304951',124);}
+ rx.drawImage(c.im,c.left,c.top,c.width,c.height);/* Name tags only appear on active interactive objects. */
  if(f.anchor){const o=f.anchor;roomHit.push({o,x:X,y:Y+f.d*.35,w:f.w*zscale(f.z),h:91});if(activeObject(o))drawTag(o,X,Y+f.d*.35+9)}
 };
 // State-dependent physical feedback follows the actual quest interaction. This is

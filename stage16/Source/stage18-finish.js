@@ -223,6 +223,10 @@ if (compiledPack.levels.length > 6) {
   };
   // User interface: one task at the bottom, quiet room title, details on demand.
   const sheet=document.createElement('style');sheet.id='aq-premium-hud';sheet.textContent=`
+    .aqd .aqd-kicker,.aqd .aqd-story{display:none!important}
+    .aqd header{padding:13px 20px!important}
+    .aqd h2{font-size:clamp(20px,2.4vw,27px)!important;letter-spacing:-.02em}
+    .aqd .aqd-plan{box-shadow:none}
     #aq-room .aq-storybar{display:none!important}
     #aq-room .aq-room-head{top:10px;left:14px;right:14px;gap:8px;z-index:10}
     #aq-room .aq-room-head>div:first-child{max-width:min(54%,380px);min-width:0;padding:8px 14px;background:#193b46e8;border:1px solid #e8e7d638;border-radius:12px;box-shadow:0 3px 14px #132d3440}
