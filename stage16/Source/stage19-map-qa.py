@@ -12,7 +12,7 @@ with sync_playwright() as pw:
  p.locator('#home-map').click();assert p.locator('[data-world19]').count()==12;p.screenshot(path=str(Q/'world-map-desktop.png'))
  seen=set()
  for w in PACK['worlds']:
-  p.locator('[data-world19="'+w['id']+'"]').click();assert p.locator('[data-chapter19]').count()==5
+  p.locator('.aq19-stop').nth(PACK['worlds'].index(w)).click();assert p.locator('[data-chapter19]').count()==5
   for i in range(5):
    p.locator(f'[data-chapter19="{i}"]').click();cards=p.locator('[data-adventure19]');assert cards.count()==5;seen.update(cards.evaluate_all('(els)=>els.map(x=>x.dataset.adventure19)'))
    for j in range(5):assert cards.nth(j).locator('button').is_enabled()==(w['start']+i*5+j==0)
@@ -20,14 +20,14 @@ with sync_playwright() as pw:
  assert len(seen)==300;ok('All 300 adventure cards navigable; locked previews never unlock them')
  for w,h in [(320,568),(390,844),(844,390),(1280,720)]:
   p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(150);assert p.locator('[data-world19]').count()==12;assert p.evaluate('document.documentElement.scrollWidth<=innerWidth+1');p.screenshot(path=str(Q/f'world-map-{w}x{h}.png'))
-  p.locator('[data-world19="maplewood"]').click();assert p.locator('[data-chapter19]').count()==5;assert p.locator('#aq19-back-worlds').is_visible();assert p.evaluate('document.documentElement.scrollWidth<=innerWidth+1');p.screenshot(path=str(Q/f'world-preview-{w}x{h}.png'));p.locator('#aq19-back-worlds').click()
+  p.locator('.aq19-stop[data-world-index="1"]').click();assert p.locator('[data-chapter19]').count()==5;assert p.locator('#aq19-back-worlds').is_visible();assert p.evaluate('document.documentElement.scrollWidth<=innerWidth+1');p.screenshot(path=str(Q/f'world-preview-{w}x{h}.png'));p.locator('#aq19-back-worlds').click()
  ok('World map and chapter navigation fit four desktop/mobile viewport configurations')
  p.locator('#map-crew').click();assert p.locator('[data-select]').count()==15
  p.locator('[data-select="w19-maplewood"]').click();assert p.locator('[data-select="w19-maplewood"]').get_attribute('aria-pressed')=='true';p.screenshot(path=str(Q/'crew-15.png'));p.locator('[data-done]').click()
  p.evaluate('ALLY_DEBUG.startLevel(25)');assert p.evaluate('ALLY_STAGE19_QA.hero()')=='w19-maplewood';p.wait_for_timeout(250);p.keyboard.down('ArrowRight');p.wait_for_timeout(250);p.keyboard.up('ArrowRight');assert p.evaluate('ALLY_DEBUG.getState().x')>95;ok('New hero selectable, saved and playable with normal movement')
  p.evaluate('ALLY_DEBUG.startLevel(26)');assert p.evaluate('ALLY_STAGE19_QA.hero()')=='w19-maplewood';ok('New hero survives level transitions')
  # A true Stage 18 save can contain all 25 completion records and unlocked=25.
- p2=b.new_page(viewport={'width':1280,'height':720});p2.on('pageerror',lambda e:errors.append(str(e)));p2.evaluate(init);old={'unlocked':25,'selected':'ari','totalStars':125,'completed':{l['id']:{'complete':True,'stars':5} for l in PACK['levels'][:25]}};p2.evaluate('x=>localStorage.setItem("allyquest.welcome.five.v1",JSON.stringify(x))',old);p2.set_content(H.read_text(),wait_until='load',timeout=60000);p2.locator('#home-map').click();p2.locator('[data-world19="maplewood"]').click();assert p2.locator('[data-adventure19]').first.locator('button').is_enabled();assert not p2.locator('[data-adventure19]').nth(1).locator('button').is_enabled();assert p2.evaluate('ALLY_STAGE19_QA.worlds()[0].done')==25;p2.locator('#aq19-back-worlds').click();p2.locator('#aq19-scrapbook').click();assert p2.locator('.aq-note-card').count()==31;ok('Stage 18 save migrates to the first new adventure and retains original progress and scrapbook')
+ p2=b.new_page(viewport={'width':1280,'height':720});p2.on('pageerror',lambda e:errors.append(str(e)));p2.evaluate(init);old={'unlocked':25,'selected':'ari','totalStars':125,'completed':{l['id']:{'complete':True,'stars':5} for l in PACK['levels'][:25]}};p2.evaluate('x=>localStorage.setItem("allyquest.welcome.five.v1",JSON.stringify(x))',old);p2.set_content(H.read_text(),wait_until='load',timeout=60000);p2.locator('#home-map').click();p2.locator('.aq19-stop[data-world-index="1"]').click();assert p2.locator('[data-adventure19]').first.locator('button').is_enabled();assert not p2.locator('[data-adventure19]').nth(1).locator('button').is_enabled();assert p2.evaluate('ALLY_STAGE19_QA.worlds()[0].done')==25;p2.locator('#aq19-back-worlds').click();p2.locator('#aq19-scrapbook').click();assert p2.locator('.aq-note-card').count()==31;ok('Stage 18 save migrates to the first new adventure and retains original progress and scrapbook')
  p2.locator('[data-scrap-close]').click();p2.locator('#map-back').click();p2.locator('#home-play').click();assert p2.evaluate('ALLY_DEBUG.getState().level')==25;ok('Continue opens the next uncompleted adventure')
  assert not errors,errors;assert not [x for x in network if x.startswith(('http:','https:'))],network;ok('No runtime page errors or external network requests')
  b.close()

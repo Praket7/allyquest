@@ -75,6 +75,7 @@ jobs:
             stage16/Source/qa-stage19/
             stage16/Source/qa-stage19-premium/
             stage16/Source/qa-stage19-journey/
+            stage16/Source/qa-stage19-cinematic/
   playthrough:
     needs: build
     runs-on: ubuntu-24.04

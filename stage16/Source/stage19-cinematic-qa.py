@@ -1,7 +1,7 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import json,os,hashlib
-P=Path(__file__).resolve().parent;H=Path(os.getenv('AQ_STAGE19_HTML',str(P/'Ally_Quest_Cinematic.html')));Q=P/'qa';Q.mkdir(exist_ok=True)
+P=Path(__file__).resolve().parent;H=Path(os.getenv('AQ_STAGE19_HTML',str(P.parent/'Ally_Quest_300.html')));Q=P/'qa-stage19-cinematic';Q.mkdir(exist_ok=True)
 s=H.read_text();pack=json.JSONDecoder().raw_decode(s.split('const compiledPack=',1)[1])[0];errors=[];passed=[]
 with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path=os.getenv('AQ_CHROMIUM','/usr/bin/chromium'),args=['--no-sandbox','--disable-dev-shm-usage']);p=b.new_page(viewport={'width':1440,'height':810},reduced_motion='reduce');p.on('pageerror',lambda e:errors.append(str(e)));p.set_default_timeout(12000)
