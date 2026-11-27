@@ -19,7 +19,8 @@ jobs:
           python-version: '3.12'
       - run: node scripts/assemble-stage13.mjs
       - run: python -m pip install playwright==1.51.0
-      - run: for source in /etc/apt/sources.list.d/*; do
+      - run: |
+          for source in /etc/apt/sources.list.d/*; do
             if grep -q 'packages.microsoft.com/ubuntu/24.04/prod' "$source"; then
               sudo mv "$source" "$source.disabled"
             fi
