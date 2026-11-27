@@ -64,6 +64,7 @@ jobs:
         run: |
           python stage19-map-qa.py
           python stage19-premium-qa.py
+          python stage19-journey-qa.py
           python stage19-native-qa.py
       - uses: actions/upload-artifact@v4
         if: always()
@@ -72,6 +73,7 @@ jobs:
           path: |
             stage16/Source/qa-stage19/
             stage16/Source/qa-stage19-premium/
+            stage16/Source/qa-stage19-journey/
   playthrough:
     needs: build
     runs-on: ubuntu-24.04
