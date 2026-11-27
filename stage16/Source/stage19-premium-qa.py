@@ -5,7 +5,7 @@ P=Path(__file__).parent;H=Path(os.getenv('AQ_STAGE19_HTML',str(P.parent/'Ally_Qu
 source=Path(os.getenv('AQ_STAGE19_PACK',str(P/'ally-quest-300.json')));pack=json.loads(source.read_text())
 passed=[];errors=[]
 with sync_playwright() as pw:
- b=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage']);p=b.new_page(viewport={'width':1280,'height':720},reduced_motion='reduce');p.on('pageerror',lambda e:errors.append(str(e)));p.set_default_timeout(15000)
+ b=pw.chromium.launch(executable_path=os.getenv('AQ_CHROMIUM','/usr/bin/chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage']);p=b.new_page(viewport={'width':1280,'height':720},reduced_motion='reduce');p.on('pageerror',lambda e:errors.append(str(e)));p.set_default_timeout(15000)
  p.evaluate('''()=>{for(const k of ['localStorage','sessionStorage']){let m=new Map();Object.defineProperty(window,k,{value:{getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,String(v)),removeItem:k=>m.delete(k)}})}window.__ALLY_ENABLE_QA=true;localStorage.setItem('allyquest.five.preferences.v1',JSON.stringify({mute:true,reducedMotion:true}));}''')
  p.set_content(H.read_text(),wait_until='load',timeout=60000)
  p.wait_for_function('()=>typeof ALLY_STAGE19_QA!=="undefined"',timeout=15000)

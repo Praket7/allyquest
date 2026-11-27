@@ -28,7 +28,7 @@ with tempfile.TemporaryDirectory() as d:
  journey_encoded=''.join(x.read_text().strip() for x in sorted((P/'stage19-journey-art.parts').glob('*.b64')))
  journey_art=base64.b64decode(journey_encoded,validate=True)
  assert hashlib.sha1(('blob '+str(len(journey_art))+'\0').encode()+journey_art).hexdigest()=='20f73166e0be29ae9c59447f167d31a19ac4066d','Journey art checksum mismatch'
- patch('setup();\n})();',(P/'stage19-runtime.js').read_text()+'\n'+(P/'stage19-premium-ui.js').read_text()+'\nconst AQ_JOURNEY_ART="data:image/webp;base64,'+journey_encoded+'";\n'+(P/'stage19-journey.js').read_text()+'\n'+(P/'stage19-journey-upgrade.js').read_text()+'\n'+(P/'stage19-cinematic-art.js').read_text()+'\n'+(P/'stage19-cinematic.js').read_text()+'\nsetup();\n})();')
+ patch('setup();\n})();',(P/'stage19-runtime.js').read_text()+'\n'+(P/'stage19-premium-ui.js').read_text()+'\nconst AQ_JOURNEY_ART="data:image/webp;base64,'+journey_encoded+'";\n'+(P/'stage19-journey.js').read_text()+'\n'+(P/'stage19-journey-upgrade.js').read_text()+'\n'+(P/'stage19-cinematic-art.js').read_text()+'\n'+(P/'stage19-cinematic.js').read_text()+'\n'+(P/'stage19-reference-art.js').read_text()+'\n'+(P/'stage19-reference-ui.js').read_text()+'\nsetup();\n})();')
  patch('progress.unlocked=Math.max(progress.unlocked,i+1);startLevel(i,true)','progress.unlocked=Math.max(progress.unlocked,i+1);startLevel(i,true,true)')
  patch("world.id!=='emergency-rehearsal'&&timeElapsed<=190","!compiledPack.rooms[world.id]?.education?.emergency&&timeElapsed<=190")
  patch("world.id==='emergency-rehearsal'?' · Practice only — no time score'","compiledPack.rooms[world.id]?.education?.emergency?' · Practice only — no time score'")
