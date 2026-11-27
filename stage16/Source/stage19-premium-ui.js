@@ -4,6 +4,7 @@ if (compiledPack.worlds?.length === 12) {
   const css = document.createElement('style');
   css.textContent = `
   /* A place to explore rather than a list of locked menu rows. */
+  #map .map-actions #aq17-guide-map{position:relative;right:auto;bottom:auto;display:inline-flex;align-items:center;justify-content:center;margin:0;min-height:44px}
   #map .aq19-scenic-route {position:relative;isolation:isolate;grid-column:1/-1;min-height:212px;
     border-radius:20px;overflow:hidden;border:1px solid #d8e7d2a8;
     box-shadow:0 13px 31px #102d3480, inset 0 1px #fff6d7c0;
@@ -112,6 +113,10 @@ if (compiledPack.worlds?.length === 12) {
   @media(prefers-reduced-motion:reduce){#map .aq19-world-character,.aqd .aq19-product-art{animation:none!important;transition:none!important;transform:none!important}}
   `;
   document.head.append(css);
+  // Never cover world cards with a fixed study button on narrow screens.
+  const guideMap=document.querySelector('#aq17-guide-map');
+  const mapActions=document.querySelector('#map .map-actions');
+  if(guideMap&&mapActions)mapActions.prepend(guideMap);
 
   // The same hit targets are retained. This scenic route is purely a second
   // way to open the existing world previews; locked adventures remain locked.
