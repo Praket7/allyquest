@@ -1,0 +1,61 @@
+name: Stage 18 Welcome Street expansion
+on:
+  pull_request:
+    paths:
+      - 'stage16/Source/**'
+      - '.github/workflows/stage18.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage18:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: stage16/Source
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build and validate 25-adventure standalone
+        run: |
+          python build-stage18.py
+          node stage18-tests.cjs
+          node stage18-label-tests.cjs
+      - name: Install pinned browser harness
+        run: |
+          pip install playwright==1.51.0 pillow==11.2.1
+          python -m playwright install --with-deps chromium
+          echo "AQ_CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')" >> "$GITHUB_ENV"
+      - name: Complete every new level by both interaction modes
+        env:
+          AQ_WORKERS: '3'
+        run: |
+          python stage18-qa.py
+          python stage18-interior-audit.py
+      - name: Verify map, progression and native release
+        run: |
+          python stage18-map-qa.py
+          python stage18-native-qa.py
+          python stage18-label-access-qa.py
+          python stage18-finish-qa.py
+      - name: Upload compact visual review
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage18-interior-preview
+          path: |
+            stage16/Source/qa/stage18/interior-contact-sheet.jpg
+            stage16/Source/qa/stage18/interior-art-audit.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage18-evidence
+          path: |
+            stage16/Source/qa/stage18/
+            stage16/Ally_Quest_Welcome_Street_25.html
