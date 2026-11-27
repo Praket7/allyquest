@@ -68,6 +68,7 @@ jobs:
           python stage19-cinematic-qa.py
           python stage19-reference-qa.py
           python stage19-native-qa.py
+          python stage19-studio-qa.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -78,6 +79,7 @@ jobs:
             stage16/Source/qa-stage19-journey/
             stage16/Source/qa-stage19-cinematic/
             stage16/Source/qa-stage19-reference/
+            stage16/Source/qa-stage19-studio/
   playthrough:
     needs: build
     runs-on: ubuntu-24.04
