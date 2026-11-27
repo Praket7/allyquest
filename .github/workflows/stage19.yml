@@ -58,12 +58,15 @@ jobs:
       - name: World map, all 300 cards, hero choice and native persistence
         run: |
           python stage19-map-qa.py
+          python stage19-premium-qa.py
           python stage19-native-qa.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: stage19-navigation-evidence
-          path: stage16/Source/qa-stage19/
+          path: |
+            stage16/Source/qa-stage19/
+            stage16/Source/qa-stage19-premium/
   playthrough:
     needs: build
     runs-on: ubuntu-24.04
