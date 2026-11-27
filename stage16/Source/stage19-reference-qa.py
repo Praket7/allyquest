@@ -8,7 +8,7 @@ with sync_playwright() as pw:
  p.evaluate('''()=>{for(const k of ['localStorage','sessionStorage']){let m=new Map;Object.defineProperty(window,k,{value:{getItem:k=>m.get(k)??null,setItem:(k,v)=>m.set(k,String(v)),removeItem:k=>m.delete(k)}})}window.__ALLY_ENABLE_QA=true;localStorage.setItem('allyquest.five.preferences.v1',JSON.stringify({mute:true,reducedMotion:true}));}''');p.set_content(s,wait_until='load',timeout=60000);p.wait_for_timeout(500)
  def shot(name):
   p.wait_for_timeout(150);p.screenshot(path=str(Q/(name+'.png')),timeout=15000);print('CAPTURE',name,flush=True)
- assert p.locator('#home-stage').bounding_box()['width']==1440;assert p.locator('#home-stage').bounding_box()['height']==810;shot('01-title');passed.append('Full-bleed title and original menu controls')
+ assert p.locator('#home-stage').bounding_box()['width']==1440;assert p.locator('#home-stage').bounding_box()['height']==810;assert p.locator('#home-play').evaluate("(e)=>getComputedStyle(e).color")!='rgba(0, 0, 0, 0)';assert p.locator('.cin-logo').bounding_box()['width']>100;assert p.locator('.cin-home-art').evaluate("(e)=>getComputedStyle(e).backgroundImage.match(/url\\(/g).length") == 1;shot('01-title');passed.append('Full-bleed title and original menu controls')
  p.locator('#home-map').click();p.wait_for_timeout(250);assert p.locator('.aq19-stop').count()==12;shot('02-world-map')
  p.locator('.aq19-stop').first.click();assert p.locator('.aqj-book .map-play:enabled').count()==1;shot('03-adventures');p.locator('#aq19-back-worlds').click();p.locator('.aq19-stop').nth(2).click();assert p.locator('.map-play:disabled').count()==5;shot('04-locked-market');passed.append('12 world pins and strict locked adventure states preserved')
  p.locator('#aq19-back-worlds').click()
