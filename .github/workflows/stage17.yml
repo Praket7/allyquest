@@ -29,6 +29,11 @@ jobs:
       - name: Install pinned browser harness
         run: |
           pip install playwright==1.51.0 pillow==11.2.1
+          for source in /etc/apt/sources.list.d/*; do
+            if grep -q 'packages.microsoft.com/ubuntu/24.04/prod' "$source"; then
+              sudo mv "$source" "$source.disabled"
+            fi
+          done
           python -m playwright install --with-deps chromium
           echo "AQ_CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')" >> "$GITHUB_ENV"
       - name: Learning, accessibility and immediate escalation flows

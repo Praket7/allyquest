@@ -53,17 +53,33 @@ jobs:
       - name: Install Chromium
         run: |
           pip install playwright==1.51.0 pillow==11.2.1
+          for source in /etc/apt/sources.list.d/*; do
+            if grep -q 'packages.microsoft.com/ubuntu/24.04/prod' "$source"; then
+              sudo mv "$source" "$source.disabled"
+            fi
+          done
           python -m playwright install --with-deps chromium
           echo "AQ_CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')" >> "$GITHUB_ENV"
       - name: World map, all 300 cards, hero choice and native persistence
         run: |
           python stage19-map-qa.py
+          python stage19-premium-qa.py
+          python stage19-journey-qa.py
+          python stage19-cinematic-qa.py
+          python stage19-reference-qa.py
           python stage19-native-qa.py
+          python stage19-studio-qa.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: stage19-navigation-evidence
-          path: stage16/Source/qa-stage19/
+          path: |
+            stage16/Source/qa-stage19/
+            stage16/Source/qa-stage19-premium/
+            stage16/Source/qa-stage19-journey/
+            stage16/Source/qa-stage19-cinematic/
+            stage16/Source/qa-stage19-reference/
+            stage16/Source/qa-stage19-studio/
   playthrough:
     needs: build
     runs-on: ubuntu-24.04
@@ -87,6 +103,11 @@ jobs:
       - name: Install pinned browser harness
         run: |
           pip install playwright==1.51.0 pillow==11.2.1
+          for source in /etc/apt/sources.list.d/*; do
+            if grep -q 'packages.microsoft.com/ubuntu/24.04/prod' "$source"; then
+              sudo mv "$source" "$source.disabled"
+            fi
+          done
           python -m playwright install --with-deps chromium
           echo "AQ_CHROMIUM=$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')" >> "$GITHUB_ENV"
       - name: Complete every adventure in this world with both controls

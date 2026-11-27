@@ -1,0 +1,26 @@
+name: Stage 19 reference packshot acquisition
+on:
+  pull_request:
+    paths:
+      - 'stage16/Source/stage19-packshot-sources.json'
+      - 'stage16/Source/capture-packshots.py'
+      - '.github/workflows/stage19-packshots.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow==11.2.1
+      - run: python stage16/Source/capture-packshots.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference-packshots
+          path: stage16/Source/packshot-capture/

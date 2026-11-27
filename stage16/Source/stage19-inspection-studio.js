@@ -1,0 +1,103 @@
+/* Inspection studio: presentation only. Existing case/graph/submit handlers own assessment. */
+if(compiledPack.worlds?.length===12){
+ const d=document.querySelector('#aq-label-detective');
+ // Retail source and manufacturer identify TCIN 51426307 as Lightly Salted Barbecue.
+ for(const c of Object.values(AQLabelCases.cases))for(const p of c.products)if(p.source.endsWith('/A-51426307'))p.name='Lay’s Lightly Salted Barbecue Potato Chips';
+ const style=document.createElement('style');style.id='aq-inspection-studio';style.textContent=`
+ #aq-label-detective.aq-studio{--paper:#fcf5e8;--ink:#392d24;--accent:#976126;--line:#d7c5a9;color:var(--ink)!important;display:flex!important;flex-direction:column!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;inset:0!important;margin:0!important;border:0!important;border-radius:0!important;padding:0!important;overflow:hidden!important;font:500 16px/1.45 system-ui,sans-serif!important}
+ #aq-label-detective.aq-studio:not([open]){display:none!important}
+ #aq-label-detective.aq-studio:before{display:none!important}
+ #aq-label-detective.aq-studio header{display:flex!important;align-items:center!important;justify-content:space-between!important;position:relative!important;padding:6px max(18px,env(safe-area-inset-right)) 6px max(18px,env(safe-area-inset-left))!important;flex:0 0 auto!important;gap:12px!important;background:#372a22b8!important}
+ #aq-label-detective.aq-studio header h2{font:italic 700 clamp(24px,3.1vw,44px)/1.08 Georgia,serif!important;color:#fff7e3!important;text-shadow:0 2px 8px #271b16!important;margin:0!important}
+ #aq-label-detective.aq-studio header button{position:static!important;order:-1!important;flex:0 0 44px!important;width:44px!important;min-width:44px!important;height:44px!important}
+ #aq-label-detective.aq-studio header>div{flex:1!important;text-align:left!important}
+ #aq-label-detective.aq-studio .aqd-plan{display:flex!important;flex:0 0 auto!important;gap:8px 24px!important;flex-wrap:wrap!important;justify-content:flex-start!important;margin:0!important;padding:8px 20px!important;background:#fff4dfef!important;border:0!important;border-radius:0!important;box-shadow:none!important;font:500 15px/1.4 system-ui!important}
+ #aq-label-detective.aq-studio .aqd-plan p{margin:0!important;min-width:0!important;flex:1 1 220px!important}
+ #aq-label-detective.aq-studio .aqd-plan strong{font:700 12px/1.3 system-ui!important;letter-spacing:.04em!important;color:#664520!important}
+ #aq-label-detective.aq-studio .aqd-plan span{font:500 15px/1.35 system-ui!important;color:#392d24!important}
+ #aq-label-detective.aq-studio .aqd-work{display:block!important;flex:1 1 0!important;min-height:0!important;max-height:none!important;overflow:auto!important;overscroll-behavior:contain;padding:8px max(3vw,12px) 16px max(21vw,12px)!important;scrollbar-gutter:stable;scroll-padding-block:12px!important}
+ #aq-label-detective.aq-studio .aqd-receipt{display:block!important;position:static!important;max-height:none!important;overflow:visible!important;padding:0!important;margin:0 0 6px!important;background:none!important;border:0!important;box-shadow:none!important}
+ #aq-label-detective.aq-studio .aqd-receipt [data-receipt-list]{display:flex!important;gap:6px!important;overflow-x:auto!important;padding:2px 2px 6px!important;scrollbar-width:thin!important;max-width:100%!important}
+ #aq-label-detective.aq-studio .aqd-receipt [data-receipt]{flex:1 0 150px!important;min-height:44px!important;white-space:normal!important;line-height:1.25!important;font:650 14px/1.25 system-ui!important;background:#fff8ebeb!important;color:#493521!important;border:1px solid #d9bc91!important;border-radius:7px!important;padding:8px 10px!important;box-shadow:none!important;text-align:left!important}
+ #aq-label-detective.aq-studio .aqd-receipt [data-receipt][aria-pressed=true]{background:#f4d18d!important;border:2px solid #986121!important}
+ #aq-label-detective.aq-studio .aqd-stage{display:grid!important;grid-template-columns:minmax(180px,.82fr) minmax(0,1.5fr)!important;grid-template-rows:auto auto auto auto!important;align-items:start!important;align-content:start!important;gap:6px 24px!important;min-height:0!important;max-height:none!important;overflow:visible!important;padding:9px 22px!important;border:0!important;background:none!important;box-shadow:none!important;position:relative!important;isolation:isolate!important}
+ #aq-label-detective.aq-studio .aqd-stage:before{content:''!important;display:block!important;position:absolute!important;inset:0 0 0 36%!important;background:var(--paper)!important;border:1px solid #e4d3b9!important;box-shadow:0 10px 30px #2a1d2155!important;border-radius:16px!important;z-index:-1!important;pointer-events:none!important}
+ #aq-label-detective.aq-studio .aqd-tabs{grid-column:2!important;grid-row:1!important;display:flex!important;position:static!important;justify-content:flex-start!important;justify-self:stretch!important;gap:2px!important;width:100%!important;max-width:100%!important;overflow:visible!important;margin:0!important;padding:0!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;border-bottom:1px solid var(--line)!important}
+ #aq-label-detective.aq-studio .aqd-tabs button{min-width:0!important;flex:1 1 auto!important;min-height:44px!important;padding:7px 5px!important;color:#684c32!important;background:none!important;border:0!important;border-bottom:3px solid transparent!important;border-radius:0!important;box-shadow:none!important;font:650 15px/1.2 system-ui!important;white-space:normal!important}
+ #aq-label-detective.aq-studio .aqd-tabs button[aria-pressed=true],#aq-label-detective.aq-studio .aqd-tabs button[aria-expanded=true]{color:#3d2a19!important;border-bottom-color:#a56e2d!important;background:#f3e1bd!important}
+ #aq-label-detective.aq-studio .aq19-product-art{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;grid-column:1!important;grid-row:1/5!important;position:sticky!important;top:8px!important;align-self:start!important;min-width:0!important;width:100%!important;max-width:none!important;height:auto!important;margin:0!important;padding:12px!important;border:0!important;background:none!important;box-shadow:none!important;filter:none!important;overflow:visible!important}
+ #aq-label-detective.aq-studio .aq19-product-art .cin-food-art{display:block!important;width:100%!important;height:auto!important;max-height:46vh!important;max-width:400px!important;object-fit:contain!important;clip-path:none!important;filter:none!important;box-shadow:0 8px 24px #271a2140!important;border:0!important;border-radius:6px!important;background:#fff!important}
+ #aq-label-detective.aq-studio .aq19-product-art .aq-photo-caption{font:650 13px/1.35 system-ui!important;color:#fff9eb!important;background:#3a2a22d9!important;border-radius:6px!important;padding:6px 9px!important;margin:8px 0 0!important;text-align:center!important;text-shadow:none!important;max-width:100%!important}
+ #aq-label-detective.aq-studio .aq-photo-zoom{font:650 14px system-ui!important;min-height:44px!important;border:1px solid #f4ddbc!important;background:#382b22dd!important;color:#fff6e0!important;border-radius:6px!important;padding:6px 12px!important;margin-top:8px!important}
+ #aq-label-detective.aq-studio .aq19-product-art[data-zoom=true] .cin-food-art{max-height:none!important;max-width:none!important;width:100%!important;cursor:zoom-out!important}
+ #aq-label-detective.aq-studio .aqd-print{grid-column:2!important;grid-row:2!important;max-width:100%!important;width:100%!important;overflow:visible!important;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+ #aq-label-detective.aq-studio .aqd-label{padding:0!important;margin:0!important;color:var(--ink)!important;background:none!important;box-shadow:none!important;border:0!important;font:500 16px/1.5 system-ui!important;min-width:0!important}
+ #aq-label-detective.aq-studio .aqd-label h3{font:700 clamp(22px,2.1vw,34px)/1.15 Georgia,serif!important;letter-spacing:-.02em!important;margin:5px 0 8px!important;padding:0 0 8px!important;border-bottom:1px solid var(--line)!important;color:#392d24!important}
+ #aq-label-detective.aq-studio .aqd-label p,#aq-label-detective.aq-studio .aqd-label small{font:500 15px/1.45 system-ui!important;color:#4d4035!important;margin:3px 0!important}
+ #aq-label-detective.aq-studio .aqd-clues{display:flex!important;flex-wrap:wrap!important;gap:6px!important;margin:4px 0 6px!important}
+ #aq-label-detective.aq-studio [data-clue]{font:600 16px/1.3 system-ui!important;min-height:44px!important;max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere!important;color:#3e3024!important;background:#fffdf6!important;border:1px solid #c4ae8d!important;border-radius:5px!important;padding:7px 10px!important;box-shadow:none!important;text-align:left!important}
+ #aq-label-detective.aq-studio [data-clue][aria-pressed=true]{background:#f4d18d!important;border:2px solid #855718!important}
+ #aq-label-detective.aq-studio .aqd-stage .aqd-answer{grid-column:2!important;grid-row:3!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;padding:10px 0 0!important;margin:0!important;border:0!important;border-top:1px solid var(--line)!important;border-radius:0!important;background:none!important;box-shadow:none!important}
+ #aq-label-detective.aq-studio .aqd-answer h3{font:700 21px/1.2 Georgia,serif!important;color:var(--ink)!important;margin:0!important;grid-column:1/-1!important}
+ #aq-label-detective.aq-studio .aqd-check,#aq-label-detective.aq-studio .aqd-feedback{grid-column:1/-1!important;font:500 15px/1.4 system-ui!important;color:#493a2e!important;margin:0!important}
+ #aq-label-detective.aq-studio [data-answer]{min-height:48px!important;font:650 14px/1.3 system-ui!important;background:#efe0c3!important;color:#3b2b1b!important;border:1px solid #b69970!important;border-radius:7px!important;box-shadow:none!important;padding:8px!important;white-space:normal!important}
+ #aq-label-detective.aq-studio [data-answer]:disabled{opacity:.55!important}
+ #aq-label-detective.aq-studio .aqd-source{grid-column:2!important;grid-row:4!important;font:500 13px/1.4 system-ui!important;color:#4d4035!important;padding:8px 0 0!important;border-top:1px solid var(--line)!important}
+ #aq-label-detective.aq-studio .aqd-source a{color:#714b27!important;overflow-wrap:anywhere!important}
+ #aq-label-detective.aq-studio .aqd-footer{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;position:relative!important;flex:0 0 auto!important;margin:0!important;padding:8px 20px max(8px,env(safe-area-inset-bottom))!important;background:#392b24f2!important;color:#fff7e8!important;box-shadow:0 -3px 14px #291c2340!important;border:0!important}
+ #aq-label-detective.aq-studio .aqd-footer small{font:500 13px/1.35 system-ui!important;color:#fff7e8!important;max-width:55%!important}
+ #aq-label-detective.aq-studio #aqd-next{min-height:44px!important;border-radius:8px!important;padding:8px 18px!important;font:750 16px/1.25 system-ui!important;background:#f4cf83!important;color:#3a2817!important;border:1px solid #ffedc2!important;box-shadow:none!important}
+ #aq-label-detective.aq-studio #aqd-next:disabled{background:#b8ab92!important;color:#3f352a!important;opacity:.8!important}
+ #aq-label-detective.aq-studio button:focus-visible{outline:3px solid #367da5!important;outline-offset:2px!important}
+ #aq-label-detective.aq-studio .aqd-stage[data-studio-side=front] .aqd-answer{grid-row:2!important}
+ #aq-label-detective.aq-studio .aqd-stage[data-studio-side=front] .aqd-source{grid-row:3!important}
+ #aq-label-detective.aq-studio .aq-studio-intro{grid-column:2!important;grid-row:2!important;font:500 16px/1.5 system-ui!important;color:#493a2e!important;margin:8px 0!important}
+ #aq-label-detective.aq-studio .aqd-stage[data-studio-side=front] .aqd-answer{grid-row:3!important}#aq-label-detective.aq-studio .aqd-stage[data-studio-side=front] .aqd-source{grid-row:4!important}
+ @media(max-width:999px){#aq-label-detective.aq-studio .aqd-work{padding:10px 12px 16px!important}}
+ @media(max-aspect-ratio:4/5){
+ #aq-label-detective.aq-studio{background:linear-gradient(#59412f70,#3c2a20b0),var(--counter-snack) center top/cover no-repeat!important}
+ #aq-label-detective.aq-studio.ref-recipe{background:linear-gradient(#59412f70,#3c2a20b0),var(--counter-recipe) center top/cover no-repeat!important}
+ #aq-label-detective.aq-studio header{padding:6px 12px!important;gap:10px!important}#aq-label-detective.aq-studio header h2{font-size:25px!important}
+ #aq-label-detective.aq-studio .aqd-plan{display:block!important;padding:7px 12px!important}#aq-label-detective.aq-studio .aqd-plan p{display:flex!important;gap:6px!important;align-items:baseline!important;margin:2px 0!important}#aq-label-detective.aq-studio .aqd-plan strong{font-size:11px!important;flex:0 0 80px!important;letter-spacing:0!important}#aq-label-detective.aq-studio .aqd-plan span{font-size:13px!important;line-height:1.35!important}
+ #aq-label-detective.aq-studio .aqd-work{padding:8px 8px 12px!important;scrollbar-gutter:auto!important}
+ #aq-label-detective.aq-studio .aqd-receipt{margin-bottom:7px!important}#aq-label-detective.aq-studio .aqd-receipt [data-receipt]{flex:0 0 150px!important;font-size:13px!important;min-height:48px!important}
+ #aq-label-detective.aq-studio .aqd-stage{display:flex!important;flex-direction:column!important;gap:8px!important;padding:10px 12px 16px!important;background:var(--paper)!important;border-radius:12px!important}
+ #aq-label-detective.aq-studio .aqd-stage:before{display:none!important}
+ #aq-label-detective.aq-studio .aqd-tabs{order:-3!important;flex:0 0 auto!important;align-self:stretch!important;max-width:100%!important}
+ #aq-label-detective.aq-studio .aq19-product-art{position:static!important;display:grid!important;grid-template-columns:minmax(0,92px) minmax(0,1fr)!important;gap:4px 10px!important;width:100%!important;max-width:100%!important;align-self:stretch!important;padding:0 0 8px!important;border-bottom:1px solid var(--line)!important;order:-2!important;align-items:center!important}
+ #aq-label-detective.aq-studio .aq19-product-art .cin-food-art{grid-row:1/3!important;max-height:100px!important;max-width:92px!important;width:100%!important;box-shadow:none!important}
+ #aq-label-detective.aq-studio .aq19-product-art .aq-photo-caption{grid-column:2!important;align-self:end!important;background:none!important;color:#493a2e!important;text-align:left!important;padding:0!important;margin:0!important;font-size:13px!important}
+ #aq-label-detective.aq-studio .aq-photo-zoom{grid-column:2!important;justify-self:start!important;align-self:start!important;color:#493a2e!important;background:#f1e3ca!important;border:1px solid #c4ae8d!important;margin:0!important;min-height:44px!important}
+ #aq-label-detective.aq-studio .aqd-stage[data-studio-side=front] .aq19-product-art,#aq-label-detective.aq-studio .aq19-product-art[data-zoom=true]{display:flex!important;flex-direction:column!important;align-items:center!important}
+ #aq-label-detective.aq-studio .aqd-stage[data-studio-side=front] .cin-food-art,#aq-label-detective.aq-studio .aq19-product-art[data-zoom=true] .cin-food-art{max-height:42vh!important;max-width:280px!important;width:auto!important}
+ #aq-label-detective.aq-studio .aqd-stage .aqd-print,#aq-label-detective.aq-studio .aqd-stage .aqd-answer,#aq-label-detective.aq-studio .aqd-source{width:100%!important;max-width:100%!important;align-self:stretch!important}
+ #aq-label-detective.aq-studio .aqd-stage .aqd-answer{grid-template-columns:1fr!important}#aq-label-detective.aq-studio [data-answer]{text-align:left!important;min-height:48px!important;font-size:16px!important}
+ #aq-label-detective.aq-studio .aqd-footer{padding:7px 10px max(7px,env(safe-area-inset-bottom))!important}#aq-label-detective.aq-studio .aqd-footer small{font-size:11px!important}#aq-label-detective.aq-studio #aqd-next{font-size:14px!important;padding:8px 12px!important;max-width:55%!important}
+ }
+ @media(max-height:480px) and (min-aspect-ratio:4/5){#aq-label-detective.aq-studio header{padding:3px 12px!important}#aq-label-detective.aq-studio header h2{font-size:23px!important}#aq-label-detective.aq-studio .aqd-plan{padding:3px 12px!important}#aq-label-detective.aq-studio .aqd-plan span{font-size:13px!important}#aq-label-detective.aq-studio .aqd-work{padding:6px 12px!important}#aq-label-detective.aq-studio .aq19-product-art{position:static!important}#aq-label-detective.aq-studio .aq19-product-art .cin-food-art{max-height:150px!important}#aq-label-detective.aq-studio .aqd-footer{padding:4px 12px!important}}
+ @media(prefers-reduced-motion:reduce){#aq-label-detective.aq-studio *{animation:none!important;transition:none!important}}
+ `;document.head.append(style);
+ const el=(tag,cls,txt)=>{const n=document.createElement(tag);n.className=cls;if(txt)n.textContent=txt;return n};
+ function decorate(){
+  const st=d.querySelector('.aqd-stage');if(!d.open||!st){d.classList.remove('aq-studio');return}if(!st.dataset.scenicReady||st.dataset.studioReady)return;st.dataset.studioReady='true';d.classList.add('aq-studio');
+  const id=d.querySelector('[data-receipt][aria-pressed=true]')?.dataset.receipt;const c=AQLabelCases.cases[room?.task.id];const p=c?.products.find(q=>q.id===id);if(!p)return;
+  const back=st.querySelector('[data-side=back]')?.getAttribute('aria-pressed')==='true';st.dataset.studioSide=back?'back':'front';
+  const art=st.querySelector('.aq19-product-art');const key=p.source.match(/\/A-\d+$/)?.[0].slice(1);const record=p.ingredients&&!p.recipe&&AQ_RETAIL_PACKSHOTS[key];
+  if(art){const photo=record?.src||(p.recipe?AQLabelCases.photos[p.photo]:null);art.replaceChildren();
+   const img=photo?el('img','cin-food-art'):null;
+   if(img){img.src=photo;img.alt=record?'Retailer reference packshot of '+p.name:'Illustration of '+p.name;img.dataset.assetKind=record?'retail-reference':'recipe-illustration';art.append(img)}else{art.append(el('div','aq-photo-caption',p.ingredients?'No verified image for this record.':'Package or recipe evidence is missing.'))}
+   const note=el('p','aq-photo-caption',record?'Retail reference image · not a current label':p.recipe&&photo?'Recipe illustration · published ingredients':'No matching reference image');art.append(note);
+   if(img){const z=el('button','aq-photo-zoom','Enlarge image');z.type='button';z.setAttribute('aria-pressed','false');z.onclick=()=>{const on=art.dataset.zoom!=='true';art.dataset.zoom=String(on);z.setAttribute('aria-pressed',String(on));z.textContent=on?'Reduce image':'Enlarge image'};art.append(z)}
+  }
+  const front=st.querySelector('[data-side=front]');const rear=st.querySelector('[data-side=back]');if(front)front.textContent=p.recipe?'Recipe':'Package';if(rear)rear.textContent='Ingredients';
+  if(!back){const intro=el('p','aq-studio-intro',p.recipe?'Open the ingredients to check this recipe against the practice plan.':'Read the ingredients before filing this item. The package image alone is not evidence of safety.');st.append(intro)}
+  const planLabels=d.querySelectorAll('.aqd-plan strong');if(planLabels.length===2){planLabels[0].textContent='Allergy plan';planLabels[1].textContent='Color preference'}
+  const check=st.querySelector('.aqd-check');if(check)check.textContent='Mark the relevant evidence, then file it.';
+  const hint=st.querySelector('.aqd-clue-hint');if(hint)hint.textContent='Select the relevant terms. If nothing listed conflicts, leave them unmarked.';
+  const grouped=st.querySelector('.aqd-label small');if(grouped&&grouped.textContent.startsWith('Source ingredient list'))grouped.textContent='Reference ingredients';
+  const source=st.querySelector('.aqd-source');if(source&&record){const note=el('small','', 'Image: retailer listing (reference only).');source.append(note)}
+  const foot=d.querySelector('.aqd-footer small');if(foot)foot.textContent=foot.textContent.replace('Source snapshots, not food approval.','Adult reviews every candidate.');
+  const selected=d.querySelector('[data-receipt][aria-pressed=true]');const list=selected?.parentElement;if(list){list.scrollLeft=Math.max(0,selected.offsetLeft-list.offsetLeft-list.clientWidth/2+selected.clientWidth/2)}
+ }
+ new MutationObserver(decorate).observe(d,{childList:true,subtree:true,attributes:true,attributeFilter:['open']});
+}

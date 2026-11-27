@@ -20,6 +20,9 @@ def run(spec):
    if suffix=='FAIL' or os.getenv('AQ_CAPTURE','1')=='1' or (os.getenv('AQ_CAPTURE')=='sample' and (idx%25==0 or idx%25==24)):p.screenshot(path=str(Q/(label+'-'+suffix+'.png')))
   try:
    p.set_content(H.read_text(),wait_until='load',timeout=60000)
+   # Each isolated run receives the completion records that a player would have
+   # earned before reaching this adventure. Never complete the adventure under test.
+   p.evaluate('i=>ALLY_JOURNEY_QA.seedBoundary(i)',idx)
    p.evaluate('n=>ALLY_DEBUG.startLevel(n)',idx);p.wait_for_timeout(220)
    def st():return p.evaluate('ALLY_DEBUG.getState()')
    def walk(target,tol=27):
