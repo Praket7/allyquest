@@ -25,7 +25,7 @@ with tempfile.TemporaryDirectory() as d:
  assert hashlib.sha256(asset).hexdigest()==(P/'stage19-art.sha256').read_text().strip(),'Generated world asset checksum mismatch'
  i=s.index('<script>(()=>{\'use strict\';\nconst $=s=>document.querySelector(s)');s=s[:i]+'<script>'+asset.decode('utf-8')+'</script>\n'+s[i:]
  patch('const roomArt=()=>sceneProfiles[room?.task.id];',"for(const [id,base] of Object.entries(compiledPack.roomTemplates||{})){const a=sceneProfiles[base];if(a)sceneProfiles[id]=[...a.slice(0,6),compiledPack.rooms[id].meta[0].toUpperCase()];}\nconst roomArt=()=>sceneProfiles[room?.task.id];")
- patch('setup();\n})();',(P/'stage19-runtime.js').read_text()+'\nsetup();\n})();')
+ patch('setup();\n})();',(P/'stage19-runtime.js').read_text()+'\n'+(P/'stage19-premium-ui.js').read_text()+'\nsetup();\n})();')
  patch("world.id!=='emergency-rehearsal'&&timeElapsed<=190","!compiledPack.rooms[world.id]?.education?.emergency&&timeElapsed<=190")
  patch("world.id==='emergency-rehearsal'?' · Practice only — no time score'","compiledPack.rooms[world.id]?.education?.emergency?' · Practice only — no time score'")
  s=s.replace('25 adventures. One big celebration. Every friend belongs.','12 worlds. 300 adventures. Every friend belongs.').replace('25 adventures.','300 adventures.').replace('/31 notes','/306 notes').replace('/31 charms','/306 charms')
