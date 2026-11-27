@@ -16,7 +16,7 @@ with sync_playwright() as pw:
  assert p.locator('.aq19-world-character').count()==11
  p.screenshot(path=str(Q/'map-premium-desktop.png'))
  passed.append('12 world pins and 11 cast portraits displayed on actual map')
- p.locator('.aq19-stop[data-world-index="2"]').click();assert 'Riverside' in p.locator('.map-title').inner_text();assert p.locator('.aq19-chapter-hero').count()==1;p.screenshot(path=str(Q/'world-preview-premium.png'));p.locator('#aq19-back-worlds').click()
+ p.locator('.aq19-stop[data-world-index="2"]').click();assert 'Riverside' in p.locator('.cin-world-heading').inner_text();assert p.locator('.cin-world-heading').is_visible();assert p.locator('.aq19-chapter-hero').count()==1;p.screenshot(path=str(Q/'world-preview-premium.png'));p.locator('#aq19-back-worlds').click()
  passed.append('Route pins enter existing world previews without bypassing progress')
  for w,h in [(320,568),(390,844),(844,390),(1280,720)]:
   p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(180)
